@@ -10,7 +10,7 @@ import { Stories } from "@/components/sections/stories";
 import { Backers } from "@/components/sections/backers";
 import { Contact } from "@/components/sections/contact";
 import { site } from "@/lib/site";
-import { voices } from "@/lib/content";
+import { voices } from "@/lib/voices";
 
 const jsonLd = {
   "@context": "https://schema.org",

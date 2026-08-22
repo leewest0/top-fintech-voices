@@ -9,9 +9,7 @@ export const site = {
   phoneHref: "+233241339037",
   location: "Accra, Ghana",
   orderUrl: "https://topfintechvoices.com/order-magazine/",
-  spotlightUrl: "https://topfintechvoices.com/spotlight/",
   articlesUrl: "https://topfintechvoices.com/category/news-hub/",
-  aboutUrl: "https://topfintechvoices.com/about-us/",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/company/topfintechvoices/" },
     { label: "Facebook", href: "https://www.facebook.com/topfintechvoices" },
@@ -20,11 +18,15 @@ export const site = {
   ],
 } as const;
 
+/**
+ * Section links are written root-relative (`/#magazine`) rather than as bare
+ * fragments so the same nav works from every route, not just the landing page.
+ */
 export const nav = [
-  { label: "Spotlight", href: "#spotlight" },
-  { label: "The Magazine", href: "#magazine" },
-  { label: "Stories", href: "#stories" },
-  { label: "About", href: "#about" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "Spotlight", href: "/spotlight" },
+  { label: "The Magazine", href: "/#magazine" },
+  { label: "Stories", href: "/#stories" },
+  { label: "About", href: "/#about" },
+  { label: "Team", href: "/#team" },
+  { label: "Contact", href: "/#contact" },
 ] as const;

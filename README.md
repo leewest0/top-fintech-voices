@@ -57,13 +57,24 @@ logo off its backdrop and crops to the ink so they sit properly in their tiles.
 Both scripts are one-shot asset generators — their output is committed, so you only need
 to re-run them if the source artwork changes.
 
+## Pages
+
+| Route | What it is |
+| --- | --- |
+| `/` | The landing page |
+| `/spotlight` | All 28 profiles, filterable by name, role or company |
+
+The nav's section links are written root-relative (`/#magazine`) so the same header
+and footer work from every route.
+
 ## Structure
 
 ```
 src/
   app/
     layout.tsx        fonts, metadata, theme bootstrap
-    page.tsx          composes the sections, emits JSON-LD
+    page.tsx          landing page — composes the sections, emits JSON-LD
+    spotlight/        the full roster
     globals.css       design tokens, animations, component classes
   components/
     site-header.tsx   sticky nav, theme toggle, mobile menu
@@ -73,12 +84,27 @@ src/
     ui/               logo, weave motif, reveal-on-scroll
   lib/
     site.ts           site-wide config: contact details, nav, social links
-    content.ts        the voices, stories, team, sponsors and partners
+    voices.ts         GENERATED — all 28 Spotlight profiles
+    content.ts        stories, team, sponsors, partners, featured voices
 public/
   brand/ voices/ team/ stories/ magazine/ sponsors/ partners/
 ```
 
-To change what's on the page, edit `src/lib/content.ts` — the sections render from it.
+To change what's on the landing page, edit `src/lib/content.ts` — the sections render
+from it, and `FEATURED_SLUGS` picks which voices it carries.
+
+`src/lib/voices.ts` is generated, so don't hand-edit it:
+
+```bash
+python3 scripts/fetch-voices.py   # needs no dependencies beyond the stdlib
+```
+
+It reads the Spotlight page for each portrait, name, role line and LinkedIn URL, and
+the WordPress REST API (`/wp-json/wp/v2/posts`) for the full profile copy, matches the
+two by name, downloads the portraits into `public/voices/` and writes the TypeScript.
+Re-run it when the client publishes new profiles. A short `OVERRIDES` table at the top
+of the script carries the handful of corrections to the live card text — a typo, an
+abbreviated name, two spellings of one company.
 
 ## Notes on behaviour
 

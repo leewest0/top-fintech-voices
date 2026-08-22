@@ -2,9 +2,11 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Weave } from "@/components/ui/weave";
 import { site } from "@/lib/site";
-import { voices } from "@/lib/content";
+import { voicesBySlug } from "@/lib/voices";
 
-const cover = voices[0];
+// Issue 01 carries Archie Hesse on the cover — a fact about the printed
+// magazine, so it is named rather than taken from the top of a list.
+const coverSubject = voicesBySlug.get("archie-hesse");
 
 export function Hero() {
   return (
@@ -79,7 +81,7 @@ export function Hero() {
             <div className="frame">
               <Image
                 src="/magazine/cover-issue-01.jpg"
-                alt={`${site.name} Issue 01, cover story: ${cover.name}`}
+                alt={`${site.name} Issue 01, cover story: ${coverSubject?.name ?? "Archie Hesse"}`}
                 width={1814}
                 height={2560}
                 priority

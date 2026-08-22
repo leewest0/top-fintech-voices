@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { moreVoices, voices } from "@/lib/content";
+import { tickerVoices } from "@/lib/content";
 
-const entries = [...voices, ...moreVoices].map((v) => ({
+const entries = tickerVoices.map((v) => ({
   name: v.name,
-  org: v.org,
+  org: v.org || v.role,
   image: v.image,
 }));
 

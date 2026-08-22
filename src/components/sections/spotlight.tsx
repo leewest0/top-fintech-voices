@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
-import { stats, voices } from "@/lib/content";
+import { featuredVoices, stats } from "@/lib/content";
+import { voices as allVoices } from "@/lib/voices";
 
 export function Stats() {
   return (
@@ -41,26 +41,16 @@ export function Spotlight() {
             and visionaries.
           </h2>
         </div>
-        <a
-          href={site.spotlightUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
-        >
-          All 28 profiles <ArrowRight size={14} />
+        <a href="/spotlight" className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm">
+          All {allVoices.length} profiles <ArrowRight size={14} />
         </a>
       </Reveal>
 
       <ul style={{ borderBottom: "1px solid var(--line)" }}>
-        {voices.map((voice, i) => (
+        {featuredVoices.map((voice, i) => (
           <li key={voice.slug}>
             <Reveal delay={i * 60}>
-              <a
-                href={site.spotlightUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="voice-row block px-4 py-5 sm:px-6"
-              >
+              <a href="/spotlight" className="voice-row block px-4 py-5 sm:px-6">
                 <div className="flex items-start gap-4 sm:gap-6">
                   <span
                     className="voice-num hidden pt-4 font-mono text-xs sm:block"
@@ -91,7 +81,9 @@ export function Spotlight() {
                       {voice.role} — {voice.org}
                     </p>
                     <div className="voice-bio">
-                      <p className="max-w-2xl text-sm leading-relaxed sm:text-base">{voice.bio}</p>
+                      <p className="max-w-2xl text-sm leading-relaxed sm:text-base">
+                        {voice.summary}
+                      </p>
                     </div>
                   </div>
 

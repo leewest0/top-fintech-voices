@@ -78,10 +78,19 @@ html {
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* WebKit draws its own clear affordance on search inputs, which would sit
+   next to the styled one. */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* The wordmark is white-on-transparent; in light mode we swap in the navy

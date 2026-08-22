@@ -1,129 +1,44 @@
 /**
- * Every name, role, bio and logo below is taken from the live Top Fintech
- * Voices site (topfintechvoices.com) — the Spotlight page, the News Hub and
- * the About page. Bios are the publication's own copy, trimmed to a
- * single sentence for the index. Nothing here is invented: these are real
+ * Page content — the stories, team, sponsors and partners, plus which of the
+ * Spotlight voices the landing page carries.
+ *
+ * Every name, role, bio and logo is taken from the live Top Fintech Voices
+ * site (topfintechvoices.com). Nothing here is invented: these are real
  * people, so nothing is attributed to them that they did not say.
  */
 
-export type Voice = {
-  slug: string;
-  name: string;
-  role: string;
-  org: string;
-  image: string;
-  bio: string;
-};
+import { voices, voicesBySlug, type Voice } from "@/lib/voices";
 
-/** The voices carried on the landing page index, in issue order. */
-export const voices: Voice[] = [
-  {
-    slug: "archie-hesse",
-    name: "Archie Hesse",
-    role: "Chief Executive Officer",
-    org: "GhIPSS",
-    image: "/voices/archie-hesse.jpg",
-    bio: "Chief Executive of Ghana Interbank Payment and Settlement Systems — the wholly owned subsidiary of the Central Bank that runs the country's shared payment rails.",
-  },
-  {
-    slug: "kwame-oppong",
-    name: "Kwame Oppong",
-    role: "Director, Fintech and Innovation Office",
-    org: "Bank of Ghana",
-    image: "/voices/kwame-oppong.webp",
-    bio: "Directs Fintech and Innovation at the Bank of Ghana, responsible for licensing and the supervision of mobile money and payment service providers.",
-  },
-  {
-    slug: "nancy-imadi",
-    name: "Nancy Arhinfuwaa Imadi",
-    role: "Head of Licensing and Product Approvals",
-    org: "Fintech and Innovation Office, Bank of Ghana",
-    image: "/voices/nancy-imadi.jpg",
-    bio: "A lawyer who heads the Licensing and Product Approvals Unit of the FinTech and Innovation Office at the Bank of Ghana.",
-  },
-  {
-    slug: "romeo-bugyei",
-    name: "Romeo Bugyei",
-    role: "Managing Director",
-    org: "IT Consortium",
-    image: "/voices/romeo-bugyei.jpg",
-    bio: "The visionary Managing Director of IT Consortium, one of the pioneering fintech companies in Ghana, with over two decades of executive experience.",
-  },
-  {
-    slug: "mary-boateng-coleman",
-    name: "Mary Boateng-Coleman",
-    role: "Co-founder",
-    org: "BrassicaPay",
-    image: "/voices/mary-boateng-coleman.jpg",
-    bio: "Co-founder of Brassica Pay and Brassica Capital, and a consummate entrepreneur who founded and currently presides over a network for women in finance.",
-  },
-  {
-    slug: "martin-awagah",
-    name: "Martin Kwame Awagah",
-    role: "President",
-    org: "Ghana Fintech and Payments Association",
-    image: "/voices/martin-awagah.jpg",
-    bio: "A Digital Economy Specialist and FinTech Expert with expertise in economic research, governance, public policy and financial inclusion.",
-  },
-  {
-    slug: "jones-amegbor",
-    name: "Jones Amegbor",
-    role: "Founder & Chief Executive Officer",
-    org: "PayAngel",
-    image: "/voices/jones-amegbor.jpg",
-    bio: "A Chartered Certified Accountant by training whose work at PayAngel sits at the convergence of financial acuity and technological innovation.",
-  },
-  {
-    slug: "abdul-jaleel-hussein",
-    name: "Abdul-Jaleel Hussein",
-    role: "Chief Executive Officer",
-    org: "Affinity Ghana",
-    image: "/voices/abdul-jaleel-hussein.jpg",
-    bio: "Leads Affinity Ghana, a trailblazing financial institution dedicated to providing affordable banking services to the underserved and the unbanked.",
-  },
-  {
-    slug: "alex-bram",
-    name: "Alex Bram",
-    role: "Chief Executive Officer",
-    org: "Hubtel",
-    image: "/voices/alex-bram.jpg",
-    bio: "Co-founded Hubtel on 12 May 2005 — the very last school day at Kwame Nkrumah University of Science and Technology in Kumasi.",
-  },
-  {
-    slug: "thomas-baafi",
-    name: "Thomas Akwasi Baafi",
-    role: "Founder & Chief Executive Officer",
-    org: "Bsystems",
-    image: "/voices/thomas-baafi.jpg",
-    bio: "Founder and Chief Executive of Bsystems Limited, where he has facilitated significant investment in Ghanaian software solutions.",
-  },
-  {
-    slug: "razak-awudulai",
-    name: "Razak Awudulai",
-    role: "Founder & Chief Executive Officer",
-    org: "Broadspectrum Limited",
-    image: "/voices/razak-awudulai.jpg",
-    bio: "A leading figure in Ghana's entrepreneurial and technology landscape, known for visionary leadership and impactful initiatives.",
-  },
-  {
-    slug: "darryl-abraham",
-    name: "Darryl K. Mawutor Abraham",
-    role: "Director for Growth, Africa",
-    org: "TapTap Send",
-    image: "/voices/darryl-abraham.jpg",
-    bio: "More than 21 years a fintech leader, having launched, built and scaled products across UK financial services and African markets.",
-  },
-];
+export type { Voice };
 
-/** Additional portraits used for the marquee strip; the full list lives on the site. */
-export const moreVoices = [
-  { name: "Ernest Apenteng", org: "Hubtel", image: "/voices/ernest-apenteng.jpg" },
-  { name: "Jeremy Quainoo", org: "JUMO", image: "/voices/jeremy-quainoo.jpg" },
-  { name: "Louis Amenyo", org: "Eganow", image: "/voices/louis-amenyo.jpg" },
-  { name: "John Apea", org: "eTranzact Ghana", image: "/voices/john-apea.jpg" },
-  { name: "Richard Nunekpeku", org: "Sustineri Attorneys", image: "/voices/richard-nunekpeku.jpg" },
-  { name: "Nobert Dziwornu", org: "StartOA", image: "/voices/nobert-dziwornu.jpg" },
-];
+/**
+ * The subset of the Spotlight carried on the landing page. The full roster —
+ * names, roles, portraits and profile copy — lives in `voices.ts`, which is
+ * generated from the live site by `scripts/fetch-voices.py`.
+ */
+const FEATURED_SLUGS = [
+  "archie-hesse",
+  "kwame-oppong",
+  "nancy-imadi",
+  "romeo-bugyei",
+  "mary-boateng-coleman",
+  "martin-awagah",
+  "jones-amegbor",
+  "abdul-jaleel-hussein",
+  "alex-bram",
+  "thomas-baafi",
+  "razak-awudulai",
+  "darryl-abraham",
+] as const;
+
+export const featuredVoices: Voice[] = FEATURED_SLUGS.map((slug) => {
+  const voice = voicesBySlug.get(slug);
+  if (!voice) throw new Error(`Unknown voice slug in FEATURED_SLUGS: ${slug}`);
+  return voice;
+});
+
+/** The whole roster scrolls past in the hero ticker. */
+export const tickerVoices: Voice[] = voices;
 
 export type Story = {
   title: string;
