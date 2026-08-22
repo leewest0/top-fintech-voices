@@ -1,0 +1,408 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   TOP FINTECH VOICES — "THE LOOM"
+   Dark by default, light-mode toggle. The palette is sampled straight from
+   the official wordmark: coral #EE5D47 and navy #0F456A.
+   ========================================================================== */
+
+@theme {
+  --font-display: var(--font-unbounded), "Unbounded", ui-sans-serif, sans-serif;
+  --font-body: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), "Space Mono", ui-monospace, monospace;
+
+  --color-coral: #ee5d47;
+  --color-navy: #0f456a;
+
+  --ease-loom: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- theme tokens ---------- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #071620;
+  --surface: #0d2130;
+  --surface-2: #143145;
+  --text: #f2efea;
+  --muted: #98adbd;
+  --line: rgb(242 239 234 / 0.14);
+  --accent: #ee5d47;
+  --accent-ink: #071620;
+  --shadow: 0 24px 60px -20px rgb(0 0 0 / 0.7);
+
+  /* kente threads — coral leads, the rest support */
+  --w1: #ee5d47;
+  --w2: #f2b134;
+  --w3: #4c93c4;
+  --w4: #3ed2a4;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f3ed;
+  --surface: #ffffff;
+  --surface-2: #ebe5d9;
+  --text: #0f456a;
+  --muted: #55697a;
+  --line: rgb(15 69 106 / 0.16);
+  --accent: #c04026;
+  --accent-ink: #ffffff;
+  --shadow: 0 24px 50px -24px rgb(15 69 106 / 0.25);
+
+  --w1: #d24a31;
+  --w2: #c98a12;
+  --w3: #2c6f9e;
+  --w4: #11866a;
+}
+
+/* ---------- base ---------- */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.5s var(--ease-loom),
+    color 0.5s var(--ease-loom);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* The wordmark is white-on-transparent; in light mode we swap in the navy
+   variant rather than dropping the logo onto a black plaque. */
+.logo-dark-only {
+  display: block;
+}
+.logo-light-only {
+  display: none;
+}
+[data-theme="light"] .logo-dark-only {
+  display: none;
+}
+[data-theme="light"] .logo-light-only {
+  display: block;
+}
+
+/* ---------- animations ---------- */
+@keyframes weave-in {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes loom {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 64px 0;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.thread {
+  transform-origin: top;
+  animation: weave-in 0.7s var(--ease-loom) both;
+}
+.thread-glow {
+  animation:
+    weave-in 0.7s var(--ease-loom) both,
+    shimmer 4.5s ease-in-out infinite;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+.loom-rail {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--w1) 0 16px,
+    transparent 16px 32px,
+    var(--w2) 32px 44px,
+    transparent 44px 52px,
+    var(--w4) 52px 60px,
+    transparent 60px 64px
+  );
+  background-size: 64px 100%;
+  animation: loom 6s linear infinite;
+  opacity: 0.85;
+}
+
+.float {
+  animation: float 9s ease-in-out infinite;
+}
+
+.rise {
+  animation: rise 0.9s var(--ease-loom) both;
+}
+
+/* Reveal-on-scroll. The hidden state is scoped to `html.js`, which the theme
+   bootstrap script adds — so if scripting is off or the bundle fails, every
+   section still renders rather than the page going blank below the hero. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s var(--ease-loom),
+    transform 0.8s var(--ease-loom);
+}
+.js .reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- voice index rows ---------- */
+.voice-row {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+.voice-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--surface);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-loom);
+}
+.voice-row:hover::before,
+.voice-row:focus-within::before {
+  transform: scaleX(1);
+}
+.voice-row > * {
+  position: relative;
+}
+/* The bio expands on hover — but only where hovering is possible. On touch
+   there is no hover state to reach it with, so it stays open by default
+   rather than being permanently collapsed out of reach. */
+.voice-bio {
+  margin-top: 0.75rem;
+}
+@media (hover: hover) {
+  .voice-bio {
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.5s var(--ease-loom),
+      opacity 0.4s var(--ease-loom),
+      margin-top 0.5s var(--ease-loom);
+  }
+  .voice-row:hover .voice-bio,
+  .voice-row:focus-within .voice-bio {
+    max-height: 8rem;
+    opacity: 1;
+    margin-top: 0.75rem;
+  }
+}
+.voice-arrow {
+  opacity: 0.35;
+  transition:
+    transform 0.4s var(--ease-loom),
+    opacity 0.4s var(--ease-loom);
+}
+.voice-row:hover .voice-arrow,
+.voice-row:focus-within .voice-arrow {
+  transform: translate(4px, -4px);
+  opacity: 1;
+}
+.voice-num {
+  transition: color 0.4s var(--ease-loom);
+}
+.voice-row:hover .voice-num,
+.voice-row:focus-within .voice-num {
+  color: var(--accent);
+}
+.voice-face {
+  filter: grayscale(1);
+  transition:
+    filter 0.5s var(--ease-loom),
+    transform 0.5s var(--ease-loom);
+}
+.voice-row:hover .voice-face,
+.voice-row:focus-within .voice-face {
+  filter: grayscale(0);
+  transform: scale(1.06);
+}
+
+/* ---------- buttons ----------
+   Deliberately no `display` here: this rule is defined after Tailwind's
+   utilities, so setting one would beat `hidden` and leak responsive-hidden
+   buttons back onto small screens. Layout stays in the utility classes. */
+.btn {
+  border-radius: 9999px;
+  font-weight: 700;
+  transition:
+    transform 0.25s var(--ease-loom),
+    box-shadow 0.25s var(--ease-loom),
+    background-color 0.25s var(--ease-loom),
+    color 0.25s var(--ease-loom),
+    border-color 0.25s var(--ease-loom);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-solid:hover {
+  box-shadow: 0 14px 30px -14px var(--accent);
+}
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.navlink {
+  position: relative;
+  color: var(--muted);
+  transition: color 0.25s var(--ease-loom);
+}
+.navlink:hover {
+  color: var(--text);
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-loom);
+}
+.navlink:hover::after {
+  width: 100%;
+}
+
+.bordered {
+  border: 1px solid var(--line);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+/* ---------- cards ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition:
+    transform 0.4s var(--ease-loom),
+    border-color 0.4s var(--ease-loom),
+    box-shadow 0.4s var(--ease-loom);
+}
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.frame {
+  overflow: hidden;
+}
+.frame img {
+  transition: transform 1s var(--ease-loom);
+}
+.card:hover .frame img {
+  transform: scale(1.07);
+}
+
+/* Sponsor logos are JPEGs on white, so they need a white plate in both themes. */
+.logo-tile {
+  background: #fff;
+  transition:
+    transform 0.35s var(--ease-loom),
+    box-shadow 0.35s var(--ease-loom);
+}
+.logo-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
