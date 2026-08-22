@@ -16,7 +16,7 @@ export function Backers() {
         className="mb-9 text-center font-mono text-[11px] tracking-[0.25em] uppercase"
         style={{ color: "var(--muted)" }}
       >
-        Sponsors of Issue 01
+        Sponsors &amp; partners
       </h2>
 
       <div className="marquee overflow-hidden">

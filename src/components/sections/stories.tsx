@@ -15,7 +15,7 @@ export function Stories() {
           href="/spotlight"
           className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
         >
-          All articles <ArrowRight size={14} />
+          All profiles <ArrowRight size={14} />
         </Link>
       </Reveal>
 

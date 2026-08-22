@@ -8,6 +8,7 @@
  */
 
 import { voices, voicesBySlug, type Voice } from "@/lib/voices";
+import { currentEdition } from "@/lib/magazine";
 
 export type { Voice };
 
@@ -76,16 +77,27 @@ export const stories: Story[] = FEATURED_STORIES.map(({ slug, category, image })
   };
 });
 
+/**
+ * Roles here follow the Volume 2 masthead, which is the current credit — the
+ * WordPress About page still lists the maiden edition's titles, and disagreed
+ * with the edition on two of them. Bios are the About page's own copy.
+ */
 export const team = [
   {
+    name: "Martin Kwame Awagah",
+    role: "Executive Publisher",
+    image: "/voices/martin-awagah.jpg",
+    bio: "President of the Ghana Fintech and Payments Association, and a Digital Economy Specialist working across economic research, governance and financial inclusion.",
+  },
+  {
     name: "Solomon Sedinam Agbemenya",
-    role: "Publisher & Editor-in-Chief",
+    role: "Editor-in-Chief",
     image: "/team/solomon-agbemenya.jpg",
     bio: "A strategy and business consulting professional with leadership roles at S&D Chartered Accountants, Fido, MEST and First Atlantic Bank.",
   },
   {
     name: "Charles Anyiri",
-    role: "Project Lead",
+    role: "Editorial & Administrative Coordinator",
     image: "/team/charles-anyiri.png",
     bio: "Digital Marketing & Content Consultant for the Ghana FinTech Awards, with over a decade in professional design and marketing.",
   },
@@ -97,7 +109,7 @@ export const team = [
   },
   {
     name: "Morenike Ayodele",
-    role: "PR & Marketing Consultant",
+    role: "Social Media",
     image: "/team/morenike-ayodele.jpg",
     bio: "Marketing and communications professional with 8+ years of experience in strategic storytelling and brand growth.",
   },
@@ -132,8 +144,8 @@ export const partners = [
 ];
 
 export const stats = [
-  { value: "28", label: "voices in the spotlight" },
-  { value: "2024", label: "maiden edition, Accra" },
-  { value: "07", label: "sponsors backing issue 01" },
+  { value: `${voices.length}`, label: "voices in the spotlight" },
+  { value: `${currentEdition.pages}`, label: `pages, ${currentEdition.label.toLowerCase()}` },
+  { value: `${sponsors.length}`, label: "sponsors and partners" },
   { value: "02", label: "new editions in the works" },
 ];

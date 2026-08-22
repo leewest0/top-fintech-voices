@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Unbounded, Manrope, Space_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { site } from "@/lib/site";
+import { currentEdition } from "@/lib/magazine";
 import "./globals.css";
 
 const unbounded = Unbounded({
@@ -46,13 +47,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: [{ url: "/magazine/cover-issue-01.jpg", width: 1814, height: 2560, alt: `${site.name} Issue 01` }],
+    images: [
+      {
+        url: currentEdition.cover,
+        width: 1200,
+        height: 1691,
+        alt: `${site.name} ${currentEdition.volume}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: ["/magazine/cover-issue-01.jpg"],
+    images: [currentEdition.cover],
   },
   icons: {
     icon: [{ url: "/brand/icon-512.png", type: "image/png", sizes: "512x512" }],

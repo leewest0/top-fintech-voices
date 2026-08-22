@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { ArrowUpRight, Download } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
+import { currentEdition } from "@/lib/magazine";
 
 export function Magazine() {
   return (
@@ -23,12 +25,12 @@ export function Magazine() {
             The Magazine
           </p>
           <h2 className="font-display text-3xl leading-[1.05] font-bold tracking-[-0.03em] md:text-5xl">
-            Issue 01 is printed, bound and shipping from Accra.
+            {currentEdition.coverStory.name} leads the second edition.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-            Cover stories, portrait sessions and market analysis from Ghana&rsquo;s fintech front
-            line — with Archie Hesse of GhIPSS on the cover. Order the print edition, or read the
-            digital one free.
+            {currentEdition.pages} pages on collaboration, cybersecurity, regulation, funding and
+            the women reshaping the industry — from Ghana to Côte d&rsquo;Ivoire and beyond. Order
+            the print edition, or read the digital one free.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -50,33 +52,23 @@ export function Magazine() {
             </a>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:max-w-md">
-            {[
-              { src: "/magazine/covers-fan.jpg", alt: "Copies of Issue 01 on display" },
-              { src: "/magazine/launch.jpg", alt: "A reader with Issue 01 at the Accra launch" },
-            ].map((shot) => (
-              <div key={shot.src} className="frame overflow-hidden rounded-xl" style={{ border: "1px solid var(--line)" }}>
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  width={1024}
-                  height={683}
-                  sizes="(max-width: 640px) 45vw, 220px"
-                  className="h-28 w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <p className="mt-8">
+            <Link href="/magazine" className="navlink inline-flex items-center gap-1.5 text-sm font-semibold">
+              See what&rsquo;s inside <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </p>
+
         </Reveal>
 
         <Reveal delay={120} className="flex justify-center">
           <Image
-            src="/magazine/model-01.png"
-            alt="Reader holding the Top Fintech Voices magazine"
-            width={447}
-            height={388}
-            sizes="(max-width: 768px) 80vw, 420px"
-            className="float h-auto w-full max-w-[420px] object-contain drop-shadow-2xl"
+            src={currentEdition.cover}
+            alt={`${site.name} ${currentEdition.volume} — ${currentEdition.coverStory.name} on the cover`}
+            width={1200}
+            height={1691}
+            sizes="(max-width: 768px) 70vw, 380px"
+            className="float h-auto w-full max-w-[380px] rounded-xl shadow-2xl"
+            style={{ border: "1px solid var(--line)" }}
           />
         </Reveal>
       </div>

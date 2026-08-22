@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { team } from "@/lib/content";
+import { currentEdition } from "@/lib/magazine";
 
 const pillars = [
   {
@@ -32,8 +33,9 @@ export function About() {
           Our publication provides a comprehensive platform for the fintech community, featuring
           in-depth interviews, cutting-edge research, insightful case studies and thought-provoking
           opinion pieces from the most influential figures in the industry. The maiden edition
-          launched on 9 March 2024 in Accra, Ghana, and two new editions — francophone African and
-          pan-African anglophone — are on the way.
+          launched in Accra in March 2024; {currentEdition.volume} followed in{" "}
+          {currentEdition.date}, with two more — francophone African and pan-African anglophone —
+          on the way.
         </p>
       </Reveal>
 
@@ -79,7 +81,7 @@ export function Team() {
         </h2>
       </Reveal>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
         {/* .card sits on the inner element rather than the Reveal: on the
             Reveal itself its transition would win and slow the hover lift. */}
         {team.map((member, i) => (
@@ -91,7 +93,7 @@ export function Team() {
                   alt={member.name}
                   width={800}
                   height={1000}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                   className="h-full w-full object-cover object-top"
                 />
               </div>

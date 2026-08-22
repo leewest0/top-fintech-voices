@@ -57,6 +57,19 @@ logo off its backdrop and crops to the ink so they sit properly in their tiles.
 Both scripts are one-shot asset generators — their output is committed, so you only need
 to re-run them if the source artwork changes.
 
+## The current edition
+
+`src/lib/magazine.ts` holds the edition facts — volume, date, page count, cover,
+cover story, contents and masthead. Everything in it was read off the edition
+itself (its cover, contents pages and masthead), not from the WordPress site, which
+still describes the maiden edition.
+
+Vol. 2 — Second Edition, November 2025, 78 pages, Adoma Owusu on the cover.
+
+When a new edition ships: update `currentEdition`, `features` and `masthead`, move the
+outgoing one into `firstEdition`, and drop the new cover into `public/magazine/`. The
+hero, the magazine section, the stats, `/magazine` and `/stories` all read from there.
+
 ## The two magazine actions
 
 They are different things and point to different places:
@@ -70,15 +83,22 @@ the mobile menu, the magazine section and the Spotlight footer CTA.
 
 ## Pages
 
+Every menu item is its own page.
+
 | Route | What it is |
 | --- | --- |
 | `/` | The landing page |
 | `/spotlight` | All 28 profiles, filterable by name, role or company |
 | `/spotlight/[slug]` | One profile — 28 statically generated pages |
+| `/magazine` | The current edition: cover, contents, the first edition, backers |
+| `/stories` | The features running in the current edition |
+| `/about` | Mission, vision, the story so far |
+| `/team` | The masthead, with the full credits |
+| `/contact` | Details and a message form |
 | 404 | Any unknown path |
 
-The nav's section links are written root-relative (`/#magazine`) so the same header
-and footer work from every route.
+Inner pages share `PageShell`, which supplies the header, the intro band, the loom
+rail and the footer, so they read as one site.
 
 ### There is no separate articles section
 
@@ -135,5 +155,11 @@ abbreviated name, two spellings of one company.
 - **Touch devices** get the voice bios expanded by default, since there's no hover to
   reveal them with.
 - **Reduced motion** is respected: the weave, marquees and reveals all stop.
+- **The contact form has no backend.** It composes the message and hands it to the
+  visitor's mail client, and the page says so rather than faking a submission that
+  goes nowhere. `src/lib/mailto.ts` builds the URL and is unit-testable on its own —
+  a browser will not let a test observe a `mailto:` navigation. To wire a real
+  handler later, replace `onSubmit` in `contact-form.tsx`; the fields and validation
+  stay as they are.
 - All imagery is self-hosted under `public/`, so the page has no runtime dependency on
   the old WordPress installation.

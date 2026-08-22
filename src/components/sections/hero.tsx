@@ -1,12 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Weave } from "@/components/ui/weave";
 import { site } from "@/lib/site";
-import { voicesBySlug } from "@/lib/voices";
-
-// Issue 01 carries Archie Hesse on the cover — a fact about the printed
-// magazine, so it is named rather than taken from the top of a list.
-const coverSubject = voicesBySlug.get("archie-hesse");
+import { currentEdition } from "@/lib/magazine";
 
 export function Hero() {
   return (
@@ -17,7 +14,7 @@ export function Hero() {
             className="rise mb-7 font-mono text-[11px] tracking-[0.25em] uppercase"
             style={{ color: "var(--accent)" }}
           >
-            Maiden edition · Launched in Accra, March 2024
+            {currentEdition.volume} · {currentEdition.label} · {currentEdition.date}
           </p>
 
           <h1 className="font-display text-[2.4rem] leading-[0.98] font-bold tracking-[-0.03em] sm:text-[3.4rem] lg:text-[4.1rem]">
@@ -37,8 +34,8 @@ export function Hero() {
             style={{ color: "var(--muted)", animationDelay: "400ms" }}
           >
             In-depth interviews, research and opinion from the founders, regulators and
-            operators building Ghana&rsquo;s financial infrastructure — and, from the next
-            editions, francophone and pan-African markets too.
+            operators building Ghana&rsquo;s financial infrastructure — and, increasingly, the
+            rest of the continent&rsquo;s.
           </p>
 
           <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "520ms" }}>
@@ -50,13 +47,13 @@ export function Hero() {
             >
               Order the magazine <ArrowUpRight size={16} />
             </a>
-            <a href="#spotlight" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+            <Link href="/spotlight" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Read the Spotlight
-            </a>
+            </Link>
           </div>
         </div>
 
-        {/* Weave panel with the issue-01 cover laid over it. The bottom
+        {/* Weave panel with the current cover laid over it. The bottom
             padding reserves room for the cover's overhang. */}
         <div className="relative pb-12">
           <div
@@ -80,10 +77,10 @@ export function Hero() {
           <div className="card absolute bottom-0 -left-2 w-[210px] overflow-hidden rounded-xl sm:-left-8 sm:w-[240px]">
             <div className="frame">
               <Image
-                src="/magazine/cover-issue-01.jpg"
-                alt={`${site.name} Issue 01, cover story: ${coverSubject?.name ?? "Archie Hesse"}`}
-                width={1814}
-                height={2560}
+                src={currentEdition.cover}
+                alt={`${site.name} ${currentEdition.volume}, cover story: ${currentEdition.coverStory.name}`}
+                width={1200}
+                height={1691}
                 priority
                 sizes="(max-width: 640px) 210px, 240px"
                 className="float h-auto w-full object-cover"
