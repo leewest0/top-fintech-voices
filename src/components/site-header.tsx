@@ -61,12 +61,12 @@ export function SiteHeader() {
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          <Link
+          <a
             href={site.readUrl}
             className="btn btn-ghost hidden items-center gap-2 px-5 py-2.5 text-sm lg:inline-flex"
           >
             <BookOpen size={14} /> Read
-          </Link>
+          </a>
 
           <Link
             href={site.orderUrl}
@@ -112,13 +112,13 @@ export function SiteHeader() {
           >
             Order the magazine <ArrowRight size={14} />
           </Link>
-          <Link
+          <a
             href={site.readUrl}
             onClick={() => setMenuOpen(false)}
             className="btn btn-ghost mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
           >
             <BookOpen size={14} /> Read the magazine
-          </Link>
+          </a>
         </div>
       )}
     </header>

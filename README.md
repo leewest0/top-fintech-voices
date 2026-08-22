@@ -92,13 +92,21 @@ spread at phone width puts body text below anything legible. Arrow keys, Home/En
 swipe, click the outer quarter of a page, a thumbnail index, fullscreen, and
 `/read#page-30` deep links all work.
 
+The contents list under the reader talks to it through a `tfv:read-page` window
+event rather than a hash link. The two sit in different sections of a
+server-rendered page, and next/link navigates with `history.pushState`, which
+changes the URL *without* firing `hashchange` — so a hash link moved the address
+bar and nothing else.
+
 ## The three magazine actions
 
 They are different things and go to different places:
 
 - **Order the magazine** → `/order`, the form in this app. It posts to
   `/api/order`, which emails the desk through Resend.
-- **Read it online** → `/read`, the page-turning reader.
+- **Read it online** → the page-turning reader. Linked absolutely from
+  `DEPLOYED_URL` at the top of `src/lib/site.ts` — change that one line when the
+  custom domain replaces the Vercel one.
 - **Download the PDF** → the file on the client's Google Drive.
 
 Both live in `src/lib/site.ts` (`orderUrl`, `downloadUrl`) and appear in the header,

@@ -1,3 +1,11 @@
+/**
+ * Where the site is actually served from today. Kept apart from `url` — which is
+ * the eventual custom domain and is what canonical metadata points at — because
+ * the reader is linked absolutely, and an absolute link has to name the host
+ * that is really answering. Change this one line when the custom domain is live.
+ */
+const DEPLOYED_URL = "https://top-fintech-voices.vercel.app";
+
 export const site = {
   name: "Top Fintech Voices",
   tagline: "Innovators, Trailblazers & Visionaries",
@@ -10,8 +18,9 @@ export const site = {
   location: "Accra, Ghana",
   /** Print orders are taken by the form at /order, which emails via Resend. */
   orderUrl: "/order",
-  /** The edition, readable in the browser. */
-  readUrl: "/read",
+  /** The edition, readable in the browser. Absolute, so it resolves from
+      anywhere the button is reused. */
+  readUrl: `${DEPLOYED_URL}/read`,
   /** The same edition as a PDF, hosted on the client's Google Drive. */
   downloadUrl:
     "https://drive.google.com/file/d/1qr7znbRDYvdFrbSho0FttpAB4PU6yoXc/view?usp=drive_link",

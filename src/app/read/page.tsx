@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LoomRail } from "@/components/ui/weave";
 import { Flipbook } from "@/components/reader/flipbook";
+import { FeatureJumps } from "@/components/reader/feature-jumps";
 import { site } from "@/lib/site";
 import { currentEdition, features } from "@/lib/magazine";
 
@@ -77,25 +78,7 @@ export default function ReadPage() {
           <h2 className="font-display mb-8 text-2xl font-bold tracking-[-0.03em] md:text-3xl">
             Jump to a feature
           </h2>
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <li key={feature.title}>
-                {/* A plain hash the reader picks up on load, so these survive
-                    being shared or opened in a new tab. */}
-                <Link
-                  href={`/read#page-${feature.page}`}
-                  className="card flex h-full items-baseline gap-4 rounded-xl p-4"
-                >
-                  <span className="font-mono text-xs" style={{ color: "var(--accent)" }}>
-                    {String(feature.page).padStart(2, "0")}
-                  </span>
-                  <span className="font-display text-sm leading-snug font-semibold tracking-[-0.02em]">
-                    {feature.title}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <FeatureJumps features={features} />
         </section>
       </main>
 

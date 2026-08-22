@@ -14,6 +14,21 @@ import { pageImage } from "@/lib/magazine";
 
 const TURN_MS = 620;
 
+/**
+ * How the contents list asks the reader to open a page.
+ *
+ * The two sit in different sections of a server-rendered page, so they cannot
+ * share state through props. A hash link will not do it either: next/link
+ * navigates with history.pushState, which changes the URL without firing
+ * `hashchange`, so the reader never hears about it. An explicit event is the
+ * smallest honest channel between them.
+ */
+export const GOTO_PAGE_EVENT = "tfv:read-page";
+
+export function gotoPage(page: number) {
+  window.dispatchEvent(new CustomEvent(GOTO_PAGE_EVENT, { detail: page }));
+}
+
 type Turning = { dir: "forward" | "back"; front: number; back: number } | null;
 
 /**
@@ -131,21 +146,31 @@ export function Flipbook({ pages, aspect }: { pages: number; aspect: number }) {
     [turning, spread],
   );
 
-  // Deep links: /read#page-30 opens at that page, and the in-page contents
-  // links work too, since the component does not remount between them.
+  // Two ways in: arriving at /read#page-30 from anywhere, and the contents
+  // list on this page asking directly.
   useEffect(() => {
-    const fromHash = () => {
-      const match = /^#page-(\d+)$/.exec(window.location.hash);
-      if (!match) return;
-      const page = Number(match[1]);
-      if (page < 1 || page > pages) return;
+    const open = (page: number, scroll: boolean) => {
+      if (!Number.isInteger(page) || page < 1 || page > pages) return;
       if (spread) setLeaf(Math.floor(page / 2));
       else setSingle(page);
-      frameRef.current?.scrollIntoView({ block: "center" });
+      // Keep the URL honest so the spot stays shareable.
+      history.replaceState(null, "", `#page-${page}`);
+      if (scroll) frameRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
+
+    const fromHash = () => {
+      const match = /^#page-(\d+)$/.exec(window.location.hash);
+      if (match) open(Number(match[1]), true);
+    };
+    const fromEvent = (event: Event) => open((event as CustomEvent<number>).detail, true);
+
     fromHash();
     window.addEventListener("hashchange", fromHash);
-    return () => window.removeEventListener("hashchange", fromHash);
+    window.addEventListener(GOTO_PAGE_EVENT, fromEvent);
+    return () => {
+      window.removeEventListener("hashchange", fromHash);
+      window.removeEventListener(GOTO_PAGE_EVENT, fromEvent);
+    };
   }, [pages, spread]);
 
   // Keyboard: arrows turn, Home/End jump, Escape leaves fullscreen.
