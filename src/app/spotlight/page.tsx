@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LoomRail } from "@/components/ui/weave";
@@ -134,14 +134,11 @@ export default function SpotlightPage() {
                 className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
                 Order the magazine <ArrowRight size={16} />
               </Link>
-              <a
-                href={site.downloadUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-              >
-                <Download size={16} /> Read it free
-              </a>
+              <Link
+                href={site.readUrl}
+                className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              <BookOpen size={16} /> Read it online
+            </Link>
             </div>
           </div>
         </section>

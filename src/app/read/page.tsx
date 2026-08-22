@@ -1,0 +1,106 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Download } from "lucide-react";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { LoomRail } from "@/components/ui/weave";
+import { Flipbook } from "@/components/reader/flipbook";
+import { site } from "@/lib/site";
+import { currentEdition, features } from "@/lib/magazine";
+
+const { volume, label, date, pages, cover, coverStory, reader } = currentEdition;
+
+export const metadata: Metadata = {
+  title: "Read the magazine",
+  description: `Read ${site.name} ${volume} in your browser — all ${pages} pages, with ${coverStory.name} on the cover.`,
+  alternates: { canonical: "/read" },
+  openGraph: {
+    title: `Read ${volume} — ${site.name}`,
+    description: `All ${pages} pages, in your browser.`,
+    url: `${site.url}/read`,
+    images: [{ url: cover, alt: `${site.name} ${volume} cover` }],
+  },
+};
+
+export default function ReadPage() {
+  return (
+    <>
+      <SiteHeader />
+
+      <main>
+        <section className="mx-auto max-w-[1240px] px-5 pt-10 pb-8 md:px-10 md:pt-14">
+          <div className="flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p
+                className="mb-3 font-mono text-[11px] tracking-[0.25em] uppercase"
+                style={{ color: "var(--accent)" }}
+              >
+                {volume} · {label} · {date}
+              </p>
+              <h1 className="font-display text-[2rem] leading-[1.05] font-bold tracking-[-0.03em] sm:text-[2.6rem]">
+                Read it here.
+              </h1>
+              <p className="mt-3 max-w-lg text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                All {pages} pages. Turn with the arrows, your keyboard, or by swiping.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={site.downloadUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-ghost inline-flex items-center gap-2 px-5 py-2.5 text-sm"
+              >
+                <Download size={15} /> Download the PDF
+              </a>
+              <Link
+                href={site.orderUrl}
+                className="btn btn-solid inline-flex items-center gap-2 px-5 py-2.5 text-sm"
+              >
+                Order in print <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="px-4 py-10 sm:px-6 md:py-14"
+          style={{ background: "var(--surface)", borderTop: "1px solid var(--line)" }}
+        >
+          <Flipbook pages={pages} aspect={reader.aspect} />
+        </section>
+
+        <LoomRail />
+
+        <section className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
+          <h2 className="font-display mb-8 text-2xl font-bold tracking-[-0.03em] md:text-3xl">
+            Jump to a feature
+          </h2>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => (
+              <li key={feature.title}>
+                {/* A plain hash the reader picks up on load, so these survive
+                    being shared or opened in a new tab. */}
+                <Link
+                  href={`/read#page-${feature.page}`}
+                  className="card flex h-full items-baseline gap-4 rounded-xl p-4"
+                >
+                  <span className="font-mono text-xs" style={{ color: "var(--accent)" }}>
+                    {String(feature.page).padStart(2, "0")}
+                  </span>
+                  <span className="font-display text-sm leading-snug font-semibold tracking-[-0.02em]">
+                    {feature.title}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+
+      <LoomRail />
+      <SiteFooter />
+    </>
+  );
+}

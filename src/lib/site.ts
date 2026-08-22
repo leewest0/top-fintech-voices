@@ -10,7 +10,9 @@ export const site = {
   location: "Accra, Ghana",
   /** Print orders are taken by the form at /order, which emails via Resend. */
   orderUrl: "/order",
-  /** The free digital edition, hosted on the client's Google Drive. */
+  /** The edition, readable in the browser. */
+  readUrl: "/read",
+  /** The same edition as a PDF, hosted on the client's Google Drive. */
   downloadUrl:
     "https://drive.google.com/file/d/1qr7znbRDYvdFrbSho0FttpAB4PU6yoXc/view?usp=drive_link",
   socials: [

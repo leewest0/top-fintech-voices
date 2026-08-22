@@ -36,7 +36,7 @@ The palette is sampled directly from the official wordmark:
 | Coral  | `#EE5D47` | Accent, calls to action, the weave |
 | Navy   | `#0F456A` | Light-mode text, the dark ground   |
 
-Both themes clear WCAG AA (4.5:1) for all text. Dark is the default; the toggle
+Both themes clear WCAG AA (4.5:1) for all text. Light is the default; the toggle
 persists to `localStorage` and is applied before first paint, so there's no flash.
 
 ### Logo handling
@@ -70,13 +70,36 @@ When a new edition ships: update `currentEdition`, `features` and `masthead`, mo
 outgoing one into `firstEdition`, and drop the new cover into `public/magazine/`. The
 hero, the magazine section, the stats, `/magazine` and `/stories` all read from there.
 
-## The two magazine actions
+## Reading the edition
+
+`/read` turns the edition page by page in the browser.
+
+The source PDF is ~84MB, so it is never sent to a visitor. `scripts/render-magazine.py`
+rasterises it once into web-sized WebP pages, which are committed:
+
+```bash
+python3 scripts/render-magazine.py path/to/edition.pdf --slug vol2   # needs pymupdf
+```
+
+That writes `public/magazine/vol2/page-NN.webp` (1400px, for reading) and
+`thumb/page-NN.webp` (200px, for the page index), then prints the page aspect
+ratio to put in `currentEdition.reader`. Volume 2 is 78 pages, 13.7MB in total.
+
+The reader loads only the pages on screen — about 0.14MB to open, ~90KB a turn —
+and pages are laid out like the printed magazine: the cover alone on the right,
+then even-left/odd-right spreads. Below 900px it reads one page at a time, since a
+spread at phone width puts body text below anything legible. Arrow keys, Home/End,
+swipe, click the outer quarter of a page, a thumbnail index, fullscreen, and
+`/read#page-30` deep links all work.
+
+## The three magazine actions
 
 They are different things and go to different places:
 
 - **Order the magazine** → `/order`, the form in this app. It posts to
   `/api/order`, which emails the desk through Resend.
-- **Download / Read it free** → the digital edition PDF on the client's Google Drive.
+- **Read it online** → `/read`, the page-turning reader.
+- **Download the PDF** → the file on the client's Google Drive.
 
 Both live in `src/lib/site.ts` (`orderUrl`, `downloadUrl`) and appear in the header,
 the mobile menu, the magazine section and the page CTAs.
@@ -119,6 +142,8 @@ Every menu item is its own page.
 | `/about` | Mission, vision, the story so far |
 | `/team` | The masthead, with the full credits |
 | `/contact` | Details and a message form |
+| `/order` | Order print copies; emails via Resend |
+| `/read` | The edition, page by page |
 | 404 | Any unknown path |
 
 Inner pages share `PageShell`, which supplies the header, the intro band, the loom

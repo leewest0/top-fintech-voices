@@ -7,8 +7,8 @@ type Theme = "dark" | "light";
 const STORAGE_KEY = "tfv-theme";
 
 /**
- * Runs before the rest of the body parses, so a stored light-mode choice never
- * flashes dark first. It also marks the document as scripted, which is what
+ * Runs before the rest of the body parses, so a stored dark-mode choice never
+ * flashes light first. It also marks the document as scripted, which is what
  * arms the reveal-on-scroll animation — without it every section renders in
  * its final state instead of waiting for an observer that will never run.
  */
@@ -39,15 +39,15 @@ function subscribe(onChange: () => void) {
 }
 
 const getSnapshot = (): Theme =>
-  document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 
-const getServerSnapshot = (): Theme => "dark";
+const getServerSnapshot = (): Theme => "light";
 
 export function useTheme() {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = useCallback(() => {
-    const next: Theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    const next: Theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     try {
       localStorage.setItem(STORAGE_KEY, next);

@@ -15,6 +15,15 @@ export const currentEdition = {
     name: "Adoma Owusu",
     line: "Leading with vision, innovation & impact",
   },
+  /**
+   * The on-site reader. Pages are pre-rasterised from the PDF by
+   * scripts/render-magazine.py — the source file is ~84MB, so it is never sent
+   * to a browser. `aspect` is height/width of a page, printed by that script.
+   */
+  reader: {
+    slug: "vol2",
+    aspect: 1.4143,
+  },
   /** Pulled from the cover itself. */
   coverLines: [
     "The Fintech-Fueled Digital Economy: Ghana's Road to a Cashlite Society",
@@ -142,3 +151,10 @@ export const masthead = [
   { role: "Photography", names: ["Salome Asare"] },
   { role: "Social Media", names: ["Prince Tettevi", "Morenike Ayodele"] },
 ];
+
+/** Where the reader finds a given page image. */
+export function pageImage(page: number, size: "page" | "thumb" = "page"): string {
+  const file = `page-${String(page).padStart(2, "0")}.webp`;
+  const folder = `/magazine/${currentEdition.reader.slug}`;
+  return size === "thumb" ? `${folder}/thumb/${file}` : `${folder}/${file}`;
+}

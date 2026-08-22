@@ -2,7 +2,7 @@
 
 /* ==========================================================================
    TOP FINTECH VOICES — "THE LOOM"
-   Dark by default, light-mode toggle. The palette is sampled straight from
+   Light by default, dark-mode toggle. The palette is sampled straight from
    the official wordmark: coral #EE5D47 and navy #0F456A.
    ========================================================================== */
 
@@ -18,7 +18,6 @@
 }
 
 /* ---------- theme tokens ---------- */
-:root,
 [data-theme="dark"] {
   color-scheme: dark;
   --bg: #071620;
@@ -38,6 +37,7 @@
   --w4: #3ed2a4;
 }
 
+:root,
 [data-theme="light"] {
   color-scheme: light;
   --bg: #f6f3ed;
@@ -98,19 +98,20 @@ input[type="search"]::-webkit-search-decoration {
   appearance: none;
 }
 
-/* The wordmark is white-on-transparent; in light mode we swap in the navy
-   variant rather than dropping the logo onto a black plaque. */
+/* The official wordmark is white-on-transparent, which disappears on the light
+   background the site now opens in, so the navy variant is the default and the
+   white one is swapped back in for dark mode. */
 .logo-dark-only {
-  display: block;
+  display: none;
 }
 .logo-light-only {
-  display: none;
-}
-[data-theme="light"] .logo-dark-only {
-  display: none;
-}
-[data-theme="light"] .logo-light-only {
   display: block;
+}
+[data-theme="dark"] .logo-dark-only {
+  display: block;
+}
+[data-theme="dark"] .logo-light-only {
+  display: none;
 }
 
 /* ---------- animations ---------- */
@@ -418,5 +419,103 @@ input[type="search"]::-webkit-search-decoration {
   .js .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   THE READER — a page turn
+   The book is two slots side by side. A turning leaf is a third element laid
+   over the right slot, rotating about the spine; its two faces carry the page
+   leaving and the page arriving, so the turn reads as one sheet of paper.
+   ========================================================================== */
+.book {
+  perspective: 2400px;
+}
+
+.leaf {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  /* Sits above both slots while it turns. */
+  z-index: 2;
+}
+.leaf-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: var(--surface);
+}
+.leaf-back {
+  transform: rotateY(180deg);
+}
+
+@keyframes leaf-forward {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-180deg);
+  }
+}
+@keyframes leaf-back {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+.leaf-turning-forward {
+  animation: leaf-forward var(--turn-duration, 620ms) cubic-bezier(0.5, 0, 0.35, 1) forwards;
+}
+.leaf-turning-back {
+  animation: leaf-back var(--turn-duration, 620ms) cubic-bezier(0.5, 0, 0.35, 1) forwards;
+}
+
+/* The shadow that sweeps across a page as the leaf passes over it. */
+@keyframes leaf-shade {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.leaf-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to left, rgb(0 0 0 / 0.5), transparent 60%);
+  animation: leaf-shade var(--turn-duration, 620ms) ease-in-out forwards;
+}
+
+/* The gutter: pages are darker where they meet the spine, as bound paper is. */
+.page-gutter-left::after,
+.page-gutter-right::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: 7%;
+  pointer-events: none;
+}
+.page-gutter-left::after {
+  right: 0;
+  background: linear-gradient(to right, transparent, rgb(0 0 0 / 0.22));
+}
+.page-gutter-right::after {
+  left: 0;
+  background: linear-gradient(to left, transparent, rgb(0 0 0 / 0.22));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-turning-forward,
+  .leaf-turning-back,
+  .leaf-shade {
+    animation-duration: 1ms !important;
   }
 }

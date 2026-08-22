@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
@@ -56,14 +56,11 @@ export default function MagazinePage() {
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Order the print edition <ArrowRight size={16} />
             </Link>
-            <a
-              href={site.downloadUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
-              <Download size={16} /> Read it free
-            </a>
+            <Link
+              href={site.readUrl}
+              className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              <BookOpen size={16} /> Read it online
+            </Link>
           </div>
         </>
       }
