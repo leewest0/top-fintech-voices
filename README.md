@@ -110,6 +110,32 @@ They are different things and go to different places:
 All three live in `src/lib/site.ts` (`orderUrl`, `readUrl`, `downloadUrl`) and appear
 in the header, the mobile menu, the magazine section and the page CTAs.
 
+## Moving off WordPress
+
+The old site put every profile at the root — `/archie-hesse-ceo-ghipss/` — while this
+app serves them under `/spotlight/archie-hesse`. So the moment DNS stops pointing at
+WordPress, all 28 of those addresses arrive here instead: Google's index, the links in
+the client's own LinkedIn posts, anything anyone bookmarked.
+
+`next.config.ts` redirects them, permanently (308). The 28 profile mappings are derived
+from `voices.ts`, which already records both halves — `article` is the URL the copy came
+from, `slug` is where it lives now — so they cannot drift when the roster is regenerated.
+The section pages (`/news-hub/`, `/order-magazine/`, `/about-us/` and the rest) are a
+short table in the same file.
+
+`tests/fixtures/legacy-urls.txt` is every URL the WordPress sitemap listed, captured
+while it was still up, since that list disappears with the server. `npm test` holds the
+redirect map against it, so a URL cannot quietly fall off.
+
+The theme's demo pages — `/works/`, `/services/`, `/project/*`, `/service-category/*`,
+`/matias-blocks/*` — are left to 404 on purpose. They shipped with the purchased
+WordPress theme and never held any of this publication's content; sweeping them to the
+homepage would only make them soft 404s.
+
+Nothing on this site talks to WordPress at runtime. Every image is under `public/`,
+and the only outbound links are LinkedIn profiles, the social accounts and the Google
+Drive PDF.
+
 ## Where the site thinks it lives
 
 Canonicals, OG images and JSON-LD have to name a host, so `site.url` resolves one at

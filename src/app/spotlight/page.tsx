@@ -39,7 +39,10 @@ const jsonLd = {
         jobTitle: voice.role,
         description: voice.summary,
         image: `${site.url}${voice.image}`,
-        url: voice.article,
+        // The profile as it lives here. This used to name the old WordPress
+        // post, which told search engines each person's page was somewhere this
+        // site will shortly stop serving.
+        url: `${site.url}/spotlight/${voice.slug}`,
         sameAs: voice.linkedin || undefined,
         ...(voice.org && { worksFor: { "@type": "Organization", name: voice.org } }),
       },

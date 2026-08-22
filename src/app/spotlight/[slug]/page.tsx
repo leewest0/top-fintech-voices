@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LoomRail } from "@/components/ui/weave";
@@ -70,7 +70,9 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
       jobTitle: voice.role,
       description: voice.summary,
       image: `${site.url}${voice.image}`,
-      sameAs: [voice.linkedin, voice.article].filter(Boolean),
+      // Not voice.article: that URL redirects here, and sameAs is for other
+      // authoritative pages about the person, not for a route back to this one.
+      sameAs: [voice.linkedin].filter(Boolean),
       ...(voice.org && { worksFor: { "@type": "Organization", name: voice.org } }),
     },
   };
@@ -104,8 +106,13 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
               />
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              {voice.linkedin && (
+            {/* No "Original" link any more. It pointed at this profile's post on
+                the old WordPress site, which redirects here — so once the domain
+                moves, it is a button that reloads the page you are already on.
+                `voice.article` stays in the data as the record of where the copy
+                came from, and as what the redirects are built from. */}
+            {voice.linkedin && (
+              <div className="mt-5 flex flex-wrap gap-3">
                 <a
                   href={voice.linkedin}
                   target="_blank"
@@ -114,16 +121,8 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
                 >
                   <LinkedInGlyph /> LinkedIn
                 </a>
-              )}
-              <a
-                href={voice.article}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-ghost inline-flex items-center gap-2 px-5 py-2.5 text-sm"
-              >
-                Original <ArrowUpRight size={14} aria-hidden="true" />
-              </a>
-            </div>
+              </div>
+            )}
           </div>
 
           <div>
