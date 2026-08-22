@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Download, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowRight, Download, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useTheme } from "@/components/theme-provider";
 import { nav, site } from "@/lib/site";
@@ -70,14 +70,11 @@ export function SiteHeader() {
             <Download size={14} /> Download
           </a>
 
-          <a
+          <Link
             href={site.orderUrl}
-            className="btn btn-solid hidden items-center gap-2 px-5 py-2.5 text-sm sm:inline-flex"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Order the magazine <ArrowUpRight size={14} />
-          </a>
+            className="btn btn-solid hidden items-center gap-2 px-5 py-2.5 text-sm sm:inline-flex">
+            Order the magazine <ArrowRight size={14} />
+          </Link>
 
           <button
             type="button"
@@ -110,15 +107,13 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <a
+          <Link
             href={site.orderUrl}
-            target="_blank"
-            rel="noreferrer"
             onClick={() => setMenuOpen(false)}
             className="btn btn-solid mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
           >
-            Order the magazine <ArrowUpRight size={14} />
-          </a>
+            Order the magazine <ArrowRight size={14} />
+          </Link>
           <a
             href={site.downloadUrl}
             target="_blank"

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Weave } from "@/components/ui/weave";
 import { site } from "@/lib/site";
 import { currentEdition } from "@/lib/magazine";
@@ -39,14 +39,11 @@ export function Hero() {
           </p>
 
           <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "520ms" }}>
-            <a
+            <Link
               href={site.orderUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
-              Order the magazine <ArrowUpRight size={16} />
-            </a>
+              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              Order the magazine <ArrowRight size={16} />
+            </Link>
             <Link href="/spotlight" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Read the Spotlight
             </Link>

@@ -203,14 +203,11 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
             {voice.name.split(" ")[0]}&rsquo;s profile runs in full in the magazine.
           </h2>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a
+            <Link
               href={site.orderUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
-              Order the magazine <ArrowUpRight size={16} />
-            </a>
+              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              Order the magazine <ArrowRight size={16} />
+            </Link>
             <a
               href={site.downloadUrl}
               target="_blank"

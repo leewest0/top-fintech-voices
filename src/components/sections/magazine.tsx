@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
 import { currentEdition } from "@/lib/magazine";
@@ -34,14 +34,11 @@ export function Magazine() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
+            <Link
               href={site.orderUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
-              Order your copy <ArrowUpRight size={16} />
-            </a>
+              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              Order your copy <ArrowRight size={16} />
+            </Link>
             <a
               href={site.downloadUrl}
               target="_blank"

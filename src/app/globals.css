@@ -72,8 +72,13 @@ body {
   color: var(--accent-ink);
 }
 
+/* Deliberately no `scroll-behavior: smooth` here. The App Router scrolls a new
+   page into view by walking its top-level children and calling scrollIntoView
+   on each; it forces `scroll-behavior: auto` inline while it does so, but a
+   global smooth rule still makes those calls animate and queue, and navigation
+   lands near the foot of the page instead of the top. Every remaining in-page
+   anchor is a skip link, which should jump instantly anyway. */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
 }
 

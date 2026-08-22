@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
@@ -207,14 +207,11 @@ export default function AboutPage() {
             Read the current edition.
           </h2>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a
+            <Link
               href={site.orderUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-            >
-              Order the magazine <ArrowUpRight size={16} />
-            </a>
+              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              Order the magazine <ArrowRight size={16} />
+            </Link>
             <a
               href={site.downloadUrl}
               target="_blank"

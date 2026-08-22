@@ -1,5 +1,6 @@
+import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowUpRight, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LoomRail } from "@/components/ui/weave";
@@ -128,14 +129,11 @@ export default function SpotlightPage() {
               analysis and the portrait sessions from Accra.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
+              <Link
                 href={site.orderUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-              >
-                Order the magazine <ArrowUpRight size={16} />
-              </a>
+                className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+                Order the magazine <ArrowRight size={16} />
+              </Link>
               <a
                 href={site.downloadUrl}
                 target="_blank"

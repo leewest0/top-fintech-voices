@@ -72,14 +72,38 @@ hero, the magazine section, the stats, `/magazine` and `/stories` all read from 
 
 ## The two magazine actions
 
-They are different things and point to different places:
+They are different things and go to different places:
 
-- **Order the magazine** → the existing order form at `/order-magazine/` on the
-  WordPress site. Orders are taken by that form; nothing is handled in this app.
+- **Order the magazine** → `/order`, the form in this app. It posts to
+  `/api/order`, which emails the desk through Resend.
 - **Download / Read it free** → the digital edition PDF on the client's Google Drive.
 
 Both live in `src/lib/site.ts` (`orderUrl`, `downloadUrl`) and appear in the header,
-the mobile menu, the magazine section and the Spotlight footer CTA.
+the mobile menu, the magazine section and the page CTAs.
+
+### Orders
+
+`/order` collects the same fields the old WordPress form did — name, company,
+copies, country, email, phone, message.
+
+Configure it with the variables in `.env.example`:
+
+```
+RESEND_API_KEY=       # https://resend.com/api-keys
+ORDER_FROM_EMAIL=     # an address on a domain verified in Resend
+ORDER_TO_EMAIL=       # where orders land; defaults to site.email
+```
+
+Without those set, `/api/order` answers **503** and the form tells the visitor to
+email instead. It never accepts an order it cannot deliver — a form that silently
+swallows a sale is worse than one that admits it is off.
+
+`src/lib/order.ts` holds the validation and the message rendering, so the rules are
+stated once and tested without a browser or a Resend key (`npm test`). The route
+re-validates everything server-side regardless of what the form did, escapes user
+text before it goes into the HTML email, and sets `reply-to` to the customer so a
+reply reaches them directly. A honeypot field answers bots with a cheerful 200 and
+sends nothing.
 
 ## Pages
 
