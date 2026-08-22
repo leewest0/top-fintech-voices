@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight, Download, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useTheme } from "@/components/theme-provider";
 import { nav, site } from "@/lib/site";
@@ -37,15 +38,15 @@ export function SiteHeader() {
       }}
     >
       <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-5 px-5 py-4 md:px-10">
-        <a href="#top" aria-label={`${site.name} — home`}>
+        <Link href="/" aria-label={`${site.name} — home`}>
           <Logo className="h-8 w-auto md:h-10" priority />
-        </a>
+        </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium lg:flex">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} className="navlink">
+            <Link key={item.href} href={item.href} className="navlink">
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -59,6 +60,15 @@ export function SiteHeader() {
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
+
+          <a
+            href={site.downloadUrl}
+            className="btn btn-ghost hidden items-center gap-2 px-5 py-2.5 text-sm lg:inline-flex"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Download size={14} /> Download
+          </a>
 
           <a
             href={site.orderUrl}
@@ -90,7 +100,7 @@ export function SiteHeader() {
           style={{ borderTop: "1px solid var(--line)", background: "var(--bg)" }}
         >
           {nav.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
@@ -98,7 +108,7 @@ export function SiteHeader() {
               style={{ borderBottom: "1px solid var(--line)" }}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <a
             href={site.orderUrl}
@@ -108,6 +118,15 @@ export function SiteHeader() {
             className="btn btn-solid mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
           >
             Order the magazine <ArrowUpRight size={14} />
+          </a>
+          <a
+            href={site.downloadUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setMenuOpen(false)}
+            className="btn btn-ghost mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
+          >
+            <Download size={14} /> Download the magazine
           </a>
         </div>
       )}

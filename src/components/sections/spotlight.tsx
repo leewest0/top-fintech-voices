@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { featuredVoices, stats } from "@/lib/content";
@@ -41,16 +42,19 @@ export function Spotlight() {
             and visionaries.
           </h2>
         </div>
-        <a href="/spotlight" className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm">
+        <Link
+          href="/spotlight"
+          className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
+        >
           All {allVoices.length} profiles <ArrowRight size={14} />
-        </a>
+        </Link>
       </Reveal>
 
       <ul style={{ borderBottom: "1px solid var(--line)" }}>
         {featuredVoices.map((voice, i) => (
           <li key={voice.slug}>
             <Reveal delay={i * 60}>
-              <a href="/spotlight" className="voice-row block px-4 py-5 sm:px-6">
+              <Link href="/spotlight" className="voice-row block px-4 py-5 sm:px-6">
                 <div className="flex items-start gap-4 sm:gap-6">
                   <span
                     className="voice-num hidden pt-4 font-mono text-xs sm:block"
@@ -89,7 +93,7 @@ export function Spotlight() {
 
                   <ArrowUpRight className="voice-arrow mt-3 shrink-0" size={20} aria-hidden="true" />
                 </div>
-              </a>
+              </Link>
             </Reveal>
           </li>
         ))}

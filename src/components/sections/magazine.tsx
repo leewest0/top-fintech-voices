@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
 
@@ -27,8 +27,8 @@ export function Magazine() {
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: "var(--muted)" }}>
             Cover stories, portrait sessions and market analysis from Ghana&rsquo;s fintech front
-            line — with Archie Hesse of GhIPSS on the cover. Order the print edition, or get in
-            touch about bulk copies for your team.
+            line — with Archie Hesse of GhIPSS on the cover. Order the print edition, or read the
+            digital one free.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -40,8 +40,13 @@ export function Magazine() {
             >
               Order your copy <ArrowUpRight size={16} />
             </a>
-            <a href={`mailto:${site.email}?subject=Bulk%20order`} className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              Enquire about bulk orders
+            <a
+              href={site.downloadUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+            >
+              <Download size={16} /> Read it free
             </a>
           </div>
 

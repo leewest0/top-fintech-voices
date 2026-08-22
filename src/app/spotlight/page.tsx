@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LoomRail } from "@/components/ui/weave";
@@ -137,10 +137,12 @@ export default function SpotlightPage() {
                 Order the magazine <ArrowUpRight size={16} />
               </a>
               <a
-                href={`mailto:${site.email}?subject=Spotlight%20nomination`}
+                href={site.downloadUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
               >
-                Nominate a voice
+                <Download size={16} /> Read it free
               </a>
             </div>
           </div>

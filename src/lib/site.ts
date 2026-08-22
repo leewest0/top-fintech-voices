@@ -8,7 +8,11 @@ export const site = {
   phone: "+(233) 24 133 9037",
   phoneHref: "+233241339037",
   location: "Accra, Ghana",
+  /** Print orders are taken by the form on the existing order page. */
   orderUrl: "https://topfintechvoices.com/order-magazine/",
+  /** The free digital edition, hosted on the client's Google Drive. */
+  downloadUrl:
+    "https://drive.google.com/file/d/1qr7znbRDYvdFrbSho0FttpAB4PU6yoXc/view?usp=drive_link",
   articlesUrl: "https://topfintechvoices.com/category/news-hub/",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/company/topfintechvoices/" },

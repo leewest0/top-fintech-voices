@@ -57,6 +57,17 @@ logo off its backdrop and crops to the ink so they sit properly in their tiles.
 Both scripts are one-shot asset generators — their output is committed, so you only need
 to re-run them if the source artwork changes.
 
+## The two magazine actions
+
+They are different things and point to different places:
+
+- **Order the magazine** → the existing order form at `/order-magazine/` on the
+  WordPress site. Orders are taken by that form; nothing is handled in this app.
+- **Download / Read it free** → the digital edition PDF on the client's Google Drive.
+
+Both live in `src/lib/site.ts` (`orderUrl`, `downloadUrl`) and appear in the header,
+the mobile menu, the magazine section and the Spotlight footer CTA.
+
 ## Pages
 
 | Route | What it is |

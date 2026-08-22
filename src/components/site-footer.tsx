@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
 import { nav, site } from "@/lib/site";
 
@@ -6,9 +7,9 @@ export function SiteFooter() {
     <footer className="mx-auto max-w-[1240px] px-5 py-12 md:px-10">
       <div className="flex flex-wrap items-start justify-between gap-8">
         <div>
-          <a href="#top" aria-label={`${site.name} — home`}>
+          <Link href="/" aria-label={`${site.name} — home`}>
             <Logo className="h-8 w-auto" />
-          </a>
+          </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
             Welcome to Top Fintech Voices Magazine — celebrating fintech excellence, and
             spotlighting the industry trailblazers shaping the future of finance.
@@ -17,9 +18,9 @@ export function SiteFooter() {
 
         <nav aria-label="Footer" className="flex flex-col gap-3 text-sm">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} className="navlink">
+            <Link key={item.href} href={item.href} className="navlink">
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
