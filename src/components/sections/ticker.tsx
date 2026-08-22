@@ -8,6 +8,14 @@ const entries = tickerVoices.map((v) => ({
 }));
 
 /**
+ * Seconds each name gets before the next one takes its place. Scaling the
+ * duration by the number of entries — rather than fixing it — keeps the strip
+ * moving at the same pace whatever the roster grows to; a fixed duration would
+ * speed it up every time a voice is added.
+ */
+const SECONDS_PER_ENTRY = 4.5;
+
+/**
  * A continuous strip of the people in the issue. Duplicated once so the
  * -50% translate loops seamlessly; the copy is hidden from assistive tech.
  */
@@ -15,7 +23,10 @@ export function Ticker() {
   return (
     <div
       className="marquee overflow-hidden py-4"
-      style={{ borderBottom: "1px solid var(--line)", ["--marquee-duration" as string]: "60s" }}
+      style={{
+        borderBottom: "1px solid var(--line)",
+        ["--marquee-duration" as string]: `${entries.length * SECONDS_PER_ENTRY}s`,
+      }}
     >
       <div className="marquee-track">
         {[0, 1].map((pass) => (
