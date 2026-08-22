@@ -17,26 +17,13 @@
   --ease-loom: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ---------- theme tokens ---------- */
-[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #071620;
-  --surface: #0d2130;
-  --surface-2: #143145;
-  --text: #f2efea;
-  --muted: #98adbd;
-  --line: rgb(242 239 234 / 0.14);
-  --accent: #ee5d47;
-  --accent-ink: #071620;
-  --shadow: 0 24px 60px -20px rgb(0 0 0 / 0.7);
-
-  /* kente threads — coral leads, the rest support */
-  --w1: #ee5d47;
-  --w2: #f2b134;
-  --w3: #4c93c4;
-  --w4: #3ed2a4;
-}
-
+/* ---------- theme tokens ----------
+   ORDER MATTERS, and it is load-bearing. `:root` and `[data-theme="dark"]` have
+   identical specificity (0,1,0) and both match <html>, so whichever is declared
+   second wins. The default palette must therefore come FIRST and the override
+   SECOND — putting them the other way round leaves dark mode unable to take
+   effect at all, while the more specific logo rules still switch, which shows
+   up as the white wordmark stranded on a light background. */
 :root,
 [data-theme="light"] {
   color-scheme: light;
@@ -50,10 +37,29 @@
   --accent-ink: #ffffff;
   --shadow: 0 24px 50px -24px rgb(15 69 106 / 0.25);
 
+  /* kente threads — coral leads, the rest support */
   --w1: #d24a31;
   --w2: #c98a12;
   --w3: #2c6f9e;
   --w4: #11866a;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #071620;
+  --surface: #0d2130;
+  --surface-2: #143145;
+  --text: #f2efea;
+  --muted: #98adbd;
+  --line: rgb(242 239 234 / 0.14);
+  --accent: #ee5d47;
+  --accent-ink: #071620;
+  --shadow: 0 24px 60px -20px rgb(0 0 0 / 0.7);
+
+  --w1: #ee5d47;
+  --w2: #f2b134;
+  --w3: #4c93c4;
+  --w4: #3ed2a4;
 }
 
 /* ---------- base ---------- */
