@@ -74,9 +74,19 @@ the mobile menu, the magazine section and the Spotlight footer CTA.
 | --- | --- |
 | `/` | The landing page |
 | `/spotlight` | All 28 profiles, filterable by name, role or company |
+| `/spotlight/[slug]` | One profile — 28 statically generated pages |
+| 404 | Any unknown path |
 
 The nav's section links are written root-relative (`/#magazine`) so the same header
 and footer work from every route.
+
+### There is no separate articles section
+
+The live site's News Hub and Spotlight are the same content: all 28 posts sit in
+both categories, and there is no third category with anything in it. So the profile
+pages *are* the articles, and the landing page's "From the News Hub" cards link to
+three of them rather than back out to WordPress. Nothing on the site links to
+`/category/news-hub/` any more.
 
 ## Structure
 

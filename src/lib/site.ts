@@ -13,7 +13,6 @@ export const site = {
   /** The free digital edition, hosted on the client's Google Drive. */
   downloadUrl:
     "https://drive.google.com/file/d/1qr7znbRDYvdFrbSho0FttpAB4PU6yoXc/view?usp=drive_link",
-  articlesUrl: "https://topfintechvoices.com/category/news-hub/",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/company/topfintechvoices/" },
     { label: "Facebook", href: "https://www.facebook.com/topfintechvoices" },

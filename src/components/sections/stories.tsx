@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
 import { stories } from "@/lib/content";
 
 export function Stories() {
@@ -11,25 +11,18 @@ export function Stories() {
         <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
           From the News Hub
         </h2>
-        <a
-          href={site.articlesUrl}
-          target="_blank"
-          rel="noreferrer"
+        <Link
+          href="/spotlight"
           className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
         >
           All articles <ArrowRight size={14} />
-        </a>
+        </Link>
       </Reveal>
 
       <div className="grid gap-5 md:grid-cols-3">
         {stories.map((story, i) => (
           <Reveal key={story.title} delay={i * 100}>
-            <a
-              href={story.href}
-              target="_blank"
-              rel="noreferrer"
-              className="card flex h-full flex-col overflow-hidden rounded-2xl"
-            >
+            <Link href={story.href} className="card flex h-full flex-col overflow-hidden rounded-2xl">
               <div className="frame h-44">
                 <Image
                   src={story.image}
@@ -60,7 +53,7 @@ export function Stories() {
                   Read the story <ArrowRight size={14} aria-hidden="true" />
                 </span>
               </div>
-            </a>
+            </Link>
           </Reveal>
         ))}
       </div>

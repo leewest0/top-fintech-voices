@@ -54,7 +54,7 @@ export function Spotlight() {
         {featuredVoices.map((voice, i) => (
           <li key={voice.slug}>
             <Reveal delay={i * 60}>
-              <Link href="/spotlight" className="voice-row block px-4 py-5 sm:px-6">
+              <Link href={`/spotlight/${voice.slug}`} className="voice-row block px-4 py-5 sm:px-6">
                 <div className="flex items-start gap-4 sm:gap-6">
                   <span
                     className="voice-num hidden pt-4 font-mono text-xs sm:block"

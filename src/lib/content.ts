@@ -40,7 +40,14 @@ export const featuredVoices: Voice[] = FEATURED_SLUGS.map((slug) => {
 /** The whole roster scrolls past in the hero ticker. */
 export const tickerVoices: Voice[] = voices;
 
+/**
+ * The News Hub carries the same 28 pieces as the Spotlight — every post on the
+ * site sits in both categories — so the landing page's story cards are three of
+ * those profiles, shown with the wider event photography rather than the
+ * portrait, and linking to the profile page rather than back to WordPress.
+ */
 export type Story = {
+  slug: string;
   title: string;
   excerpt: string;
   category: string;
@@ -49,35 +56,25 @@ export type Story = {
   href: string;
 };
 
-export const stories: Story[] = [
-  {
-    title: "Jones Amegbor, CEO – PayAngel",
-    excerpt:
-      "The visionary founder of PayAngel on remittances, regulation, and what it takes to move money home without friction.",
-    category: "Spotlight",
+const FEATURED_STORIES = [
+  { slug: "jones-amegbor", category: "Spotlight", image: "/stories/payangel.jpg" },
+  { slug: "abdul-jaleel-hussein", category: "Spotlight", image: "/stories/affinity-ghana.jpg" },
+  { slug: "nancy-imadi", category: "Policy", image: "/stories/bog-licensing.jpg" },
+] as const;
+
+export const stories: Story[] = FEATURED_STORIES.map(({ slug, category, image }) => {
+  const voice = voicesBySlug.get(slug);
+  if (!voice) throw new Error(`Unknown voice slug in FEATURED_STORIES: ${slug}`);
+  return {
+    slug,
+    title: voice.org ? `${voice.name}, ${voice.org}` : voice.name,
+    excerpt: voice.summary,
+    category,
     date: "June 2024",
-    image: "/stories/payangel.jpg",
-    href: "https://topfintechvoices.com/category/news-hub/",
-  },
-  {
-    title: "Abdul-Jaleel Hussein, CEO – Affinity Ghana",
-    excerpt:
-      "Building a bank for the customers the incumbents skipped — affordable services for the underserved and unbanked.",
-    category: "Spotlight",
-    date: "June 2024",
-    image: "/stories/affinity-ghana.jpg",
-    href: "https://topfintechvoices.com/category/news-hub/",
-  },
-  {
-    title: "Nancy Arhinfuwaa Imadi, Bank of Ghana",
-    excerpt:
-      "The lawyer who heads Licensing and Product Approvals at the Bank of Ghana's FinTech and Innovation Office.",
-    category: "Policy",
-    date: "June 2024",
-    image: "/stories/bog-licensing.jpg",
-    href: "https://topfintechvoices.com/category/news-hub/",
-  },
-];
+    image,
+    href: `/spotlight/${slug}`,
+  };
+});
 
 export const team = [
   {
