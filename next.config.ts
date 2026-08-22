@@ -28,6 +28,18 @@ const legacyPaths: Record<string, string> = {
 };
 
 /**
+ * Routes this app used to serve itself.
+ *
+ * /stories listed the same features /magazine already lists in full, down to
+ * the same standfirsts, so it went. /read/vol2 would be the current edition on
+ * a second URL — it lives at the bare /read, and one magazine wants one address.
+ */
+const supersededPaths: Record<string, string> = {
+  "/stories": "/magazine",
+  "/read/vol2": "/read",
+};
+
+/**
  * Deliberately not redirected: /works, /services, /sample-page, /skt-karate,
  * /project/*, /service/*, /service-category/* and /matias-blocks/*. Those are
  * demo pages that shipped with the purchased WordPress theme and never held any
@@ -44,11 +56,9 @@ const nextConfig: NextConfig = {
       permanent: true,
     }));
 
-    const sections = Object.entries(legacyPaths).map(([source, destination]) => ({
-      source,
-      destination,
-      permanent: true,
-    }));
+    const sections = Object.entries({ ...legacyPaths, ...supersededPaths }).map(
+      ([source, destination]) => ({ source, destination, permanent: true }),
+    );
 
     return [...profiles, ...sections];
   },

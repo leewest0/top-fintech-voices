@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import Link from "next/link";
+import { BookOpen } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { OrderForm } from "@/components/sections/order-form";
@@ -35,15 +36,13 @@ export default function OrderPage() {
           </p>
           <p className="mt-4">
             Just want to read it?{" "}
-            <a
-              href={site.downloadUrl}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href={site.readUrl}
               className="navlink inline-flex items-center gap-1.5"
               style={{ color: "var(--accent)" }}
             >
-              <Download size={14} aria-hidden="true" /> The digital edition is free
-            </a>
+              <BookOpen size={14} aria-hidden="true" /> The digital edition is free
+            </Link>
             .
           </p>
         </>

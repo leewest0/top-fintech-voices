@@ -36,9 +36,36 @@ export const firstEdition = {
   volume: "Vol. 1",
   label: "Maiden Edition",
   date: "March 2024",
+  pages: 48,
   cover: "/magazine/cover-issue-01.jpg",
   coverStory: { name: "Archie Hesse", line: "Chief Executive, GhIPSS" },
+  /**
+   * Readable here too. The source PDF was the one the old WordPress site fed to
+   * its flipbook plugin, pulled off that server before it is switched off, and
+   * rasterised by the same script as Vol 2. A4 like Vol 2, so the same aspect.
+   */
+  reader: {
+    slug: "vol1",
+    aspect: 1.4143,
+  },
 } as const;
+
+/**
+ * The back catalogue, newest first — what /magazine lists and what
+ * /read/[edition] will serve. The current edition is deliberately not in here:
+ * it has its own page at /read, and listing it twice would give the same
+ * edition two URLs to be found at.
+ */
+export const pastEditions = [firstEdition] as const;
+
+export type Edition = (typeof pastEditions)[number] | typeof currentEdition;
+
+/** Where an edition is read. The current one owns the bare /read. */
+export function readerHref(edition: Edition): string {
+  return edition.reader.slug === currentEdition.reader.slug
+    ? "/read"
+    : `/read/${edition.reader.slug}`;
+}
 
 export type Feature = {
   title: string;
@@ -153,8 +180,12 @@ export const masthead = [
 ];
 
 /** Where the reader finds a given page image. */
-export function pageImage(page: number, size: "page" | "thumb" = "page"): string {
+export function pageImage(
+  slug: string,
+  page: number,
+  size: "page" | "thumb" = "page",
+): string {
   const file = `page-${String(page).padStart(2, "0")}.webp`;
-  const folder = `/magazine/${currentEdition.reader.slug}`;
+  const folder = `/magazine/${slug}`;
   return size === "thumb" ? `${folder}/thumb/${file}` : `${folder}/${file}`;
 }

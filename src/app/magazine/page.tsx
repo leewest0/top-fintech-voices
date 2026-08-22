@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
-import { currentEdition, features, firstEdition } from "@/lib/magazine";
+import { currentEdition, features, pastEditions, readerHref } from "@/lib/magazine";
 import { partners, sponsors } from "@/lib/content";
 
 const { volume, label, date, pages, cover, coverStory, coverLines } = currentEdition;
@@ -128,80 +128,119 @@ export default function MagazinePage() {
               </h2>
             </div>
             <Link
-              href="/stories"
+              href={site.readUrl}
               className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
             >
-              Browse the features <ArrowRight size={14} />
+              Read it online <ArrowRight size={14} />
             </Link>
           </Reveal>
 
           <ol style={{ borderTop: "1px solid var(--line)" }}>
             {features.map((feature) => (
-              <li
-                key={feature.title}
-                className="flex items-baseline gap-5 py-4"
-                style={{ borderBottom: "1px solid var(--line)" }}
-              >
-                <span
-                  className="w-8 shrink-0 font-mono text-xs"
-                  style={{ color: "var(--accent)" }}
+              <li key={feature.title} style={{ borderBottom: "1px solid var(--line)" }}>
+                {/* Each line opens the reader at that page. The list used to be
+                    inert text, which is a strange thing for a contents page. */}
+                <Link
+                  href={`${site.readUrl}#page-${feature.page}`}
+                  className="contents-row flex items-baseline gap-5 py-4"
                 >
-                  {String(feature.page).padStart(2, "0")}
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="font-display block text-base leading-snug font-semibold tracking-[-0.02em] sm:text-lg">
-                    {feature.title}
+                  <span
+                    className="w-8 shrink-0 font-mono text-xs"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {String(feature.page).padStart(2, "0")}
                   </span>
-                  {feature.standfirst && (
-                    <span className="mt-1 block text-sm" style={{ color: "var(--muted)" }}>
-                      {feature.standfirst}
+                  <span className="min-w-0 flex-1">
+                    <span className="font-display block text-base leading-snug font-semibold tracking-[-0.02em] sm:text-lg">
+                      {feature.title}
                     </span>
-                  )}
-                </span>
-                <span
-                  className="hidden shrink-0 font-mono text-[10px] tracking-[0.18em] uppercase sm:block"
-                  style={{ color: "var(--muted)" }}
-                >
-                  {feature.section}
-                </span>
+                    {feature.standfirst && (
+                      <span className="mt-1 block text-sm" style={{ color: "var(--muted)" }}>
+                        {feature.standfirst}
+                      </span>
+                    )}
+                  </span>
+                  <span
+                    className="hidden shrink-0 font-mono text-[10px] tracking-[0.18em] uppercase sm:block"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    {feature.section}
+                  </span>
+                </Link>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* ---------- the first edition ---------- */}
-      <section className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
-        <Reveal className="bordered grid items-center gap-8 rounded-3xl p-8 sm:grid-cols-[auto_1fr] md:p-12">
-          <Image
-            src={firstEdition.cover}
-            alt={`${site.name} ${firstEdition.volume} — ${firstEdition.coverStory.name} on the cover`}
-            width={1814}
-            height={2560}
-            sizes="180px"
-            className="w-[140px] rounded-lg sm:w-[180px]"
-            style={{ border: "1px solid var(--line)" }}
-          />
-          <div>
-            <p
-              className="font-mono text-[11px] tracking-[0.25em] uppercase"
-              style={{ color: "var(--muted)" }}
-            >
-              {firstEdition.volume} · {firstEdition.label} · {firstEdition.date}
-            </p>
-            <h2 className="font-display mt-3 text-xl font-bold tracking-[-0.03em] md:text-3xl">
-              Where it started.
-            </h2>
-            <p className="mt-4 max-w-lg text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-              The maiden edition launched in Accra on 9 March 2024 with{" "}
-              {firstEdition.coverStory.name}, {firstEdition.coverStory.line}, on the cover — and the{" "}
-              <Link href="/spotlight" className="navlink" style={{ color: "var(--accent)" }}>
-                28 voices
-              </Link>{" "}
-              who set the tone for everything since.
-            </p>
-          </div>
+      {/* ---------- the back catalogue ---------- */}
+      <section id="archive" className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
+        <Reveal className="mb-10">
+          <p
+            className="mb-3 font-mono text-[11px] tracking-[0.25em] uppercase"
+            style={{ color: "var(--accent)" }}
+          >
+            Back issues
+          </p>
+          <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
+            Every edition, still readable.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+            Nothing goes out of print here. Each past edition turns page by page in the same
+            reader as the current one.
+          </p>
         </Reveal>
+
+        <ul className="grid gap-6">
+          {pastEditions.map((edition, i) => (
+            <li key={edition.reader.slug}>
+              <Reveal
+                delay={i * 100}
+                className="bordered grid items-center gap-8 rounded-3xl p-8 sm:grid-cols-[auto_1fr] md:p-12"
+              >
+                <Link href={readerHref(edition)} className="shrink-0">
+                  <Image
+                    src={edition.cover}
+                    alt={`${site.name} ${edition.volume} — ${edition.coverStory.name} on the cover`}
+                    width={1814}
+                    height={2560}
+                    sizes="180px"
+                    className="float w-[140px] rounded-lg sm:w-[180px]"
+                    style={{ border: "1px solid var(--line)" }}
+                  />
+                </Link>
+                <div>
+                  <p
+                    className="font-mono text-[11px] tracking-[0.25em] uppercase"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    {edition.volume} · {edition.label} · {edition.date} · {edition.pages} pages
+                  </p>
+                  <h3 className="font-display mt-3 text-xl font-bold tracking-[-0.03em] md:text-3xl">
+                    Where it started.
+                  </h3>
+                  <p
+                    className="mt-4 max-w-lg text-base leading-relaxed"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    The maiden edition launched in Accra on 9 March 2024 with{" "}
+                    {edition.coverStory.name}, {edition.coverStory.line}, on the cover — and the{" "}
+                    <Link href="/spotlight" className="navlink" style={{ color: "var(--accent)" }}>
+                      28 voices
+                    </Link>{" "}
+                    who set the tone for everything since.
+                  </p>
+                  <Link
+                    href={readerHref(edition)}
+                    className="btn btn-ghost mt-7 inline-flex items-center gap-2 px-5 py-3 text-sm"
+                  >
+                    <BookOpen size={15} /> Read {edition.volume}
+                  </Link>
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ---------- backers ---------- */}

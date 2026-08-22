@@ -370,6 +370,21 @@ input[type="search"]::-webkit-search-decoration {
   border: 1px solid var(--line);
 }
 
+/* A contents line on /magazine. It fills the full row width, so the hover has
+   to read as "this row is clickable" rather than as a link underline. */
+.contents-row {
+  transition:
+    background-color 0.25s var(--ease-loom),
+    padding-left 0.25s var(--ease-loom);
+  padding-left: 0;
+}
+@media (hover: hover) {
+  .contents-row:hover {
+    background: var(--surface-2);
+    padding-left: 0.75rem;
+  }
+}
+
 .panel {
   background: var(--surface);
   border: 1px solid var(--line);

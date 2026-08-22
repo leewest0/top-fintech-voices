@@ -41,11 +41,14 @@ function Sheet({
   side,
   pages,
   spread,
+  slug,
 }: {
   page: number;
   side: "left" | "right";
   pages: number;
   spread: boolean;
+  /** Which edition's rasterised pages to draw from. */
+  slug: string;
 }) {
   const exists = page >= 1 && page <= pages;
   return (
@@ -57,7 +60,7 @@ function Sheet({
     >
       {exists && (
         <Image
-          src={pageImage(page)}
+          src={pageImage(slug, page)}
           alt={`Page ${page}`}
           fill
           sizes={spread ? "(max-width: 900px) 100vw, 48vw" : "100vw"}
@@ -80,7 +83,16 @@ function Sheet({
  * Narrow screens read one page at a time instead — a spread at phone width puts
  * body text below the size anyone can read.
  */
-export function Flipbook({ pages, aspect }: { pages: number; aspect: number }) {
+export function Flipbook({
+  pages,
+  aspect,
+  slug,
+}: {
+  pages: number;
+  aspect: number;
+  /** The edition being read — picks which folder of page images to load. */
+  slug: string;
+}) {
   const leaves = Math.ceil(pages / 2);
 
   const [leaf, setLeaf] = useState(0);
@@ -247,7 +259,7 @@ export function Flipbook({ pages, aspect }: { pages: number; aspect: number }) {
           <div className="relative h-full w-1/2">
             {/* Stays on the outgoing page: the turning leaf lands on top of
                 it, the way a real sheet covers what was underneath. */}
-            <Sheet page={turning?.dir === "back" ? leftPage - 2 : leftPage} side="left" pages={pages} spread={spread} />
+            <Sheet page={turning?.dir === "back" ? leftPage - 2 : leftPage} side="left" pages={pages} spread={spread} slug={slug} />
           </div>
         )}
 
@@ -259,6 +271,7 @@ export function Flipbook({ pages, aspect }: { pages: number; aspect: number }) {
             side="right"
             pages={pages}
             spread={spread}
+            slug={slug}
           />
 
           {turning && spread && (
@@ -270,10 +283,10 @@ export function Flipbook({ pages, aspect }: { pages: number; aspect: number }) {
               aria-hidden="true"
             >
               <div className="leaf-face page-gutter-right">
-                <Sheet page={turning.front} side="right" pages={pages} spread={spread} />
+                <Sheet page={turning.front} side="right" pages={pages} spread={spread} slug={slug} />
               </div>
               <div className="leaf-face leaf-back page-gutter-left">
-                <Sheet page={turning.back} side="left" pages={pages} spread={spread} />
+                <Sheet page={turning.back} side="left" pages={pages} spread={spread} slug={slug} />
               </div>
             </div>
           )}
@@ -410,7 +423,7 @@ export function Flipbook({ pages, aspect }: { pages: number; aspect: number }) {
                       }}
                     >
                       <Image
-                        src={pageImage(page, "thumb")}
+                        src={pageImage(slug, page, "thumb")}
                         alt=""
                         fill
                         sizes="160px"

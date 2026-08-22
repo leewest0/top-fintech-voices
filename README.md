@@ -66,13 +66,16 @@ still describes the maiden edition.
 
 Vol. 2 — Second Edition, November 2025, 78 pages, Adoma Owusu on the cover.
 
-When a new edition ships: update `currentEdition`, `features` and `masthead`, move the
-outgoing one into `firstEdition`, and drop the new cover into `public/magazine/`. The
-hero, the magazine section, the stats, `/magazine` and `/stories` all read from there.
+When a new edition ships: update `currentEdition`, `features` and `masthead`, add the
+outgoing one to `pastEditions` (giving it a `reader` slug of its own), and drop the new
+cover into `public/magazine/`. The hero, the magazine section, the stats, `/magazine`
+and both readers all read from there.
 
 ## Reading the edition
 
-`/read` turns the edition page by page in the browser.
+`/read` turns the current edition page by page in the browser, and `/read/vol1` does
+the same for the maiden edition. Nothing goes out of print: `/magazine` lists the back
+catalogue from `pastEditions`, and each one reads in the same reader.
 
 The source PDF is ~84MB, so it is never sent to a visitor. `scripts/render-magazine.py`
 rasterises it once into web-sized WebP pages, which are committed:
@@ -91,6 +94,16 @@ then even-left/odd-right spreads. Below 900px it reads one page at a time, since
 spread at phone width puts body text below anything legible. Arrow keys, Home/End,
 swipe, click the outer quarter of a page, a thumbnail index, fullscreen, and
 `/read#page-30` deep links all work.
+
+`EditionReader` is the shared body, so /read and /read/[edition] cannot drift apart.
+An archive edition gets no "Jump to a feature" list — only the current edition's
+contents have been transcribed, and inventing page numbers for the others would be
+worse than leaving the reader's own thumbnail index to do the job. It gets no
+"Download the PDF" button either: that file is the current edition, so offering it
+under a back issue would hand the reader the wrong magazine.
+
+The maiden edition's pages came from the PDF the old WordPress site fed to its
+flipbook plugin, pulled off that server before it is switched off.
 
 The contents list under the reader talks to it through a `tfv:read-page` window
 event rather than a hash link. The two sit in different sections of a
@@ -186,12 +199,12 @@ Every menu item is its own page.
 | `/spotlight` | All 28 profiles, filterable by name, role or company |
 | `/spotlight/[slug]` | One profile — 28 statically generated pages |
 | `/magazine` | The current edition: cover, contents, the first edition, backers |
-| `/stories` | The features running in the current edition |
 | `/about` | Mission, vision, the story so far |
 | `/team` | The masthead, with the full credits |
 | `/contact` | Details and a message form |
 | `/order` | Order print copies; emails via Resend |
-| `/read` | The edition, page by page |
+| `/read` | The current edition, page by page |
+| `/read/[edition]` | A back issue, in the same reader |
 | 404 | Any unknown path |
 
 Inner pages share `PageShell`, which supplies the header, the intro band, the loom

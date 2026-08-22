@@ -67,7 +67,9 @@ export const site = {
 export const nav = [
   { label: "Spotlight", href: "/spotlight" },
   { label: "The Magazine", href: "/magazine" },
-  { label: "Stories", href: "/stories" },
+  // Was "Stories", which listed the same features /magazine already lists in
+  // full. The reader is the thing worth a menu slot.
+  { label: "Read", href: "/read" },
   { label: "About", href: "/about" },
   { label: "Team", href: "/team" },
   { label: "Contact", href: "/contact" },
