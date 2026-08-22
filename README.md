@@ -104,13 +104,26 @@ They are different things and go to different places:
 
 - **Order the magazine** → `/order`, the form in this app. It posts to
   `/api/order`, which emails the desk through Resend.
-- **Read it online** → the page-turning reader. Linked absolutely from
-  `DEPLOYED_URL` at the top of `src/lib/site.ts` — change that one line when the
-  custom domain replaces the Vercel one.
+- **Read it online** → `/read`, the page-turning reader in this app.
 - **Download the PDF** → the file on the client's Google Drive.
 
-Both live in `src/lib/site.ts` (`orderUrl`, `downloadUrl`) and appear in the header,
-the mobile menu, the magazine section and the page CTAs.
+All three live in `src/lib/site.ts` (`orderUrl`, `readUrl`, `downloadUrl`) and appear
+in the header, the mobile menu, the magazine section and the page CTAs.
+
+## Where the site thinks it lives
+
+Canonicals, OG images and JSON-LD have to name a host, so `site.url` resolves one at
+build time — `NEXT_PUBLIC_SITE_URL` first, then Vercel's own values, then localhost
+for `next dev`. No deployment host is written down in the repo, and `npm test` fails
+if one creeps back in.
+
+On Vercel it needs no configuration: production builds use the project's production
+domain, which becomes the custom domain by itself the moment one is attached, and
+preview builds name themselves so they never claim production's canonical. Set
+`NEXT_PUBLIC_SITE_URL` to override that, or when hosting anywhere else.
+
+The two in-app destinations — `/order` and `/read` — are plain routes, so they resolve
+against whatever host served the page and follow the site to a new domain on their own.
 
 ### Orders
 
@@ -120,6 +133,7 @@ copies, country, email, phone, message.
 Configure it with the variables in `.env.example`:
 
 ```
+NEXT_PUBLIC_SITE_URL= # optional on Vercel; see above
 RESEND_API_KEY=       # https://resend.com/api-keys
 ORDER_FROM_EMAIL=     # an address on a domain verified in Resend
 ORDER_TO_EMAIL=       # where orders land; defaults to site.email

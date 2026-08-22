@@ -212,11 +212,11 @@ export default function AboutPage() {
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Order the magazine <ArrowRight size={16} />
             </Link>
-            <a
+            <Link
               href={site.readUrl}
               className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               <BookOpen size={16} /> Read it online
-            </a>
+            </Link>
           </div>
         </Reveal>
       </section>
