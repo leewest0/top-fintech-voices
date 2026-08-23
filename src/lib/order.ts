@@ -7,6 +7,12 @@
  * the server before anything is sent.
  */
 
+import { EMAIL, MAX_MESSAGE, MAX_TEXT, emailRow, escapeHtml, str } from "@/lib/form";
+
+// Re-exported so callers that already import it from here keep working; the
+// implementation is shared with the sponsorship form.
+export { isHoneypotTripped } from "@/lib/form";
+
 export type OrderInput = Record<string, unknown>;
 
 export type Order = {
@@ -25,13 +31,6 @@ export type ParseResult =
 
 /** Matches the fields the client's existing WordPress order form collects. */
 export const MAX_COPIES = 5000;
-const MAX_TEXT = 200;
-const MAX_MESSAGE = 4000;
-
-const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
-
-// Deliberately loose: the point is to catch typos, not to adjudicate RFC 5322.
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function parseOrder(input: OrderInput): ParseResult {
   const order: Order = {
@@ -63,11 +62,6 @@ export function parseOrder(input: OrderInput): ParseResult {
   return { ok: true, order };
 }
 
-/** True when a bot filled the field that is hidden from people. */
-export function isHoneypotTripped(input: OrderInput): boolean {
-  return str(input.website) !== "";
-}
-
 export function orderSubject(order: Order, edition: string): string {
   const copies = `${order.copies} ${order.copies === 1 ? "copy" : "copies"}`;
   return `Magazine order — ${order.name}, ${copies} (${edition})`;
@@ -89,16 +83,8 @@ export function orderText(order: Order, edition: string): string {
   ].join("\n");
 }
 
-const escapeHtml = (value: string) =>
-  value.replace(
-    /[&<>"']/g,
-    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!,
-  );
-
 export function orderHtml(order: Order, edition: string): string {
-  const row = (label: string, value: string) =>
-    `<tr><td style="padding:6px 16px 6px 0;color:#55697a;font:600 13px system-ui">${label}</td>` +
-    `<td style="padding:6px 0;font:14px system-ui">${escapeHtml(value)}</td></tr>`;
+  const row = emailRow;
 
   return [
     `<div style="font:14px system-ui;color:#0f456a">`,

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowRight, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useTheme } from "@/components/theme-provider";
 import { nav, site } from "@/lib/site";
@@ -42,9 +42,9 @@ export function SiteHeader() {
           <Logo className="h-8 w-auto md:h-10" priority />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-6 text-sm font-medium lg:flex xl:gap-8">
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="navlink">
+            <Link key={item.href} href={item.href} className="navlink whitespace-nowrap">
               {item.label}
             </Link>
           ))}
@@ -62,15 +62,8 @@ export function SiteHeader() {
           </button>
 
           <Link
-            href={site.readUrl}
-            className="btn btn-ghost hidden items-center gap-2 px-5 py-2.5 text-sm lg:inline-flex"
-          >
-            <BookOpen size={14} /> Read
-          </Link>
-
-          <Link
             href={site.orderUrl}
-            className="btn btn-solid hidden items-center gap-2 px-5 py-2.5 text-sm sm:inline-flex">
+            className="btn btn-solid hidden items-center gap-2 px-5 py-2.5 text-sm whitespace-nowrap sm:inline-flex">
             Order the magazine <ArrowRight size={14} />
           </Link>
 
@@ -111,13 +104,6 @@ export function SiteHeader() {
             className="btn btn-solid mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
           >
             Order the magazine <ArrowRight size={14} />
-          </Link>
-          <Link
-            href={site.readUrl}
-            onClick={() => setMenuOpen(false)}
-            className="btn btn-ghost mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm"
-          >
-            <BookOpen size={14} /> Read the magazine
           </Link>
         </div>
       )}

@@ -103,5 +103,6 @@ export const nav = [
   { label: "Read", href: "/read" },
   { label: "About", href: "/about" },
   { label: "Team", href: "/team" },
+  { label: "Sponsor", href: "/sponsor" },
   { label: "Contact", href: "/contact" },
 ] as const;

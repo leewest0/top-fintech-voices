@@ -176,6 +176,7 @@ NEXT_PUBLIC_SITE_URL= # optional on Vercel; see above
 RESEND_API_KEY=       # https://resend.com/api-keys
 ORDER_FROM_EMAIL=     # an address on a domain verified in Resend
 ORDER_TO_EMAIL=       # where orders land; defaults to site.email
+SPONSOR_TO_EMAIL=     # where sponsorship enquiries land; defaults to ORDER_TO_EMAIL
 ```
 
 Without those set, `/api/order` answers **503** and the form tells the visitor to
@@ -188,6 +189,36 @@ re-validates everything server-side regardless of what the form did, escapes use
 text before it goes into the HTML email, and sets `reply-to` to the customer so a
 reply reaches them directly. A honeypot field answers bots with a cheerful 200 and
 sends nothing.
+
+## Sponsorship
+
+`/sponsor` is the commercial page: what the magazine is, what can be bought, who
+already backs it, and a form that emails the desk.
+
+It carries **no rates and no reach figures**. Every number on it — editions, pages,
+profiles, features — is read off the editions themselves. Circulation, readership and
+impressions are exactly what a media buyer checks, so rather than invent them the page
+says rates go out on request. Give us real figures and they belong on the page.
+
+`/api/sponsor` mirrors `/api/order`: re-validates server-side, escapes user text before
+it reaches the HTML email, sets `reply-to` to the enquirer, answers the honeypot with a
+cheerful 200, and returns **503** with a fallback address rather than accepting an
+enquiry it cannot deliver. It sends through the same Resend key and sender; only the
+recipient can differ, via `SPONSOR_TO_EMAIL`.
+
+The pieces both forms agree on — trimming, the email pattern, HTML escaping, the
+honeypot — live in `src/lib/form.ts`, so a second form cannot pick up a slightly
+different idea of any of them. "Slightly different" in the escaping is a hole.
+
+## Sharing a profile
+
+Each Spotlight profile carries LinkedIn, X, WhatsApp and copy-link buttons, next to the
+portrait rather than at the foot of the article: the person profiled is the likeliest
+sharer, and their own post is the most credible traffic the site gets.
+
+The share targets are plain links, not `window.open` calls — a popup is what blockers
+eat, and a link works with middle-click and a keyboard. Only copy-link needs JavaScript,
+and it falls back to selecting the URL when the clipboard is unavailable.
 
 ## Pages
 
@@ -203,6 +234,7 @@ Every menu item is its own page.
 | `/team` | The masthead, with the full credits |
 | `/contact` | Details and a message form |
 | `/order` | Order print copies; emails via Resend |
+| `/sponsor` | Sponsor & advertise; emails via Resend |
 | `/read` | The current edition, page by page |
 | `/read/[edition]` | A back issue, in the same reader |
 | 404 | Any unknown path |

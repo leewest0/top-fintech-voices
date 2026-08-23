@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LoomRail } from "@/components/ui/weave";
 import { LinkedInGlyph } from "@/components/ui/linkedin-glyph";
+import { Share } from "@/components/ui/share";
 import { site } from "@/lib/site";
 import { voices } from "@/lib/voices";
 
@@ -58,6 +59,10 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
   if (!found) notFound();
 
   const { voice, previous, next } = found;
+
+  // Absolute, because a share target has to name a host.
+  const profileUrl = `${site.url}/spotlight/${voice.slug}`;
+  const shareTitle = voice.org ? `${voice.name}, ${voice.org}` : voice.name;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -119,10 +124,19 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
                   rel="noreferrer"
                   className="btn btn-ghost inline-flex items-center gap-2 px-5 py-2.5 text-sm"
                 >
-                  <LinkedInGlyph /> LinkedIn
+                  {/* "LinkedIn profile", not "LinkedIn": the share row below
+                      has a LinkedIn button too, and side by side the two read
+                      as the same button twice. */}
+                  <LinkedInGlyph /> LinkedIn profile
                 </a>
               </div>
             )}
+
+            {/* The person profiled here is the likeliest sharer, so this sits
+                with their portrait rather than at the foot of the article. */}
+            <div className="mt-7">
+              <Share url={profileUrl} title={shareTitle} />
+            </div>
           </div>
 
           <div>
