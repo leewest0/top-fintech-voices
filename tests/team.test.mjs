@@ -38,6 +38,18 @@ for (const member of team) {
 const names = team.map((m) => m.name);
 assert.equal(new Set(names).size, names.length, "duplicate names in the team list");
 
+// A LinkedIn link is the one field that goes out into the world unattended —
+// a stray query string or a copy-pasted tracking parameter would sit there
+// unnoticed. Personal profile URLs only, no query string, no trailing slash.
+for (const member of team) {
+  if (member.linkedin === undefined) continue;
+  assert.match(
+    member.linkedin,
+    /^https:\/\/www\.linkedin\.com\/in\/[\w-]+$/,
+    `${member.name}: linkedin should be a bare personal-profile URL, got ${member.linkedin}`,
+  );
+}
+
 console.log(
   `team: ${team.length} people, all ${credited.length} credited in the edition accounted for`,
 );

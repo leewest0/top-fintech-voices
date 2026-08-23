@@ -97,6 +97,7 @@ export type TeamMember = {
   role: string;
   image?: string;
   bio?: string;
+  linkedin?: string;
 };
 
 export const team: TeamMember[] = [
@@ -111,6 +112,7 @@ export const team: TeamMember[] = [
     role: "Editor-in-Chief",
     image: "/team/solomon-agbemenya.jpg",
     bio: "A strategy and business consulting professional with leadership roles at Pod Solutions, El-Evangel Publications, S&D Chartered Accountants, Fido, MEST and First Atlantic Bank.",
+    linkedin: "https://www.linkedin.com/in/solomon-sedinam-agbemenya-87571665",
   },
   {
     name: "Charles Anyiri",
@@ -121,7 +123,9 @@ export const team: TeamMember[] = [
   {
     name: "Amanda Nyante",
     role: "Editor",
+    image: "/team/amanda-nyante.jpg",
     bio: "A law student and SRC Vice President at the Ghana School of Law, UPSA campus, working where law meets technology and digital policy.",
+    linkedin: "https://www.linkedin.com/in/amanda-offeibea-nyante-b6362b285",
   },
   {
     name: "Prince Tettevi",
@@ -137,12 +141,14 @@ export const team: TeamMember[] = [
     name: "Lynette Maja",
     role: "Growth and Strategy",
     bio: "A conversational strategist and moderator known as “The Conversator”, working across fintech, digital marketing, storytelling and strategy to connect generations.",
+    linkedin: "https://www.linkedin.com/in/lynette-maja-3aa148162",
   },
   {
     name: "Salome Asare",
     role: "Photography",
     image: "/team/salome-asare.jpg",
     bio: "A creative entrepreneur and visual storyteller who helps brands capture the moments that matter, in work built to stay clean and timeless.",
+    linkedin: "https://www.linkedin.com/in/salome-asare-147784211",
   },
   {
     name: "Morenike Ayodele",

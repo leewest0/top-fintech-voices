@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/ui/reveal";
 import { TeamPortrait } from "@/components/ui/team-portrait";
+import { LinkedInGlyph } from "@/components/ui/linkedin-glyph";
 import { team } from "@/lib/content";
 import { currentEdition } from "@/lib/magazine";
 
@@ -95,12 +96,26 @@ export function Team() {
                 />
               </div>
               <div className="p-5">
-                <p
-                  className="font-mono text-[10px] tracking-[0.18em] uppercase"
-                  style={{ color: "var(--accent)" }}
-                >
-                  {member.role}
-                </p>
+                <div className="flex items-start justify-between gap-3">
+                  <p
+                    className="font-mono text-[10px] tracking-[0.18em] uppercase"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {member.role}
+                  </p>
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`${member.name} on LinkedIn`}
+                      className="navlink shrink-0"
+                      style={{ color: "var(--muted)" }}
+                    >
+                      <LinkedInGlyph size={15} />
+                    </a>
+                  )}
+                </div>
                 <p className="font-display mt-2 text-base leading-snug font-semibold tracking-[-0.02em]">
                   {member.name}
                 </p>
