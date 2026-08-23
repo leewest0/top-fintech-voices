@@ -121,6 +121,7 @@ export const team: TeamMember[] = [
   {
     name: "Amanda Nyante",
     role: "Editor",
+    bio: "A law student and SRC Vice President at the Ghana School of Law, UPSA campus, working where law meets technology and digital policy.",
   },
   {
     name: "Prince Tettevi",
@@ -135,6 +136,7 @@ export const team: TeamMember[] = [
   {
     name: "Lynette Maja",
     role: "Growth and Strategy",
+    bio: "A conversational strategist and moderator known as “The Conversator”, working across fintech, digital marketing, storytelling and strategy to connect generations.",
   },
   {
     name: "Salome Asare",
