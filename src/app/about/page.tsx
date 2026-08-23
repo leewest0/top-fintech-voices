@@ -22,13 +22,18 @@ export const metadata: Metadata = {
 
 const pillars = [
   {
+    label: "Purpose",
+    copy: "We don't just report on Africa's fintech ecosystem — we bring together the people building it.",
+    thread: "var(--w2)",
+  },
+  {
     label: "Mission",
-    copy: "Empowering fintech collaboration and innovation globally.",
+    copy: "To amplify the people, ideas and conversations shaping Africa's fintech future and create meaningful connections across the ecosystem.",
     thread: "var(--w1)",
   },
   {
     label: "Vision",
-    copy: "Identifying fintech innovators for an inclusive, impactful world.",
+    copy: "To become Africa's leading platform for fintech thought leadership, recognition and collaboration.",
     thread: "var(--w3)",
   },
 ];
@@ -55,17 +60,28 @@ export default function AboutPage() {
   return (
     <PageShell
       eyebrow="About the publication"
-      title="Know us better."
+      title="Our Story"
       intro={
         <>
-          <p>
-            Top Fintech Voices provides a comprehensive platform for the fintech community,
-            featuring in-depth interviews, cutting-edge research, insightful case studies and
-            thought-provoking opinion pieces from the most influential figures in the industry.
+          <p
+            className="font-display text-xl font-semibold tracking-[-0.02em]"
+            style={{ color: "var(--text)" }}
+          >
+            Born in Ghana. Built for Africa.
           </p>
           <p className="mt-4">
-            We keep readers abreast of the latest trends, emerging technologies and regulatory
-            developments transforming the digital financial services landscape.
+            Top Fintech Voices began in Accra with a simple ambition: to recognise and amplify
+            the people behind fintech&rsquo;s progress. Our maiden edition launched in 2024,
+            followed by our second edition in 2025.
+          </p>
+          <p className="mt-4">
+            Today, that ambition is growing beyond one market. As Top Fintech Voices expands
+            across Anglophone and Francophone Africa, we are building a platform where the
+            continent&rsquo;s fintech community can be seen, heard, challenged and connected.
+          </p>
+          <p className="mt-4">
+            Because Africa doesn&rsquo;t have a shortage of innovation. It has stories, ideas and
+            voices that deserve a bigger platform.
           </p>
         </>
       }
@@ -85,7 +101,7 @@ export default function AboutPage() {
       }
     >
       {/* ---------- mission / vision ---------- */}
-      <section className="mx-auto grid max-w-[1240px] gap-6 px-5 py-14 md:grid-cols-2 md:px-10">
+      <section className="mx-auto grid max-w-[1240px] gap-6 px-5 py-14 sm:grid-cols-2 md:px-10 lg:grid-cols-3">
         {pillars.map((pillar, i) => (
           <Reveal key={pillar.label} delay={i * 120} className="card rounded-2xl p-8">
             <div className="mb-6 flex gap-[3px]" aria-hidden="true">
