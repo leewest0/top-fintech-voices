@@ -11,7 +11,7 @@ import { voices } from "@/lib/voices";
 export const metadata: Metadata = {
   title: "Spotlight",
   description:
-    "The founders, regulators and operators featured in Top Fintech Voices — the innovators, trailblazers and visionaries shaping financial technology in Ghana and across Africa.",
+    "The leaders, builders, policymakers and innovators featured in Top Fintech Voices, a platform for the people shaping financial technology in Ghana and across Africa.",
   alternates: { canonical: "/spotlight" },
   openGraph: {
     title: `Spotlight — ${site.name}`,
@@ -70,22 +70,33 @@ export default function SpotlightPage() {
             className="rise mb-6 font-mono text-[11px] tracking-[0.25em] uppercase"
             style={{ color: "var(--accent)" }}
           >
-            The Spotlight
+            The Platform
           </p>
           <h1
             className="rise font-display max-w-3xl text-[2.4rem] leading-[1] font-bold tracking-[-0.03em] sm:text-[3.2rem] lg:text-[3.8rem]"
             style={{ animationDelay: "80ms" }}
           >
-            The innovators, trailblazers
-            <br className="hidden sm:block" /> and visionaries.
+            A platform for Africa&rsquo;s
+            <br className="hidden sm:block" /> fintech voices.
           </h1>
-          <p
-            className="rise mt-7 max-w-xl text-base leading-relaxed sm:text-lg"
+          <div
+            className="rise mt-7 max-w-xl space-y-4 text-base leading-relaxed sm:text-lg"
             style={{ color: "var(--muted)", animationDelay: "220ms" }}
           >
-            Discover and celebrate the fintech innovators featured in the magazine — the minds
-            behind the latest advancements in financial technology.
-          </p>
+            <p>
+              Africa&rsquo;s fintech story is being written by people solving some of the
+              continent&rsquo;s biggest challenges — from financial inclusion and payments to
+              artificial intelligence, digital identity, cybersecurity and cross-border commerce.
+            </p>
+            <p>
+              Top Fintech Voices exists to find those people, amplify their thinking and bring
+              the ecosystem together.
+            </p>
+            <p>
+              We connect leaders, builders, policymakers, investors and the next generation of
+              innovators through four core platforms:
+            </p>
+          </div>
 
           <dl
             className="rise mt-10 flex flex-wrap gap-x-12 gap-y-6"

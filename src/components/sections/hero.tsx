@@ -19,13 +19,13 @@ export function Hero() {
 
           <h1 className="font-display text-[2.4rem] leading-[0.98] font-bold tracking-[-0.03em] sm:text-[3.4rem] lg:text-[4.1rem]">
             <span className="rise block" style={{ animationDelay: "80ms" }}>
-              The people
+              The people behind
             </span>
-            <span className="rise block" style={{ animationDelay: "180ms" }}>
-              behind the
+            <span className="rise block" style={{ animationDelay: "180ms", color: "var(--accent)" }}>
+              Africa&rsquo;s financial
             </span>
             <span className="rise block" style={{ animationDelay: "280ms", color: "var(--accent)" }}>
-              payments.
+              future.
             </span>
           </h1>
 
@@ -33,19 +33,18 @@ export function Hero() {
             className="rise mt-7 max-w-lg text-base leading-relaxed sm:text-lg"
             style={{ color: "var(--muted)", animationDelay: "400ms" }}
           >
-            In-depth interviews, research and opinion from the founders, regulators and
-            operators building Ghana&rsquo;s financial infrastructure — and, increasingly, the
-            rest of the continent&rsquo;s.
+            Top Fintech Voices brings together the founders, regulators, innovators, operators
+            and emerging voices shaping the future of financial technology across Africa.
           </p>
 
           <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "520ms" }}>
             <Link
-              href={site.orderUrl}
+              href="/spotlight"
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              Order the magazine <ArrowRight size={16} />
+              Explore the Voices <ArrowRight size={16} />
             </Link>
-            <Link href="/spotlight" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              Read the Spotlight
+            <Link href={site.readUrl} className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              Read the Magazine
             </Link>
           </div>
         </div>
