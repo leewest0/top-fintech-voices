@@ -116,7 +116,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Charles Anyiri",
-    role: "Editorial & Administrative Coordinator",
+    role: "Administrative Coordinator",
     image: "/team/charles-anyiri.png",
     bio: "Digital Marketing & Content Consultant for the Ghana FinTech Awards, with over a decade in professional design and marketing.",
   },
