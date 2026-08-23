@@ -11,13 +11,13 @@ import { partners, sponsors } from "@/lib/content";
 import { voices } from "@/lib/voices";
 
 export const metadata: Metadata = {
-  title: "Sponsor & advertise",
-  description: `Advertise in ${site.name} or sponsor a section. The magazine reaches the founders, regulators and operators building financial technology in Ghana and across Africa.`,
-  alternates: { canonical: "/sponsor" },
+  title: "Partners",
+  description: `Partner with ${site.name} — advertise, sponsor a section, or back the magazine. It reaches the founders, regulators and operators building financial technology in Ghana and across Africa.`,
+  alternates: { canonical: "/partners" },
   openGraph: {
-    title: `Sponsor & advertise — ${site.name}`,
+    title: `Partners — ${site.name}`,
     description: `Put your brand alongside the people building African fintech.`,
-    url: `${site.url}/sponsor`,
+    url: `${site.url}/partners`,
     images: [{ url: currentEdition.cover, alt: `${site.name} ${currentEdition.volume}` }],
   },
 };
@@ -58,21 +58,20 @@ const options = [
   },
 ];
 
-export default function SponsorPage() {
+export default function PartnersPage() {
   return (
     <PageShell
-      eyebrow="Sponsor & advertise"
-      title="Reach the people building African fintech."
+      eyebrow="Partners"
+      title="Building the ecosystem together."
       intro={
         <>
           <p>
-            Top Fintech Voices is read by the founders, regulators, bankers and operators who
-            decide what gets built and what gets licensed — the same people it profiles. If those
-            are your customers, this is a short route to them.
+            Top Fintech Voices works with organisations that share our belief in the power of
+            innovation, collaboration and inclusive financial growth. Our partners don&rsquo;t
+            simply support a publication.
           </p>
           <p className="mt-4">
-            Tell us what you have in mind and we&rsquo;ll send the rate card and what&rsquo;s still
-            open in {currentEdition.volume === "Vol. 2" ? "the next edition" : currentEdition.volume}.
+            They help support the conversations shaping Africa&rsquo;s fintech future.
           </p>
         </>
       }

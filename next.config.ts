@@ -33,10 +33,13 @@ const legacyPaths: Record<string, string> = {
  * /stories listed the same features /magazine already lists in full, down to
  * the same standfirsts, so it went. /read/vol2 would be the current edition on
  * a second URL — it lives at the bare /read, and one magazine wants one address.
+ * /sponsor is now /partners — the page outgrew "sponsor" once it started
+ * talking about the organisations backing the magazine, not just ad space.
  */
 const supersededPaths: Record<string, string> = {
   "/stories": "/magazine",
   "/read/vol2": "/read",
+  "/sponsor": "/partners",
 };
 
 /**

@@ -20,7 +20,7 @@ const cases = [
   ["/read/vol1", "/read"],
   ["/about", "/about"],
   ["/team", "/team"],
-  ["/sponsor", "/sponsor"],
+  ["/partners", "/partners"],
   ["/contact", "/contact"],
   // Real routes with no menu item of their own — nothing should light up.
   ["/order", null],
@@ -44,7 +44,7 @@ for (const [pathname, expected] of cases) {
 // characters is a different page.
 assert.ok(!isCurrentNav("/read", "/reading-list"));
 assert.ok(!isCurrentNav("/team", "/teams"));
-assert.ok(!isCurrentNav("/sponsor", "/sponsorship"));
+assert.ok(!isCurrentNav("/partners", "/partnership"));
 assert.ok(isCurrentNav("/read", "/read/vol1"));
 
 // Every menu item must be able to mark itself, or it can never appear current.

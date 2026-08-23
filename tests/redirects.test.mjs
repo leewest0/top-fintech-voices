@@ -28,7 +28,7 @@ const sectionSources = new Set(
 const redirected = new Set([...profileSources, ...sectionSources]);
 
 // Paths this app serves itself, which need no redirect.
-const served = new Set(["/", "/spotlight", "/contact", "/about", "/magazine", "/stories", "/team", "/order", "/read"]);
+const served = new Set(["/", "/spotlight", "/contact", "/about", "/magazine", "/stories", "/team", "/order", "/read", "/partners"]);
 
 // Theme demo pages that never held this publication's content. A 404 is correct
 // for these — see the note in next.config.ts.
