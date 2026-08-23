@@ -13,7 +13,7 @@ export function About() {
           About the publication
         </p>
         <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-5xl">
-          Know us better.
+          Our Story
         </h2>
         <p className="mt-6 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
           Our publication provides a comprehensive platform for the fintech community, featuring
