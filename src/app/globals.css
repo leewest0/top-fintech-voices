@@ -366,6 +366,26 @@ input[type="search"]::-webkit-search-decoration {
   width: 100%;
 }
 
+/* The page you are on.
+   `aria-current="page"` is the hook rather than a class of our own: the state
+   has to be announced anyway, so styling the attribute keeps the two from
+   drifting — you cannot make a link look current without it being current.
+   It is the hover state made permanent: full-strength text, underline drawn. */
+.navlink[aria-current="page"] {
+  color: var(--text);
+}
+.navlink[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* In the mobile sheet the links are already full-strength, so "current" has to
+   read differently: the accent, and a rule down the left edge. */
+.navlink-block[aria-current="page"] {
+  color: var(--accent);
+  box-shadow: inset 3px 0 0 var(--accent);
+  padding-left: 0.75rem;
+}
+
 .bordered {
   border: 1px solid var(--line);
 }

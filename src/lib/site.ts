@@ -94,6 +94,18 @@ export const contactDetails = [
   { label: "Address", items: [{ value: site.location, href: undefined }] },
 ];
 
+/**
+ * Does this nav item describe the page at `pathname`?
+ *
+ * Prefix-matching, not equality, so a profile marks Spotlight current and a
+ * back issue marks Read — someone three levels in should still see where they
+ * are. The boundary check is the whole subtlety: a bare `startsWith` would let
+ * "/read" claim "/reading-list", and nothing about that fails a build.
+ */
+export function isCurrentNav(href: string, pathname: string): boolean {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 /** Every menu item is a real page. */
 export const nav = [
   { label: "Spotlight", href: "/spotlight" },

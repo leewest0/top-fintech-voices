@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowRight, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useTheme } from "@/components/theme-provider";
-import { nav, site } from "@/lib/site";
+import { isCurrentNav, nav, site } from "@/lib/site";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const { theme, toggle } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -44,7 +46,12 @@ export function SiteHeader() {
 
         <nav aria-label="Primary" className="hidden items-center gap-6 text-sm font-medium lg:flex xl:gap-8">
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="navlink whitespace-nowrap">
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isCurrentNav(item.href, pathname) ? "page" : undefined}
+              className="navlink whitespace-nowrap"
+            >
               {item.label}
             </Link>
           ))}
@@ -92,7 +99,8 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="py-3 text-base font-medium"
+              aria-current={isCurrentNav(item.href, pathname) ? "page" : undefined}
+              className="navlink-block py-3 text-base font-medium"
               style={{ borderBottom: "1px solid var(--line)" }}
             >
               {item.label}
