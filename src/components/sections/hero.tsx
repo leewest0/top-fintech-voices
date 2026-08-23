@@ -39,7 +39,7 @@ export function Hero() {
 
           <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "520ms" }}>
             <Link
-              href="/platform"
+              href="/voices"
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Explore the Voices <ArrowRight size={16} />
             </Link>

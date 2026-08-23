@@ -27,14 +27,14 @@ export function Stats() {
 
 export function Spotlight() {
   return (
-    <section id="platform" className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
+    <section id="voices" className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
       <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p
             className="mb-3 font-mono text-[11px] tracking-[0.25em] uppercase"
             style={{ color: "var(--accent)" }}
           >
-            The Platform
+            Voices
           </p>
           <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-5xl">
             The innovators, trailblazers
@@ -43,7 +43,7 @@ export function Spotlight() {
           </h2>
         </div>
         <Link
-          href="/platform"
+          href="/voices"
           className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
         >
           All {allVoices.length} profiles <ArrowRight size={14} />
@@ -54,7 +54,7 @@ export function Spotlight() {
         {featuredVoices.map((voice, i) => (
           <li key={voice.slug}>
             <Reveal delay={i * 60}>
-              <Link href={`/platform/${voice.slug}`} className="voice-row block px-4 py-5 sm:px-6">
+              <Link href={`/voices/${voice.slug}`} className="voice-row block px-4 py-5 sm:px-6">
                 <div className="flex items-start gap-4 sm:gap-6">
                   <span
                     className="voice-num hidden pt-4 font-mono text-xs sm:block"

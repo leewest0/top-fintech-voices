@@ -6,7 +6,7 @@ import { voices } from "../src/lib/voices.ts";
  * The cutover check.
  *
  * Every profile on the old WordPress site lived at the root — /archie-hesse-ceo-ghipss/ —
- * and this app serves them under /platform/<slug>. The day the domain stops pointing at
+ * and this app serves them under /voices/<slug>. The day the domain stops pointing at
  * WordPress, every one of those addresses arrives here instead, and without a redirect it
  * 404s. `legacy-urls.txt` is the list taken from the live wp-sitemap while it was still
  * up; these assertions hold the redirect map against it.
@@ -28,7 +28,7 @@ const sectionSources = new Set(
 const redirected = new Set([...profileSources, ...sectionSources]);
 
 // Paths this app serves itself, which need no redirect.
-const served = new Set(["/", "/platform", "/contact", "/about", "/magazine", "/stories", "/team", "/order", "/read", "/partners"]);
+const served = new Set(["/", "/voices", "/contact", "/about", "/magazine", "/stories", "/team", "/order", "/read", "/partners"]);
 
 // Theme demo pages that never held this publication's content. A 404 is correct
 // for these — see the note in next.config.ts.
@@ -56,10 +56,10 @@ const themeJunk = /^\/(works|services|sample-page|skt-karate|project\/|service\/
 // 3. Every redirect lands somewhere this app actually serves.
 {
   const destinations = [
-    ...voices.map((v) => `/platform/${v.slug}`),
+    ...voices.map((v) => `/voices/${v.slug}`),
     ...[...config.matchAll(/^\s*"(\/[^"]*)":\s*"(\/[^"]*)"/gm)].map((m) => m[2]),
   ];
-  const slugs = new Set(voices.map((v) => `/platform/${v.slug}`));
+  const slugs = new Set(voices.map((v) => `/voices/${v.slug}`));
   const broken = destinations.filter((d) => !served.has(d) && !slugs.has(d));
   assert.deepEqual(broken, [], `these redirects point at routes that do not exist: ${broken.join(", ")}`);
 }
@@ -68,7 +68,7 @@ const themeJunk = /^\/(works|services|sample-page|skt-karate|project\/|service\/
 {
   const loops = [...redirected].filter((source) => {
     const voice = voices.find((v) => new URL(v.article).pathname.replace(/\/+$/, "") === source);
-    return voice ? `/platform/${voice.slug}` === source : false;
+    return voice ? `/voices/${voice.slug}` === source : false;
   });
   assert.deepEqual(loops, [], `self-referential redirects: ${loops.join(", ")}`);
 }

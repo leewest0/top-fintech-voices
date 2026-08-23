@@ -25,7 +25,7 @@ const milestones = [
   {
     date: "9 March 2024",
     title: "The maiden edition launches in Accra",
-    copy: `${firstEdition.coverStory.name} of GhIPSS on the cover, and 28 founders, regulators and operators on the Platform.`,
+    copy: `${firstEdition.coverStory.name} of GhIPSS on the cover, and 28 founders, regulators and operators featured in Voices.`,
   },
   {
     date: currentEdition.date,
@@ -167,8 +167,8 @@ export default function AboutPage() {
         <div className="grid gap-5 md:grid-cols-3">
           {[
             {
-              href: "/platform",
-              label: "The Platform",
+              href: "/voices",
+              label: "Voices",
               copy: `${voices.length} founders, regulators and operators, profiled in full.`,
             },
             {

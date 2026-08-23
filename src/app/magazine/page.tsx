@@ -225,7 +225,7 @@ export default function MagazinePage() {
                   >
                     The maiden edition launched in Accra on 9 March 2024 with{" "}
                     {edition.coverStory.name}, {edition.coverStory.line}, on the cover — and the{" "}
-                    <Link href="/platform" className="navlink" style={{ color: "var(--accent)" }}>
+                    <Link href="/voices" className="navlink" style={{ color: "var(--accent)" }}>
                       28 voices
                     </Link>{" "}
                     who set the tone for everything since.

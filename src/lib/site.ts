@@ -108,7 +108,7 @@ export function isCurrentNav(href: string, pathname: string): boolean {
 
 /** Every menu item is a real page. */
 export const nav = [
-  { label: "The Platform", href: "/platform" },
+  { label: "Voices", href: "/voices" },
   { label: "The Magazine", href: "/magazine" },
   // Was "Stories", which listed the same features /magazine already lists in
   // full. The reader is the thing worth a menu slot.

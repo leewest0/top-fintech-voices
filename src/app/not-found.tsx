@@ -24,16 +24,16 @@ export default function NotFound() {
             A thread we haven&rsquo;t woven yet.
           </h1>
           <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-            That page doesn&rsquo;t exist — it may have moved when the site was rebuilt. The
-            Platform is the best place to pick the trail back up.
+            That page doesn&rsquo;t exist — it may have moved when the site was rebuilt. Voices
+            is the best place to pick the trail back up.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/platform"
+              href="/voices"
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
             >
-              Browse the Platform <ArrowRight size={16} />
+              Browse Voices <ArrowRight size={16} />
             </Link>
             <Link href="/" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Back to the homepage

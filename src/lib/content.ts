@@ -1,6 +1,6 @@
 /**
  * Page content — the stories, team, sponsors and partners, plus which of the
- * Spotlight voices the landing page carries.
+ * Voices roster the landing page carries.
  *
  * Every name, role, bio and logo is taken from the live Top Fintech Voices
  * site (topfintechvoices.com). Nothing here is invented: these are real
@@ -13,7 +13,7 @@ import { currentEdition } from "@/lib/magazine";
 export type { Voice };
 
 /**
- * The subset of the Spotlight carried on the landing page. The full roster —
+ * The subset of Voices carried on the landing page. The full roster —
  * names, roles, portraits and profile copy — lives in `voices.ts`, which is
  * generated from the live site by `scripts/fetch-voices.py`.
  */
@@ -42,7 +42,7 @@ export const featuredVoices: Voice[] = FEATURED_SLUGS.map((slug) => {
 export const tickerVoices: Voice[] = voices;
 
 /**
- * The News Hub carries the same 28 pieces as the Spotlight — every post on the
+ * The News Hub carries the same 28 pieces as Voices — every post on the
  * site sits in both categories — so the landing page's story cards are three of
  * those profiles, shown with the wider event photography rather than the
  * portrait, and linking to the profile page rather than back to WordPress.
@@ -58,8 +58,8 @@ export type Story = {
 };
 
 const FEATURED_STORIES = [
-  { slug: "jones-amegbor", category: "Platform", image: "/stories/payangel.jpg" },
-  { slug: "abdul-jaleel-hussein", category: "Platform", image: "/stories/affinity-ghana.jpg" },
+  { slug: "jones-amegbor", category: "Voices", image: "/stories/payangel.jpg" },
+  { slug: "abdul-jaleel-hussein", category: "Voices", image: "/stories/affinity-ghana.jpg" },
   { slug: "nancy-imadi", category: "Policy", image: "/stories/bog-licensing.jpg" },
 ] as const;
 
@@ -73,7 +73,7 @@ export const stories: Story[] = FEATURED_STORIES.map(({ slug, category, image })
     category,
     date: "June 2024",
     image,
-    href: `/platform/${slug}`,
+    href: `/voices/${slug}`,
   };
 });
 
@@ -247,7 +247,7 @@ export const pillars = [
 ] as const;
 
 export const stats = [
-  { value: `${voices.length}`, label: "voices on the platform" },
+  { value: `${voices.length}`, label: "voices featured" },
   { value: `${currentEdition.pages}`, label: `pages, ${currentEdition.label.toLowerCase()}` },
   { value: `${sponsors.length}`, label: "sponsors and partners" },
   { value: "02", label: "new editions in the works" },

@@ -42,12 +42,12 @@ export async function generateMetadata({
   return {
     title,
     description: voice.summary,
-    alternates: { canonical: `/platform/${voice.slug}` },
+    alternates: { canonical: `/voices/${voice.slug}` },
     openGraph: {
       type: "profile",
       title: `${title} | ${site.name}`,
       description: voice.summary,
-      url: `${site.url}/platform/${voice.slug}`,
+      url: `${site.url}/voices/${voice.slug}`,
       images: [{ url: voice.image, alt: voice.name }],
     },
     twitter: { card: "summary_large_image", title, description: voice.summary },
@@ -61,13 +61,13 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
   const { voice, previous, next } = found;
 
   // Absolute, because a share target has to name a host.
-  const profileUrl = `${site.url}/platform/${voice.slug}`;
+  const profileUrl = `${site.url}/voices/${voice.slug}`;
   const shareTitle = voice.org ? `${voice.name}, ${voice.org}` : voice.name;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
-    url: `${site.url}/platform/${voice.slug}`,
+    url: `${site.url}/voices/${voice.slug}`,
     isPartOf: { "@type": "Periodical", name: site.name, url: site.url },
     mainEntity: {
       "@type": "Person",
@@ -88,7 +88,7 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
 
       <main className="mx-auto max-w-[1240px] px-5 pt-10 md:px-10 md:pt-14">
         <Link
-          href="/platform"
+          href="/voices"
           className="navlink inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase"
         >
           <ArrowLeft size={14} aria-hidden="true" /> All voices
@@ -144,7 +144,7 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
               className="mb-5 font-mono text-[11px] tracking-[0.25em] uppercase"
               style={{ color: "var(--accent)" }}
             >
-              The Platform
+              Voices
             </p>
             <h1 className="font-display text-[2.1rem] leading-[1.05] font-bold tracking-[-0.03em] sm:text-[2.8rem]">
               {voice.name}
@@ -189,7 +189,7 @@ export default async function VoicePage({ params }: { params: Promise<Params> })
           ].map(({ voice: neighbour, label, icon, align }) => (
             <Link
               key={label}
-              href={`/platform/${neighbour.slug}`}
+              href={`/voices/${neighbour.slug}`}
               className="card rounded-2xl p-5"
             >
               <span

@@ -131,7 +131,7 @@ export default function TeamPage() {
               Get in touch <ArrowRight size={16} />
             </Link>
             <Link
-              href="/platform"
+              href="/voices"
               className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
             >
               See who we&rsquo;ve featured

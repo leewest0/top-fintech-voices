@@ -9,14 +9,14 @@ import { site } from "@/lib/site";
 import { voices } from "@/lib/voices";
 
 export const metadata: Metadata = {
-  title: "Platform",
+  title: "Voices",
   description:
     "The leaders, builders, policymakers and innovators featured in Top Fintech Voices, a platform for the people shaping financial technology in Ghana and across Africa.",
-  alternates: { canonical: "/platform" },
+  alternates: { canonical: "/voices" },
   openGraph: {
-    title: `Platform — ${site.name}`,
+    title: `Voices — ${site.name}`,
     description: `All ${voices.length} voices featured in Top Fintech Voices.`,
-    url: `${site.url}/platform`,
+    url: `${site.url}/voices`,
     images: [{ url: voices[0].image, alt: voices[0].name }],
   },
 };
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: `Platform — ${site.name}`,
-  url: `${site.url}/platform`,
+  name: `Voices — ${site.name}`,
+  url: `${site.url}/voices`,
   isPartOf: { "@type": "Periodical", name: site.name, url: site.url },
   mainEntity: {
     "@type": "ItemList",
@@ -41,7 +41,7 @@ const jsonLd = {
         image: `${site.url}${voice.image}`,
         // The profile as it lives here, not the old WordPress URL — see next.config.ts
         // for the redirect chain that used to matter here.
-        url: `${site.url}/platform/${voice.slug}`,
+        url: `${site.url}/voices/${voice.slug}`,
         sameAs: voice.linkedin || undefined,
         ...(voice.org && { worksFor: { "@type": "Organization", name: voice.org } }),
       },
@@ -69,7 +69,7 @@ export default function SpotlightPage() {
             className="rise mb-6 font-mono text-[11px] tracking-[0.25em] uppercase"
             style={{ color: "var(--accent)" }}
           >
-            The Platform
+            Voices
           </p>
           <h1
             className="rise font-display max-w-3xl text-[2.4rem] leading-[1] font-bold tracking-[-0.03em] sm:text-[3.2rem] lg:text-[3.8rem]"
@@ -123,7 +123,7 @@ export default function SpotlightPage() {
           </dl>
 
           {/* Cross-link, not a nav item — /emerging-voices doesn't have a
-              header slot (the header already wraps at seven), so the Platform,
+              header slot (the header already wraps at seven), so Voices,
               its natural sibling, sends traffic to it instead. */}
           <Link
             href="/emerging-voices"
