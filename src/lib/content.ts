@@ -166,6 +166,33 @@ export const team: TeamMember[] = [
   },
 ];
 
+/**
+ * How /team groups its cards — the client's structure, not the printed
+ * masthead's. A person's `role` on their card is still their edition credit
+ * (e.g. "Editor-in-Chief"); the department here is a second, independent
+ * grouping layered on top, so the two are allowed to disagree — Charles
+ * Anyiri's role is editorial, his department is Community & Events.
+ */
+const TEAM_DEPARTMENTS = [
+  { name: "Executive Leadership", members: ["Martin Kwame Awagah", "Solomon Sedinam Agbemenya"] },
+  { name: "Editorial", members: ["Prince Tettevi", "Amanda Nyante"] },
+  { name: "Strategy & Growth", members: ["Lynette Maja"] },
+  { name: "Partnerships", members: ["Morenike Ayodele"] },
+  { name: "Community & Events", members: ["Charles Anyiri"] },
+  { name: "Content & Digital", members: ["Bismark Kwabena Baiden", "Salome Asare", "Leslie Botchway"] },
+] as const;
+
+export const teamByDepartment: { name: string; members: TeamMember[] }[] = TEAM_DEPARTMENTS.map(
+  ({ name, members }) => ({
+    name,
+    members: members.map((memberName) => {
+      const member = team.find((m) => m.name === memberName);
+      if (!member) throw new Error(`Unknown name in TEAM_DEPARTMENTS: ${memberName}`);
+      return member;
+    }),
+  }),
+);
+
 export const sponsors = [
   { name: "GCB Bank", image: "/sponsors/gcb-bank.png" },
   { name: "Virtual Infosec Africa", image: "/sponsors/virtual-infosec-africa.png" },

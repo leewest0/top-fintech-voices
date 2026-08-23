@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { masthead } from "../src/lib/magazine.ts";
-import { team } from "../src/lib/content.ts";
+import { team, teamByDepartment } from "../src/lib/content.ts";
 
 /**
  * The client noticed people missing from /team, and they were right: the team
@@ -50,6 +50,23 @@ for (const member of team) {
   );
 }
 
+// /team groups cards by department — a second, independent grouping on top of
+// each person's printed role. Every card must land in exactly one department:
+// missing means someone drops off the page entirely, duplicated means their
+// card renders twice.
+{
+  const grouped = teamByDepartment.flatMap((d) => d.members.map((m) => m.name));
+  const missing = team.filter((m) => !grouped.includes(m.name)).map((m) => m.name);
+  const counts = new Map();
+  for (const name of grouped) counts.set(name, (counts.get(name) ?? 0) + 1);
+  const duplicated = [...counts.entries()].filter(([, n]) => n > 1).map(([name]) => name);
+
+  assert.deepEqual(missing, [], `on the team but in no department: ${missing.join(", ")}`);
+  assert.deepEqual(duplicated, [], `in more than one department: ${duplicated.join(", ")}`);
+  assert.equal(grouped.length, team.length, "teamByDepartment should account for everyone once");
+}
+
 console.log(
-  `team: ${team.length} people, all ${credited.length} credited in the edition accounted for`,
+  `team: ${team.length} people, all ${credited.length} credited in the edition accounted for, ` +
+    `grouped into ${teamByDepartment.length} departments`,
 );
