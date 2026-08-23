@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { TeamPortrait } from "@/components/ui/team-portrait";
 import { LinkedInGlyph } from "@/components/ui/linkedin-glyph";
 import { site } from "@/lib/site";
-import { currentEdition, masthead } from "@/lib/magazine";
+import { currentEdition } from "@/lib/magazine";
 import { teamByDepartment } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -57,8 +57,8 @@ export default function TeamPage() {
                         {/* No role label here any more — the department
                             heading above already groups people by what they
                             do, and a second, differently-worded role on the
-                            card was disagreeing with the masthead credit
-                            further down this same page. */}
+                            card was disagreeing with each person's edition
+                            credit. */}
                         <div className="flex items-start justify-between gap-3">
                           <h3 className="font-display text-base leading-snug font-semibold tracking-[-0.02em]">
                             {member.name}
@@ -88,51 +88,6 @@ export default function TeamPage() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ---------- the full credits ---------- */}
-      <section
-        className="py-16"
-        style={{
-          background: "var(--surface)",
-          borderTop: "1px solid var(--line)",
-          borderBottom: "1px solid var(--line)",
-        }}
-      >
-        <div className="mx-auto max-w-[1240px] px-5 md:px-10">
-          <Reveal className="mb-10">
-            <p
-              className="mb-3 font-mono text-[11px] tracking-[0.25em] uppercase"
-              style={{ color: "var(--accent)" }}
-            >
-              Credits
-            </p>
-            <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
-              {currentEdition.volume} in full.
-            </h2>
-          </Reveal>
-
-          <dl style={{ borderTop: "1px solid var(--line)" }}>
-            {masthead.map((entry, i) => (
-              <Reveal
-                key={entry.role}
-                delay={i * 50}
-                className="grid gap-2 py-4 sm:grid-cols-[minmax(0,18rem)_1fr] sm:gap-8"
-              >
-                <dt
-                  className="font-mono text-[11px] tracking-[0.18em] uppercase"
-                  style={{ color: "var(--muted)" }}
-                >
-                  {entry.role}
-                </dt>
-                <dd className="font-display text-base font-semibold tracking-[-0.02em] sm:text-lg">
-                  {entry.names.join(" · ")}
-                </dd>
-              </Reveal>
-            ))}
-          </dl>
-          <div style={{ borderBottom: "1px solid var(--line)" }} />
         </div>
       </section>
 
