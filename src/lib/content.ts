@@ -106,6 +106,7 @@ export const team: TeamMember[] = [
     role: "Executive Publisher",
     image: "/voices/martin-awagah.jpg",
     bio: "President of the Ghana Fintech and Payments Association, and a Digital Economy Specialist working across economic research, governance and financial inclusion.",
+    linkedin: "https://www.linkedin.com/in/fintechkwame",
   },
   {
     name: "Solomon Sedinam Agbemenya",
@@ -132,11 +133,14 @@ export const team: TeamMember[] = [
     role: "Editor",
     image: "/team/prince-tettevi.jpg",
     bio: "Editor and data analyst who has driven growth for organisations including the Ghana Fintech and Payments Association.",
+    linkedin: "https://www.linkedin.com/in/princetettevi",
   },
   {
     name: "Bismark Kwabena Baiden",
     role: "Creative Designer",
+    image: "/team/bismark-baiden.jpg",
     bio: "A senior graphic and web designer with over a decade in brand identity, magazine layouts and digital marketing, NIIT-certified with a practical edge in IT.",
+    linkedin: "https://www.linkedin.com/in/bismark-kwabena-baiden-21b02826a",
   },
   {
     name: "Lynette Maja",
@@ -156,6 +160,7 @@ export const team: TeamMember[] = [
     role: "Social Media Manager",
     image: "/team/morenike-ayodele.jpg",
     bio: "Marketing and communications professional with 8+ years of experience in strategic storytelling and brand growth.",
+    linkedin: "https://www.linkedin.com/in/morenikeayodele",
   },
   {
     name: "Leslie Botchway",
