@@ -80,7 +80,7 @@ export default function EmergingVoicesPage() {
               Nominate a Voice <ArrowRight size={16} />
             </a>
             <Link
-              href="/spotlight"
+              href="/platform"
               className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
             >
               Meet who&rsquo;s already featured

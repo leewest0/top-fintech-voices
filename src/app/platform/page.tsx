@@ -9,14 +9,14 @@ import { site } from "@/lib/site";
 import { voices } from "@/lib/voices";
 
 export const metadata: Metadata = {
-  title: "Spotlight",
+  title: "Platform",
   description:
     "The leaders, builders, policymakers and innovators featured in Top Fintech Voices, a platform for the people shaping financial technology in Ghana and across Africa.",
-  alternates: { canonical: "/spotlight" },
+  alternates: { canonical: "/platform" },
   openGraph: {
-    title: `Spotlight — ${site.name}`,
+    title: `Platform — ${site.name}`,
     description: `All ${voices.length} voices featured in Top Fintech Voices.`,
-    url: `${site.url}/spotlight`,
+    url: `${site.url}/platform`,
     images: [{ url: voices[0].image, alt: voices[0].name }],
   },
 };
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: `Spotlight — ${site.name}`,
-  url: `${site.url}/spotlight`,
+  name: `Platform — ${site.name}`,
+  url: `${site.url}/platform`,
   isPartOf: { "@type": "Periodical", name: site.name, url: site.url },
   mainEntity: {
     "@type": "ItemList",
@@ -39,10 +39,9 @@ const jsonLd = {
         jobTitle: voice.role,
         description: voice.summary,
         image: `${site.url}${voice.image}`,
-        // The profile as it lives here. This used to name the old WordPress
-        // post, which told search engines each person's page was somewhere this
-        // site will shortly stop serving.
-        url: `${site.url}/spotlight/${voice.slug}`,
+        // The profile as it lives here, not the old WordPress URL — see next.config.ts
+        // for the redirect chain that used to matter here.
+        url: `${site.url}/platform/${voice.slug}`,
         sameAs: voice.linkedin || undefined,
         ...(voice.org && { worksFor: { "@type": "Organization", name: voice.org } }),
       },
@@ -124,7 +123,7 @@ export default function SpotlightPage() {
           </dl>
 
           {/* Cross-link, not a nav item — /emerging-voices doesn't have a
-              header slot (the header already wraps at seven), so Spotlight,
+              header slot (the header already wraps at seven), so the Platform,
               its natural sibling, sends traffic to it instead. */}
           <Link
             href="/emerging-voices"

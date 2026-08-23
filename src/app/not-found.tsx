@@ -25,15 +25,15 @@ export default function NotFound() {
           </h1>
           <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: "var(--muted)" }}>
             That page doesn&rsquo;t exist — it may have moved when the site was rebuilt. The
-            Spotlight is the best place to pick the trail back up.
+            Platform is the best place to pick the trail back up.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/spotlight"
+              href="/platform"
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
             >
-              Browse the Spotlight <ArrowRight size={16} />
+              Browse the Platform <ArrowRight size={16} />
             </Link>
             <Link href="/" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Back to the homepage

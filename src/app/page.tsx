@@ -4,7 +4,7 @@ import { LoomRail } from "@/components/ui/weave";
 import { Hero } from "@/components/sections/hero";
 import { Ticker } from "@/components/sections/ticker";
 import { Spotlight, Stats } from "@/components/sections/spotlight";
-import { About, Team } from "@/components/sections/about";
+import { About } from "@/components/sections/about";
 import { Magazine } from "@/components/sections/magazine";
 import { Stories } from "@/components/sections/stories";
 import { Backers } from "@/components/sections/backers";
@@ -59,7 +59,6 @@ export default function Home() {
         <About />
         <Magazine />
         <Stories />
-        <Team />
         <Backers />
         <Contact />
       </main>

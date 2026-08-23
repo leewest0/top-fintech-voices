@@ -5,7 +5,7 @@ import { voices } from "./src/lib/voices";
  * The old WordPress URLs.
  *
  * Every profile lived at the site root — /archie-hesse-ceo-ghipss/ — while this
- * app serves them under /spotlight/<slug>. So the moment the domain stops
+ * app serves them under /platform/<slug>. So the moment the domain stops
  * pointing at WordPress, every one of those addresses lands on this app and
  * 404s: search results, the links in the client's own posts, anything anyone
  * bookmarked. These redirects catch them.
@@ -16,12 +16,12 @@ import { voices } from "./src/lib/voices";
  * drift the next time the roster is regenerated.
  */
 const legacyPaths: Record<string, string> = {
-  // The Spotlight, under each of the names WordPress gave it.
-  "/spotlight-page": "/spotlight",
-  "/category/spotlight-page": "/spotlight",
+  // The roster, under each of the names WordPress gave it.
+  "/spotlight-page": "/platform",
+  "/category/spotlight-page": "/platform",
   // The News Hub was the same 28 posts in a second category, so it lands there too.
-  "/news-hub": "/spotlight",
-  "/category/news-hub": "/spotlight",
+  "/news-hub": "/platform",
+  "/category/news-hub": "/platform",
   "/about-us": "/about",
   "/about-us-2": "/about",
   "/order-magazine": "/order",
@@ -35,11 +35,17 @@ const legacyPaths: Record<string, string> = {
  * a second URL — it lives at the bare /read, and one magazine wants one address.
  * /sponsor is now /partners — the page outgrew "sponsor" once it started
  * talking about the organisations backing the magazine, not just ad space.
+ * /spotlight is now /platform — the same shift, on the roster page: it had
+ * already been talking about "the Platform" for a few edits before the URL
+ * caught up. Every one of the 28 profile URLs moves with it, not just the
+ * directory — those were live under /spotlight/<slug> for real, so each one
+ * gets its own redirect below rather than relying on the directory's alone.
  */
 const supersededPaths: Record<string, string> = {
   "/stories": "/magazine",
   "/read/vol2": "/read",
   "/sponsor": "/partners",
+  "/spotlight": "/platform",
 };
 
 /**
@@ -55,7 +61,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     const profiles = voices.map((voice) => ({
       source: new URL(voice.article).pathname.replace(/\/+$/, ""),
-      destination: `/spotlight/${voice.slug}`,
+      destination: `/platform/${voice.slug}`,
+      permanent: true,
+    }));
+
+    // This app's own former URLs for each profile — live under /spotlight/
+    // for real, not just a WordPress-era address, so they need the same
+    // redirect the legacy ones get.
+    const ownProfiles = voices.map((voice) => ({
+      source: `/spotlight/${voice.slug}`,
+      destination: `/platform/${voice.slug}`,
       permanent: true,
     }));
 
@@ -63,7 +78,7 @@ const nextConfig: NextConfig = {
       ([source, destination]) => ({ source, destination, permanent: true }),
     );
 
-    return [...profiles, ...sections];
+    return [...profiles, ...ownProfiles, ...sections];
   },
 };
 

@@ -12,7 +12,7 @@ export function Stories() {
           From the News Hub
         </h2>
         <Link
-          href="/spotlight"
+          href="/platform"
           className="btn btn-ghost inline-flex items-center gap-2 px-5 py-3 text-sm"
         >
           All profiles <ArrowRight size={14} />

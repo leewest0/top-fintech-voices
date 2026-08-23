@@ -58,8 +58,8 @@ export type Story = {
 };
 
 const FEATURED_STORIES = [
-  { slug: "jones-amegbor", category: "Spotlight", image: "/stories/payangel.jpg" },
-  { slug: "abdul-jaleel-hussein", category: "Spotlight", image: "/stories/affinity-ghana.jpg" },
+  { slug: "jones-amegbor", category: "Platform", image: "/stories/payangel.jpg" },
+  { slug: "abdul-jaleel-hussein", category: "Platform", image: "/stories/affinity-ghana.jpg" },
   { slug: "nancy-imadi", category: "Policy", image: "/stories/bog-licensing.jpg" },
 ] as const;
 
@@ -73,7 +73,7 @@ export const stories: Story[] = FEATURED_STORIES.map(({ slug, category, image })
     category,
     date: "June 2024",
     image,
-    href: `/spotlight/${slug}`,
+    href: `/platform/${slug}`,
   };
 });
 
@@ -221,8 +221,33 @@ export const partners = [
   },
 ];
 
+/**
+ * Purpose, Mission, Vision — stated once. This used to be a literal copied
+ * into both /about and the landing page's teaser of it, and the two drifted:
+ * the teaser kept an old Mission/Vision pair (and no Purpose at all) after
+ * /about was rewritten. One export, used by both, so there is nothing left
+ * to drift.
+ */
+export const pillars = [
+  {
+    label: "Purpose",
+    copy: "We don't just report on Africa's fintech ecosystem, we bring together the people building it.",
+    thread: "var(--w2)",
+  },
+  {
+    label: "Mission",
+    copy: "To amplify the people, ideas and conversations shaping Africa's fintech future and create meaningful connections across the ecosystem.",
+    thread: "var(--w1)",
+  },
+  {
+    label: "Vision",
+    copy: "To become Africa's leading platform for fintech thought leadership, recognition and collaboration.",
+    thread: "var(--w3)",
+  },
+] as const;
+
 export const stats = [
-  { value: `${voices.length}`, label: "voices in the spotlight" },
+  { value: `${voices.length}`, label: "voices on the platform" },
   { value: `${currentEdition.pages}`, label: `pages, ${currentEdition.label.toLowerCase()}` },
   { value: `${sponsors.length}`, label: "sponsors and partners" },
   { value: "02", label: "new editions in the works" },

@@ -4,7 +4,7 @@ import { footerNav, isCurrentNav, nav } from "../src/lib/site.ts";
 /**
  * Which menu item lights up on which page.
  *
- * The rule has to be prefix-matching so a profile marks Spotlight and a back
+ * The rule has to be prefix-matching so a profile marks Platform and a back
  * issue marks Read, and the boundary check is the part that breaks silently: a
  * bare `startsWith` lets "/read" claim "/reading-list", and nothing about that
  * fails a build or a lint.
@@ -13,8 +13,8 @@ import { footerNav, isCurrentNav, nav } from "../src/lib/site.ts";
 // [pathname, the single nav href that should be current, or null]
 const cases = [
   ["/", null],
-  ["/spotlight", "/spotlight"],
-  ["/spotlight/archie-hesse", "/spotlight"],
+  ["/platform", "/platform"],
+  ["/platform/archie-hesse", "/platform"],
   ["/magazine", "/magazine"],
   ["/read", "/read"],
   ["/read/vol1", "/read"],

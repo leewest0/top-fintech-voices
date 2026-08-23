@@ -1,21 +1,6 @@
 import { Reveal } from "@/components/ui/reveal";
-import { TeamPortrait } from "@/components/ui/team-portrait";
-import { LinkedInGlyph } from "@/components/ui/linkedin-glyph";
-import { team } from "@/lib/content";
+import { pillars } from "@/lib/content";
 import { currentEdition } from "@/lib/magazine";
-
-const pillars = [
-  {
-    label: "Mission",
-    copy: "Empowering fintech collaboration and innovation globally.",
-    thread: "var(--w1)",
-  },
-  {
-    label: "Vision",
-    copy: "Identifying fintech innovators for an inclusive, impactful world.",
-    thread: "var(--w3)",
-  },
-];
 
 export function About() {
   return (
@@ -40,7 +25,7 @@ export function About() {
         </p>
       </Reveal>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar, i) => (
           <Reveal key={pillar.label} delay={i * 120} className="card rounded-2xl p-8">
             <div className="mb-6 flex gap-[3px]" aria-hidden="true">
@@ -60,72 +45,6 @@ export function About() {
             <p className="font-display text-xl leading-snug font-medium tracking-[-0.02em] md:text-2xl">
               {pillar.copy}
             </p>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function Team() {
-  return (
-    <section id="team" className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
-      <Reveal className="mb-10">
-        <p
-          className="mb-3 font-mono text-[11px] tracking-[0.25em] uppercase"
-          style={{ color: "var(--accent)" }}
-        >
-          The masthead
-        </p>
-        <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
-          Meet the team.
-        </h2>
-      </Reveal>
-
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {/* .card sits on the inner element rather than the Reveal: on the
-            Reveal itself its transition would win and slow the hover lift. */}
-        {team.map((member, i) => (
-          <Reveal key={member.name} delay={(i % 5) * 90}>
-            <div className="card h-full overflow-hidden rounded-2xl">
-              <div className="frame aspect-4/5 relative">
-                <TeamPortrait
-                  name={member.name}
-                  image={member.image}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                />
-              </div>
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <p
-                    className="font-mono text-[10px] tracking-[0.18em] uppercase"
-                    style={{ color: "var(--accent)" }}
-                  >
-                    {member.role}
-                  </p>
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`${member.name} on LinkedIn`}
-                      className="navlink shrink-0"
-                      style={{ color: "var(--muted)" }}
-                    >
-                      <LinkedInGlyph size={15} />
-                    </a>
-                  )}
-                </div>
-                <p className="font-display mt-2 text-base leading-snug font-semibold tracking-[-0.02em]">
-                  {member.name}
-                </p>
-                {member.bio && (
-                  <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    {member.bio}
-                  </p>
-                )}
-              </div>
-            </div>
           </Reveal>
         ))}
       </div>

@@ -126,7 +126,7 @@ in the header, the mobile menu, the magazine section and the page CTAs.
 ## Moving off WordPress
 
 The old site put every profile at the root — `/archie-hesse-ceo-ghipss/` — while this
-app serves them under `/spotlight/archie-hesse`. So the moment DNS stops pointing at
+app serves them under `/platform/archie-hesse`. So the moment DNS stops pointing at
 WordPress, all 28 of those addresses arrive here instead: Google's index, the links in
 the client's own LinkedIn posts, anything anyone bookmarked.
 
@@ -148,6 +148,12 @@ homepage would only make them soft 404s.
 Nothing on this site talks to WordPress at runtime. Every image is under `public/`,
 and the only outbound links are LinkedIn profiles, the social accounts and the Google
 Drive PDF.
+
+The roster itself has moved once already, from `/spotlight` to `/platform`, so the
+28 profile redirects above are only half the picture: `next.config.ts` also redirects
+every `/spotlight/<slug>` — this app's own former URLs, not WordPress's — straight to
+its `/platform/<slug>` equivalent, generated from `voices.ts` the same way. `/sponsor`
+moved to `/partners` the same way, one entry in the same file.
 
 ## Where the site thinks it lives
 
@@ -212,7 +218,7 @@ different idea of any of them. "Slightly different" in the escaping is a hole.
 
 ## Sharing a profile
 
-Each Spotlight profile carries LinkedIn, X, WhatsApp and copy-link buttons, next to the
+Each Platform profile carries LinkedIn, X, WhatsApp and copy-link buttons, next to the
 portrait rather than at the foot of the article: the person profiled is the likeliest
 sharer, and their own post is the most credible traffic the site gets.
 
@@ -227,14 +233,15 @@ Every menu item is its own page.
 | Route | What it is |
 | --- | --- |
 | `/` | The landing page |
-| `/spotlight` | All 28 profiles, filterable by name, role or company |
-| `/spotlight/[slug]` | One profile — 28 statically generated pages |
+| `/platform` | All 28 profiles, filterable by name, role or company |
+| `/platform/[slug]` | One profile — 28 statically generated pages |
 | `/magazine` | The current edition: cover, contents, the first edition, backers |
 | `/about` | Mission, vision, the story so far |
 | `/team` | The masthead, with the full credits |
 | `/contact` | Details and a message form |
 | `/order` | Order print copies; emails via Resend |
-| `/sponsor` | Sponsor & advertise; emails via Resend |
+| `/partners` | Partners & advertising; emails via Resend |
+| `/emerging-voices` | Nominate a rising voice; emails via Resend |
 | `/read` | The current edition, page by page |
 | `/read/[edition]` | A back issue, in the same reader |
 | 404 | Any unknown path |
@@ -257,7 +264,7 @@ src/
   app/
     layout.tsx        fonts, metadata, theme bootstrap
     page.tsx          landing page — composes the sections, emits JSON-LD
-    spotlight/        the full roster
+    platform/         the full roster
     globals.css       design tokens, animations, component classes
   components/
     site-header.tsx   sticky nav, theme toggle, mobile menu
@@ -267,7 +274,7 @@ src/
     ui/               logo, weave motif, reveal-on-scroll
   lib/
     site.ts           site-wide config: contact details, nav, social links
-    voices.ts         GENERATED — all 28 Spotlight profiles
+    voices.ts         GENERATED — all 28 Platform profiles
     content.ts        stories, team, sponsors, partners, featured voices
 public/
   brand/ voices/ team/ stories/ magazine/ sponsors/ partners/

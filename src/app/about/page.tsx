@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
 import { currentEdition, firstEdition } from "@/lib/magazine";
 import { voices } from "@/lib/voices";
+import { pillars } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,29 +21,11 @@ export const metadata: Metadata = {
   },
 };
 
-const pillars = [
-  {
-    label: "Purpose",
-    copy: "We don't just report on Africa's fintech ecosystem — we bring together the people building it.",
-    thread: "var(--w2)",
-  },
-  {
-    label: "Mission",
-    copy: "To amplify the people, ideas and conversations shaping Africa's fintech future and create meaningful connections across the ecosystem.",
-    thread: "var(--w1)",
-  },
-  {
-    label: "Vision",
-    copy: "To become Africa's leading platform for fintech thought leadership, recognition and collaboration.",
-    thread: "var(--w3)",
-  },
-];
-
 const milestones = [
   {
     date: "9 March 2024",
     title: "The maiden edition launches in Accra",
-    copy: `${firstEdition.coverStory.name} of GhIPSS on the cover, and 28 founders, regulators and operators in the Spotlight.`,
+    copy: `${firstEdition.coverStory.name} of GhIPSS on the cover, and 28 founders, regulators and operators on the Platform.`,
   },
   {
     date: currentEdition.date,
@@ -184,8 +167,8 @@ export default function AboutPage() {
         <div className="grid gap-5 md:grid-cols-3">
           {[
             {
-              href: "/spotlight",
-              label: "The Spotlight",
+              href: "/platform",
+              label: "The Platform",
               copy: `${voices.length} founders, regulators and operators, profiled in full.`,
             },
             {

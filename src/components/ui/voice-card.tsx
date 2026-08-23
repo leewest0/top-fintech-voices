@@ -47,7 +47,7 @@ export function VoiceCard({ voice, priority = false }: { voice: Voice; priority?
           className="mt-auto flex items-center justify-between gap-3 pt-4 text-sm font-semibold"
           style={{ borderTop: "1px solid var(--line)" }}
         >
-          <Link href={`/spotlight/${voice.slug}`} className="navlink inline-flex items-center gap-1.5">
+          <Link href={`/platform/${voice.slug}`} className="navlink inline-flex items-center gap-1.5">
             Read the profile <ArrowRight size={14} aria-hidden="true" />
           </Link>
           <a

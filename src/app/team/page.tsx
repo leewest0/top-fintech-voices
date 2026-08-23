@@ -54,13 +54,15 @@ export default function TeamPage() {
                         />
                       </div>
                       <div className="p-5">
+                        {/* No role label here any more — the department
+                            heading above already groups people by what they
+                            do, and a second, differently-worded role on the
+                            card was disagreeing with the masthead credit
+                            further down this same page. */}
                         <div className="flex items-start justify-between gap-3">
-                          <p
-                            className="font-mono text-[10px] tracking-[0.18em] uppercase"
-                            style={{ color: "var(--accent)" }}
-                          >
-                            {member.role}
-                          </p>
+                          <h3 className="font-display text-base leading-snug font-semibold tracking-[-0.02em]">
+                            {member.name}
+                          </h3>
                           {member.linkedin && (
                             <a
                               href={member.linkedin}
@@ -74,9 +76,6 @@ export default function TeamPage() {
                             </a>
                           )}
                         </div>
-                        <h3 className="font-display mt-2 text-base leading-snug font-semibold tracking-[-0.02em]">
-                          {member.name}
-                        </h3>
                         {member.bio && (
                           <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                             {member.bio}
@@ -177,7 +176,7 @@ export default function TeamPage() {
               Get in touch <ArrowRight size={16} />
             </Link>
             <Link
-              href="/spotlight"
+              href="/platform"
               className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
             >
               See who we&rsquo;ve featured
