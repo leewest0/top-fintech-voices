@@ -162,6 +162,7 @@ export const team: TeamMember[] = [
     role: "Software Engineer",
     image: "/team/leslie-botchway.jpg",
     bio: "A software engineer and cloud solutions architect with leadership roles at The Methodist Church, Mas Africa UK, and First Atlantic Bank.",
+    linkedin: "https://www.linkedin.com/in/leslie-botchway-25b58740",
   },
 ];
 
