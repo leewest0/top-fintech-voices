@@ -42,7 +42,14 @@ export const site = {
   description:
     "The magazine celebrating fintech excellence — spotlighting the founders, regulators and operators shaping the future of finance in Ghana and across Africa.",
   url: siteUrl,
-  email: "info@topfintechvoices.org",
+  /**
+   * From the Contributors page of Vol 2, which prints it as the editorial
+   * address. It replaces info@topfintechvoices.org, which cannot receive mail:
+   * that domain returns NXDOMAIN — it is not registered — so every contact
+   * click and every order notification was bouncing. topfintechvoices.com has
+   * working MX records, and this is the address the edition itself gives.
+   */
+  email: "editorial@topfintechvoices.com",
   phone: "+(233) 24 133 9037",
   phoneHref: "+233241339037",
   location: "Accra, Ghana",

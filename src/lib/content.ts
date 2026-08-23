@@ -82,7 +82,24 @@ export const stories: Story[] = FEATURED_STORIES.map(({ slug, category, image })
  * WordPress About page still lists the maiden edition's titles, and disagreed
  * with the edition on two of them. Bios are the About page's own copy.
  */
-export const team = [
+/**
+ * The people who make the magazine.
+ *
+ * This used to hold only the five the WordPress About page had portraits and
+ * bios for, which quietly dropped four of the nine contributors credited in
+ * Vol 2 — they appeared in the credits list further down /team and nowhere
+ * else. Everyone credited is now here, portrait or not: `image` and `bio` are
+ * optional, and a member without a portrait gets an initials monogram rather
+ * than being left out. Nobody's face is guessed at, and no bio is invented.
+ */
+export type TeamMember = {
+  name: string;
+  role: string;
+  image?: string;
+  bio?: string;
+};
+
+export const team: TeamMember[] = [
   {
     name: "Martin Kwame Awagah",
     role: "Executive Publisher",
@@ -93,7 +110,7 @@ export const team = [
     name: "Solomon Sedinam Agbemenya",
     role: "Editor-in-Chief",
     image: "/team/solomon-agbemenya.jpg",
-    bio: "A strategy and business consulting professional with leadership roles at S&D Chartered Accountants, Fido, MEST and First Atlantic Bank.",
+    bio: "A strategy and business consulting professional with leadership roles at Pod Solutions, El-Evangel Publications, S&D Chartered Accountants, Fido, MEST and First Atlantic Bank.",
   },
   {
     name: "Charles Anyiri",
@@ -102,16 +119,36 @@ export const team = [
     bio: "Digital Marketing & Content Consultant for the Ghana FinTech Awards, with over a decade in professional design and marketing.",
   },
   {
+    name: "Amanda Nyante",
+    role: "Editor",
+  },
+  {
     name: "Prince Tettevi",
     role: "Editor",
     image: "/team/prince-tettevi.jpg",
     bio: "Editor and data analyst who has driven growth for organisations including the Ghana Fintech and Payments Association.",
   },
   {
+    name: "Bismark Kwabena Baiden",
+    role: "Creative Designer",
+  },
+  {
+    name: "Lynette Maja",
+    role: "Growth and Strategy",
+  },
+  {
+    name: "Salome Asare",
+    role: "Photography",
+  },
+  {
     name: "Morenike Ayodele",
-    role: "Social Media",
+    role: "Social Media Manager",
     image: "/team/morenike-ayodele.jpg",
     bio: "Marketing and communications professional with 8+ years of experience in strategic storytelling and brand growth.",
+  },
+  {
+    name: "Leslie Botchway",
+    role: "Software Engineer",
   },
 ];
 

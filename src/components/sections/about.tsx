@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { TeamPortrait } from "@/components/ui/team-portrait";
 import { team } from "@/lib/content";
 import { currentEdition } from "@/lib/magazine";
 
@@ -85,16 +85,13 @@ export function Team() {
         {/* .card sits on the inner element rather than the Reveal: on the
             Reveal itself its transition would win and slow the hover lift. */}
         {team.map((member, i) => (
-          <Reveal key={member.name} delay={i * 90}>
+          <Reveal key={member.name} delay={(i % 5) * 90}>
             <div className="card h-full overflow-hidden rounded-2xl">
-              <div className="frame aspect-4/5">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  width={800}
-                  height={1000}
+              <div className="frame aspect-4/5 relative">
+                <TeamPortrait
+                  name={member.name}
+                  image={member.image}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                  className="h-full w-full object-cover object-top"
                 />
               </div>
               <div className="p-5">
@@ -107,9 +104,11 @@ export function Team() {
                 <p className="font-display mt-2 text-base leading-snug font-semibold tracking-[-0.02em]">
                   {member.name}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  {member.bio}
-                </p>
+                {member.bio && (
+                  <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    {member.bio}
+                  </p>
+                )}
               </div>
             </div>
           </Reveal>

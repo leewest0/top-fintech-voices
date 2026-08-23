@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
+import { TeamPortrait } from "@/components/ui/team-portrait";
 import { site } from "@/lib/site";
 import { currentEdition, masthead } from "@/lib/magazine";
 import { team } from "@/lib/content";
@@ -28,25 +28,22 @@ export default function TeamPage() {
       title="Meet the team."
       intro={
         <p>
-          {credited} credits across {masthead.length} desks make each edition — commissioning,
-          editing, designing, shooting and shipping it. This is the masthead as it runs in{" "}
-          {currentEdition.volume}.
+          The people who commission, edit, design, shoot and ship the magazine — {team.length} of
+          them, and {credited} credits across {masthead.length} desks in {currentEdition.volume}.
         </p>
       }
     >
-      {/* ---------- the people we have portraits for ---------- */}
+      {/* ---------- everyone ---------- */}
       <section className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {team.map((member, i) => (
-            <Reveal key={member.name} delay={i * 90}>
-              <article className="card h-full overflow-hidden rounded-2xl">
+            <Reveal key={member.name} delay={(i % 5) * 90}>
+              <article className="card flex h-full flex-col overflow-hidden rounded-2xl">
                 <div className="frame aspect-4/5 relative">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
+                  <TeamPortrait
+                    name={member.name}
+                    image={member.image}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                    className="object-cover object-top"
                   />
                 </div>
                 <div className="p-5">
@@ -59,9 +56,11 @@ export default function TeamPage() {
                   <h2 className="font-display mt-2 text-base leading-snug font-semibold tracking-[-0.02em]">
                     {member.name}
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    {member.bio}
-                  </p>
+                  {member.bio && (
+                    <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                      {member.bio}
+                    </p>
+                  )}
                 </div>
               </article>
             </Reveal>

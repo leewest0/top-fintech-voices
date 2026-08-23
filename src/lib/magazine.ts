@@ -176,7 +176,7 @@ export const masthead = [
   { role: "Creative Designer", names: ["Bismark Kwabena Baiden"] },
   { role: "Growth and Strategy", names: ["Lynette Maja"] },
   { role: "Photography", names: ["Salome Asare"] },
-  { role: "Social Media", names: ["Prince Tettevi", "Morenike Ayodele"] },
+  { role: "Social Media Manager", names: ["Prince Tettevi", "Morenike Ayodele"] },
 ];
 
 /** Where the reader finds a given page image. */
