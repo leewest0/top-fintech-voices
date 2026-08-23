@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { TeamPortrait } from "@/components/ui/team-portrait";
@@ -166,6 +168,21 @@ export default function TeamPage() {
             Nominate a Voice · Submit a Story · Partner With Us · Join TFV Conversations ·
             Subscribe
           </p>
+
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/contact"
+              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+            >
+              Get in touch <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/spotlight"
+              className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+            >
+              See who we&rsquo;ve featured
+            </Link>
+          </div>
         </Reveal>
       </section>
     </PageShell>
