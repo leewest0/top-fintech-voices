@@ -139,6 +139,7 @@ export const team: TeamMember[] = [
   {
     name: "Salome Asare",
     role: "Photography",
+    image: "/team/salome-asare.jpg",
   },
   {
     name: "Morenike Ayodele",
