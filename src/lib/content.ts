@@ -111,7 +111,7 @@ export const team: TeamMember[] = [
     name: "Solomon Sedinam Agbemenya",
     role: "Editor-in-Chief",
     image: "/team/solomon-agbemenya.jpg",
-    bio: "A strategy and business consulting professional with leadership roles at Pod Solutions, El-Evangel Publications, S&D Chartered Accountants, Fido, MEST and First Atlantic Bank.",
+    bio: "A strategy and business consulting professional with leadership roles at Pod Solutions, El-Evangel Publications, S&D Chartered Accountants, Fido and First Atlantic Bank.",
     linkedin: "https://www.linkedin.com/in/solomon-sedinam-agbemenya-87571665",
   },
   {
