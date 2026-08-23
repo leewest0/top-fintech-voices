@@ -142,6 +142,7 @@ export const team: TeamMember[] = [
     name: "Salome Asare",
     role: "Photography",
     image: "/team/salome-asare.jpg",
+    bio: "A creative entrepreneur and visual storyteller who helps brands capture the moments that matter, in work built to stay clean and timeless.",
   },
   {
     name: "Morenike Ayodele",
