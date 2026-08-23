@@ -2,7 +2,7 @@ import { buildMailto } from '../src/lib/mailto.ts';
 import assert from 'node:assert/strict';
 
 const url = buildMailto({
-  to: 'info@topfintechvoices.org',
+  to: 'desk@example.org',
   topic: 'Sponsorship',
   name: 'Ama Test',
   email: 'ama@example.com',
@@ -11,7 +11,7 @@ const url = buildMailto({
 const [scheme, query] = url.split('?');
 const params = new URLSearchParams(query);
 
-assert.equal(scheme, 'mailto:info@topfintechvoices.org');
+assert.equal(scheme, 'mailto:desk@example.org');
 assert.equal(params.get('subject'), 'Sponsorship — Ama Test');
 assert.match(params.get('body'), /rate card\?\n\n—\nAma Test\nama@example\.com$/);
 assert.ok(!url.includes('+'), 'spaces must not encode as "+" — mail clients show them literally');

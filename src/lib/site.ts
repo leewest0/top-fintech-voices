@@ -50,8 +50,14 @@ export const site = {
    * working MX records, and this is the address the edition itself gives.
    */
   email: "editorial@topfintechvoices.com",
-  phone: "+(233) 24 133 9037",
-  phoneHref: "+233241339037",
+  /**
+   * Both desk numbers, as the edition prints them. This replaces the single
+   * +(233) 24 133 9037 carried over from the WordPress site.
+   */
+  phones: [
+    { display: "+233 24 325 1339", href: "+233243251339" },
+    { display: "+233 54 122 1223", href: "+233541221223" },
+  ],
   location: "Accra, Ghana",
   /** Print orders are taken by the form at /order, which emails via Resend. */
   orderUrl: "/order",
@@ -69,6 +75,24 @@ export const site = {
     { label: "YouTube", href: "https://www.youtube.com/@topfintechvoices" },
   ],
 } as const;
+
+/**
+ * The contact block, rendered on both the landing page and /contact. It lived
+ * as two identical literals until the desk gained a second phone number and
+ * they had to be edited in lockstep — which is the point at which one of them
+ * gets forgotten.
+ *
+ * A detail carries a list rather than a single value, since "Call now" is now
+ * two numbers and any of these could gain a second entry later.
+ */
+export const contactDetails = [
+  { label: "Email", items: [{ value: site.email, href: `mailto:${site.email}` }] },
+  {
+    label: "Call now",
+    items: site.phones.map(({ display, href }) => ({ value: display, href: `tel:${href}` })),
+  },
+  { label: "Address", items: [{ value: site.location, href: undefined }] },
+];
 
 /** Every menu item is a real page. */
 export const nav = [

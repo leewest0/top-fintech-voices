@@ -149,6 +149,7 @@ export const team: TeamMember[] = [
   {
     name: "Leslie Botchway",
     role: "Software Engineer",
+    bio: "A software engineer and cloud solutions architect with leadership roles at The Methodist Church, Mas Africa UK, and First Atlantic Bank.",
   },
 ];
 
@@ -169,7 +170,7 @@ export const partners = [
     image: "/partners/snd-chartered-accountants.png",
   },
   {
-    name: "Evangel Publications",
+    name: "El-Evangel Publications",
     label: "Publishing Partner",
     image: "/partners/evangel-publications.png",
   },

@@ -26,7 +26,7 @@ const jsonLd = {
     url: site.url,
     logo: `${site.url}/brand/logo-wordmark.png`,
     email: site.email,
-    telephone: site.phone,
+    telephone: site.phones.map((p) => p.display),
     address: { "@type": "PostalAddress", addressLocality: "Accra", addressCountry: "GH" },
     sameAs: site.socials.map((s) => s.href),
   },

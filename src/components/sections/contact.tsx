@@ -1,12 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
-
-const details = [
-  { label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { label: "Call now", value: site.phone, href: `tel:${site.phoneHref}` },
-  { label: "Address", value: site.location },
-];
+import { contactDetails, site } from "@/lib/site";
 
 export function Contact() {
   return (
@@ -26,7 +20,7 @@ export function Contact() {
         </div>
 
         <dl className="space-y-5 font-mono text-sm">
-          {details.map((detail) => (
+          {contactDetails.map((detail) => (
             <div key={detail.label}>
               <dt
                 className="mb-1 text-[11px] tracking-widest uppercase"
@@ -35,13 +29,17 @@ export function Contact() {
                 {detail.label}
               </dt>
               <dd style={{ color: "var(--text)" }}>
-                {detail.href ? (
-                  <a href={detail.href} className="hover:underline">
-                    {detail.value}
-                  </a>
-                ) : (
-                  detail.value
-                )}
+                {detail.items.map((item) => (
+                  <span key={item.value} className="block">
+                    {item.href ? (
+                      <a href={item.href} className="hover:underline">
+                        {item.value}
+                      </a>
+                    ) : (
+                      item.value
+                    )}
+                  </span>
+                ))}
               </dd>
             </div>
           ))}

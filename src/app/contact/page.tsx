@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { ContactForm } from "@/components/sections/contact-form";
-import { site } from "@/lib/site";
+import { contactDetails, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,12 +15,6 @@ export const metadata: Metadata = {
   },
 };
 
-const details = [
-  { label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { label: "Call now", value: site.phone, href: `tel:${site.phoneHref}` },
-  { label: "Address", value: site.location },
-];
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
@@ -29,7 +23,7 @@ const jsonLd = {
     "@type": "Organization",
     name: site.name,
     email: site.email,
-    telephone: site.phone,
+    telephone: site.phones.map((p) => p.display),
     address: { "@type": "PostalAddress", addressLocality: "Accra", addressCountry: "GH" },
     sameAs: site.socials.map((s) => s.href),
   },
@@ -48,7 +42,7 @@ export default function ContactPage() {
       }
       aside={
         <dl className="panel space-y-6 rounded-2xl p-8 font-mono text-sm">
-          {details.map((detail) => (
+          {contactDetails.map((detail) => (
             <div key={detail.label}>
               <dt
                 className="mb-1.5 text-[11px] tracking-widest uppercase"
@@ -57,13 +51,17 @@ export default function ContactPage() {
                 {detail.label}
               </dt>
               <dd style={{ color: "var(--text)" }}>
-                {detail.href ? (
-                  <a href={detail.href} className="hover:underline">
-                    {detail.value}
-                  </a>
-                ) : (
-                  detail.value
-                )}
+                {detail.items.map((item) => (
+                  <span key={item.value} className="block">
+                    {item.href ? (
+                      <a href={item.href} className="hover:underline">
+                        {item.value}
+                      </a>
+                    ) : (
+                      item.value
+                    )}
+                  </span>
+                ))}
               </dd>
             </div>
           ))}
