@@ -5,10 +5,16 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
-import { currentEdition, features, pastEditions, readerHref } from "@/lib/magazine";
+import {
+  currentEdition,
+  features,
+  pastEditions,
+  readerHref,
+} from "@/lib/magazine";
 import { partners, sponsors } from "@/lib/content";
 
-const { volume, label, date, pages, cover, coverStory, coverLines } = currentEdition;
+const { volume, label, date, pages, cover, coverStory, coverLines } =
+  currentEdition;
 
 export const metadata: Metadata = {
   title: "The Magazine",
@@ -37,48 +43,81 @@ export default function MagazinePage() {
 
   return (
     <PageShell
-      eyebrow={`${volume} · ${label} · ${date}`}
-      title={
-        <>
-          {coverStory.name} on the cover of the second edition.
-        </>
-      }
+      eyebrow="The Magazine"
+      title="Stories worth slowing down for."
       intro={
         <>
           <p>
-            {pages} pages of conversations and perspectives exploring collaboration,
-            cybersecurity, regulation, funding and the women reshaping the industry — from Ghana
-            to Côte d&rsquo;Ivoire and beyond.
+            Our flagship publication goes beyond headlines to explore the
+            people, ideas and decisions shaping financial technology across
+            Africa.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href={site.orderUrl}
-              className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              Order Your Copy <ArrowRight size={16} />
-            </Link>
-            <Link
-              href={site.readUrl}
-              className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              <BookOpen size={16} /> Read the Digital Edition
-            </Link>
-          </div>
+          <p className="mt-4">
+            Featuring in-depth interviews, research, perspectives and industry
+            analysis across:
+          </p>
+          <p
+            className="mt-5 font-mono text-[11px] tracking-[0.15em] uppercase"
+            style={{ color: "var(--accent)" }}
+          >
+            Payments • Financial Inclusion • AI • Cybersecurity • Regulation •
+            Investment • Digital Commerce • Cross-Border Payments • Innovation
+          </p>
         </>
       }
-      aside={
-        <div className="flex justify-center lg:justify-end">
-          <Image
-            src={cover}
-            alt={`${site.name} ${volume} — ${coverStory.name} on the cover`}
-            width={1200}
-            height={1691}
-            priority
-            sizes="(max-width: 1024px) 70vw, 400px"
-            className="w-full max-w-[400px] rounded-xl shadow-2xl"
-            style={{ border: "1px solid var(--line)" }}
-          />
-        </div>
-      }
     >
+      {/* ---------- the latest edition ---------- */}
+      <section className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <Reveal>
+            <p
+              className="mb-6 font-mono text-[11px] tracking-[0.25em] uppercase"
+              style={{ color: "var(--accent)" }}
+            >
+              Latest Edition
+            </p>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-5xl">
+              {site.name} Volume 2
+            </h2>
+            <p
+              className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
+              style={{ color: "var(--muted)" }}
+            >
+              {pages} pages of conversations and perspectives exploring
+              collaboration, cybersecurity, regulation, funding and the women
+              reshaping the industry from Ghana to Côte d&rsquo;Ivoire and
+              beyond.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href={site.orderUrl}
+                className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+              >
+                Order Your Copy <ArrowRight size={16} />
+              </Link>
+              <Link
+                href={site.readUrl}
+                className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+              >
+                <BookOpen size={16} /> Read the Digital Edition
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={120} className="flex justify-center lg:justify-end">
+            <Image
+              src={cover}
+              alt={`${site.name} ${volume} — ${coverStory.name} on the cover`}
+              width={1200}
+              height={1691}
+              priority
+              sizes="(max-width: 1024px) 70vw, 400px"
+              className="w-full max-w-[400px] rounded-xl shadow-2xl"
+              style={{ border: "1px solid var(--line)" }}
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------- what's on the cover ---------- */}
       <section className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
         <Reveal className="mb-8">
@@ -137,7 +176,10 @@ export default function MagazinePage() {
 
           <ol style={{ borderTop: "1px solid var(--line)" }}>
             {features.map((feature) => (
-              <li key={feature.title} style={{ borderBottom: "1px solid var(--line)" }}>
+              <li
+                key={feature.title}
+                style={{ borderBottom: "1px solid var(--line)" }}
+              >
                 {/* Each line opens the reader at that page. The list used to be
                     inert text, which is a strange thing for a contents page. */}
                 <Link
@@ -155,7 +197,10 @@ export default function MagazinePage() {
                       {feature.title}
                     </span>
                     {feature.standfirst && (
-                      <span className="mt-1 block text-sm" style={{ color: "var(--muted)" }}>
+                      <span
+                        className="mt-1 block text-sm"
+                        style={{ color: "var(--muted)" }}
+                      >
                         {feature.standfirst}
                       </span>
                     )}
@@ -174,7 +219,10 @@ export default function MagazinePage() {
       </section>
 
       {/* ---------- the back catalogue ---------- */}
-      <section id="archive" className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
+      <section
+        id="archive"
+        className="mx-auto max-w-[1240px] px-5 py-16 md:px-10"
+      >
         <Reveal className="mb-10">
           <p
             className="mb-3 font-mono text-[11px] tracking-[0.25em] uppercase"
@@ -185,9 +233,12 @@ export default function MagazinePage() {
           <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
             Every edition, still readable.
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-            Nothing goes out of print here. Each past edition turns page by page in the same
-            reader as the current one.
+          <p
+            className="mt-4 max-w-2xl text-base leading-relaxed"
+            style={{ color: "var(--muted)" }}
+          >
+            Nothing goes out of print here. Each past edition turns page by page
+            in the same reader as the current one.
           </p>
         </Reveal>
 
@@ -214,7 +265,8 @@ export default function MagazinePage() {
                     className="font-mono text-[11px] tracking-[0.25em] uppercase"
                     style={{ color: "var(--muted)" }}
                   >
-                    {edition.volume} · {edition.label} · {edition.date} · {edition.pages} pages
+                    {edition.volume} · {edition.label} · {edition.date} ·{" "}
+                    {edition.pages} pages
                   </p>
                   <h3 className="font-display mt-3 text-xl font-bold tracking-[-0.03em] md:text-3xl">
                     Where it started.
@@ -224,8 +276,13 @@ export default function MagazinePage() {
                     style={{ color: "var(--muted)" }}
                   >
                     The maiden edition launched in Accra on 9 March 2024 with{" "}
-                    {edition.coverStory.name}, {edition.coverStory.line}, on the cover — and the{" "}
-                    <Link href="/voices" className="navlink" style={{ color: "var(--accent)" }}>
+                    {edition.coverStory.name}, {edition.coverStory.line}, on the
+                    cover — and the{" "}
+                    <Link
+                      href="/voices"
+                      className="navlink"
+                      style={{ color: "var(--accent)" }}
+                    >
                       28 voices
                     </Link>{" "}
                     who set the tone for everything since.
@@ -246,7 +303,10 @@ export default function MagazinePage() {
       {/* ---------- backers ---------- */}
       <section
         className="py-14"
-        style={{ background: "var(--surface)", borderTop: "1px solid var(--line)" }}
+        style={{
+          background: "var(--surface)",
+          borderTop: "1px solid var(--line)",
+        }}
       >
         <div className="mx-auto max-w-[1240px] px-5 md:px-10">
           <Reveal className="mb-8">
