@@ -12,7 +12,7 @@ const { volume, label, date, pages, cover, coverStory, coverLines } = currentEdi
 
 export const metadata: Metadata = {
   title: "The Magazine",
-  description: `${volume}, the ${label.toLowerCase()} of ${site.name} — ${pages} pages, published ${date}, with ${coverStory.name} on the cover. Order the print edition or read it free.`,
+  description: `${volume}, the ${label.toLowerCase()} of ${site.name} — ${pages} pages, published ${date}, with ${coverStory.name} on the cover. Order your copy or read the digital edition free.`,
   alternates: { canonical: "/magazine" },
   openGraph: {
     title: `The Magazine — ${site.name}`,
@@ -46,20 +46,20 @@ export default function MagazinePage() {
       intro={
         <>
           <p>
-            {pages} pages of interviews, research and analysis from across Ghana&rsquo;s fintech
-            ecosystem and the wider continent — collaboration, cybersecurity, regulation, funding
-            and the women reshaping the industry.
+            {pages} pages of conversations and perspectives exploring collaboration,
+            cybersecurity, regulation, funding and the women reshaping the industry — from Ghana
+            to Côte d&rsquo;Ivoire and beyond.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href={site.orderUrl}
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              Order the print edition <ArrowRight size={16} />
+              Order Your Copy <ArrowRight size={16} />
             </Link>
             <Link
               href={site.readUrl}
               className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              <BookOpen size={16} /> Read it online
+              <BookOpen size={16} /> Read the Digital Edition
             </Link>
           </div>
         </>
