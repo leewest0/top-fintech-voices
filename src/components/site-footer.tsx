@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
-import { nav, site } from "@/lib/site";
+import { footerNav, site } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -17,7 +17,7 @@ export function SiteFooter() {
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-3 text-sm">
-          {nav.map((item) => (
+          {footerNav.map((item) => (
             <Link key={item.href} href={item.href} className="navlink">
               {item.label}
             </Link>

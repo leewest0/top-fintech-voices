@@ -136,6 +136,7 @@ export const team: TeamMember[] = [
   {
     name: "Bismark Kwabena Baiden",
     role: "Creative Designer",
+    bio: "A senior graphic and web designer with over a decade in brand identity, magazine layouts and digital marketing, NIIT-certified with a practical edge in IT.",
   },
   {
     name: "Lynette Maja",

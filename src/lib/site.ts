@@ -118,3 +118,11 @@ export const nav = [
   { label: "Partners", href: "/partners" },
   { label: "Contact", href: "/contact" },
 ] as const;
+
+/**
+ * Everything the footer links to: `nav` plus the pages that don't get a
+ * header slot. The header wraps onto two lines at 1024px with seven items —
+ * verified when Partners was added — so a page can go here and still be one
+ * click from every page without fighting for space in the primary bar.
+ */
+export const footerNav = [...nav, { label: "Emerging Voices", href: "/emerging-voices" }] as const;

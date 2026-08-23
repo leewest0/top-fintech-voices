@@ -122,6 +122,23 @@ export default function SpotlightPage() {
               </div>
             ))}
           </dl>
+
+          {/* Cross-link, not a nav item — /emerging-voices doesn't have a
+              header slot (the header already wraps at seven), so Spotlight,
+              its natural sibling, sends traffic to it instead. */}
+          <Link
+            href="/emerging-voices"
+            className="rise card mt-8 flex max-w-2xl items-center justify-between gap-4 rounded-2xl p-5"
+            style={{ animationDelay: "420ms" }}
+          >
+            <span className="text-sm leading-relaxed">
+              Know a rising builder, researcher or founder we should know about too?{" "}
+              <span className="font-semibold" style={{ color: "var(--accent)" }}>
+                Discover Emerging Voices
+              </span>
+            </span>
+            <ArrowRight size={16} className="shrink-0" style={{ color: "var(--accent)" }} aria-hidden="true" />
+          </Link>
         </section>
 
         <LoomRail />

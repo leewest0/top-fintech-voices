@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { isCurrentNav, nav } from "../src/lib/site.ts";
+import { footerNav, isCurrentNav, nav } from "../src/lib/site.ts";
 
 /**
  * Which menu item lights up on which page.
@@ -52,4 +52,20 @@ for (const item of nav) {
   assert.ok(isCurrentNav(item.href, item.href), `${item.href} cannot mark its own page`);
 }
 
+// The footer carries pages that don't fit the header — verified to wrap at
+// seven items — so it must be a strict superset of the header, never a
+// smaller or different list a visitor could reach one way but not the other.
+const navHrefs = new Set(nav.map((i) => i.href));
+const footerHrefs = new Set(footerNav.map((i) => i.href));
+for (const href of navHrefs) {
+  assert.ok(footerHrefs.has(href), `${href} is in the header but missing from the footer`);
+}
+assert.ok(footerHrefs.size > navHrefs.size, "footerNav should carry at least one page the header doesn't");
+assert.equal(
+  new Set(footerNav.map((i) => i.href)).size,
+  footerNav.length,
+  "duplicate hrefs in footerNav",
+);
+
 console.log(`nav: ${nav.length} items, ${cases.length} paths resolve to one item or none`);
+console.log(`footer: ${footerNav.length} items, a superset of the header's ${nav.length}`);
