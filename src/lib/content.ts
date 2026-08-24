@@ -145,6 +145,7 @@ export const team: TeamMember[] = [
   {
     name: "Lynette Maja",
     role: "Growth and Strategy",
+    image: "/team/lynette-maja.jpg",
     bio: "A conversational strategist and moderator known as “The Conversator”, working across fintech, digital marketing, storytelling and strategy to connect generations.",
     linkedin: "https://www.linkedin.com/in/lynette-maja-3aa148162",
   },
