@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { NextEditionBanner } from "@/components/ui/next-edition-banner";
 import { site } from "@/lib/site";
 import { currentEdition } from "@/lib/magazine";
 
@@ -16,6 +17,12 @@ export function Magazine() {
         borderBottom: "1px solid var(--line)",
       }}
     >
+      <div className="mx-auto max-w-[1240px] px-5 md:px-10">
+        <Reveal className="mb-10 max-w-md">
+          <NextEditionBanner />
+        </Reveal>
+      </div>
+
       <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-5 md:grid-cols-2 md:px-10">
         <Reveal>
           <p

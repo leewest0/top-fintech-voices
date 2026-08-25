@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
+import { NextEditionBanner } from "@/components/ui/next-edition-banner";
 import { site } from "@/lib/site";
 import {
   currentEdition,
@@ -66,6 +67,13 @@ export default function MagazinePage() {
         </>
       }
     >
+      {/* ---------- next edition teaser ---------- */}
+      <section className="mx-auto max-w-[1240px] px-5 pt-10 md:px-10">
+        <Reveal className="max-w-md">
+          <NextEditionBanner />
+        </Reveal>
+      </section>
+
       {/* ---------- the latest edition ---------- */}
       <section className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">

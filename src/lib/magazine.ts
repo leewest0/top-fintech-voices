@@ -32,6 +32,20 @@ export const currentEdition = {
   ],
 } as const;
 
+/**
+ * The next edition, announced but not yet published — no PDF, no reader, no
+ * page count, so it carries only what the cover itself already says. Not
+ * `pastEditions` (it isn't out) and not `currentEdition` (nothing on the
+ * site should point a reader at it as if it were readable yet).
+ */
+export const upcomingEdition = {
+  volume: "Vol. 3",
+  label: "3rd Edition",
+  date: "September 2026",
+  cover: "/magazine/cover-vol3.jpg",
+  coverStory: { name: "Kwame Oppong" },
+} as const;
+
 export const firstEdition = {
   volume: "Vol. 1",
   label: "Maiden Edition",
