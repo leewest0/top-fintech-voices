@@ -43,8 +43,11 @@ export function Hero() {
               className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
               Explore the Voices <ArrowRight size={16} />
             </Link>
-            <Link href={site.readUrl} className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-              Read the Magazine
+            {/* Not "Read the Magazine": the cover beside this is Vol. 3, which
+                has no reader yet. It points at /magazine, where Vol. 3 is
+                announced and Vol. 2 is offered to read right now. */}
+            <Link href="/magazine" className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+              Available Soon
             </Link>
           </div>
         </div>
