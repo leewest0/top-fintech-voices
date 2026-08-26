@@ -224,6 +224,7 @@ export const sponsors = [
   },
   { name: "Digital Assets Summit Africa", image: "/sponsors/dasa.png" },
   { name: "POD", image: "/sponsors/pod.png" },
+  { name: "MoMo from MTN", image: "/sponsors/momo-mtn.png" },
 ];
 
 export const partners = [
