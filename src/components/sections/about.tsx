@@ -20,7 +20,7 @@ export function About() {
           in-depth interviews, cutting-edge research, insightful case studies and thought-provoking
           opinion pieces from the most influential figures in the industry. The maiden edition
           launched in Accra in March 2024; {currentEdition.volume} followed in{" "}
-          {currentEdition.date}, with two more — francophone African and pan-African anglophone —
+          {currentEdition.date}, with two more, francophone African and pan-African anglophone,
           on the way.
         </p>
       </Reveal>
