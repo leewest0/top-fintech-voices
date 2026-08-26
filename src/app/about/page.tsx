@@ -154,8 +154,8 @@ export default function AboutPage() {
           <Reveal delay={320}>
             <p className="mt-10 max-w-3xl text-base leading-relaxed" style={{ color: "var(--muted)" }}>
               Given the rapidly growing fintech markets in Africa and beyond, we are expanding our
-              reach with two new editions — a francophone African version and a pan-African
-              anglophone version — each catering to the unique needs and interests of those
+              reach with two new editions, a francophone African version and a pan-African
+              anglophone version, each catering to the unique needs and interests of those
               markets.
             </p>
           </Reveal>
