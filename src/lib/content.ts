@@ -199,6 +199,15 @@ export const teamByDepartment: { name: string; members: TeamMember[] }[] = TEAM_
   }),
 );
 
+/**
+ * The logo wall, shown under the heading "Sponsors & partners".
+ *
+ * `partners` below is the smaller, labelled list — each entry states the role
+ * it plays ("Knowledge Partner" and so on). A logo only belongs there once
+ * someone has told us what that role is; naming it ourselves would be
+ * inventing a business relationship. So a supporter whose role we haven't
+ * been given is listed here, credited by name and mark alone.
+ */
 export const sponsors = [
   { name: "GCB Bank", image: "/sponsors/gcb-bank.png" },
   { name: "Virtual Infosec Africa", image: "/sponsors/virtual-infosec-africa.png" },
@@ -207,6 +216,14 @@ export const sponsors = [
   { name: "Ascend Digital Solutions", image: "/sponsors/ascend.png" },
   { name: "Smart Infraco", image: "/sponsors/smart-infraco.png" },
   { name: "SSNIT Guest House", image: "/sponsors/ssnit-guest-house.png" },
+  { name: "Africa Fintech Summit", image: "/sponsors/africa-fintech-summit.png" },
+  { name: "ALX", image: "/sponsors/alx.png" },
+  {
+    name: "Ghana Fintech & Payments Association",
+    image: "/sponsors/ghana-fintech-payments-association.png",
+  },
+  { name: "Digital Assets Summit Africa", image: "/sponsors/dasa.png" },
+  { name: "POD", image: "/sponsors/pod.png" },
 ];
 
 export const partners = [
@@ -255,6 +272,6 @@ export const pillars = [
 export const stats = [
   { value: `${voices.length}`, label: "voices featured" },
   { value: `${currentEdition.pages}`, label: `pages, ${currentEdition.label.toLowerCase()}` },
-  { value: `${sponsors.length}`, label: "sponsors and partners" },
+  { value: `${sponsors.length + partners.length}`, label: "sponsors and partners" },
   { value: "02", label: "new editions in the works" },
 ];
