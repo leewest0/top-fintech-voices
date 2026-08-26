@@ -109,7 +109,7 @@ export const voices: Voice[] = [
     name: "Isaac Tetteh",
     role: "Chief Executive Officer",
     org: "BigPay Ghana",
-    image: "/voices/isaac-tetteh.png",
+    image: "/voices/isaac-tetteh.jpg",
     linkedin: "https://www.linkedin.com/in/isaac-tetteh-21711416",
     article: "https://topfintechvoices.com/isaac-tetteh-ceo-bigpay-ghana/",
     summary: "Isaac Tetteh, a distinguished C-Suite executive with 25 years of international banking experience, stands out for his remarkable achievements and leadership prowess.",
