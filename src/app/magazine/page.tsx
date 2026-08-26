@@ -4,10 +4,10 @@ import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { PageShell } from "@/components/ui/page-shell";
 import { Reveal } from "@/components/ui/reveal";
-import { NextEditionBanner } from "@/components/ui/next-edition-banner";
 import { site } from "@/lib/site";
 import {
   currentEdition,
+  upcomingEdition,
   features,
   pastEditions,
   readerHref,
@@ -67,14 +67,7 @@ export default function MagazinePage() {
         </>
       }
     >
-      {/* ---------- next edition teaser ---------- */}
-      <section className="mx-auto max-w-[1240px] px-5 pt-10 md:px-10">
-        <Reveal className="max-w-md">
-          <NextEditionBanner />
-        </Reveal>
-      </section>
-
-      {/* ---------- the latest edition ---------- */}
+      {/* ---------- the next edition ---------- */}
       <section className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <Reveal>
@@ -82,47 +75,100 @@ export default function MagazinePage() {
               className="mb-6 font-mono text-[11px] tracking-[0.25em] uppercase"
               style={{ color: "var(--accent)" }}
             >
-              Latest Edition
+              Coming Soon
             </p>
             <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-5xl">
-              {site.name} Volume 2
+              {site.name} Volume 3
             </h2>
             <p
               className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
               style={{ color: "var(--muted)" }}
             >
-              {pages} pages of conversations and perspectives exploring
-              collaboration, cybersecurity, regulation, funding and the women
-              reshaping the industry from Ghana to Côte d&rsquo;Ivoire and
-              beyond.
+              {upcomingEdition.volume}, the {upcomingEdition.label}, arrives{" "}
+              {upcomingEdition.date}.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href={site.orderUrl}
-                className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
-              >
-                Order Your Copy <ArrowRight size={16} />
-              </Link>
-              <Link
-                href={site.readUrl}
+                href="#available-now"
                 className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
               >
-                <BookOpen size={16} /> Read the Digital Edition
+                Available Soon
               </Link>
             </div>
           </Reveal>
           <Reveal delay={120} className="flex justify-center lg:justify-end">
             <Image
-              src={cover}
-              alt={`${site.name} ${volume} — ${coverStory.name} on the cover`}
+              src={upcomingEdition.cover}
+              alt={`${site.name} ${upcomingEdition.volume} — ${upcomingEdition.coverStory.name} on the cover`}
               width={1200}
-              height={1691}
+              height={1682}
               priority
               sizes="(max-width: 1024px) 70vw, 400px"
               className="w-full max-w-[400px] rounded-xl shadow-2xl"
               style={{ border: "1px solid var(--line)" }}
             />
           </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- available now ---------- */}
+      <section
+        id="available-now"
+        className="py-14"
+        style={{
+          background: "var(--surface)",
+          borderTop: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line)",
+        }}
+      >
+        <div className="mx-auto max-w-[1240px] px-5 md:px-10">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+            <Reveal>
+              <p
+                className="mb-6 font-mono text-[11px] tracking-[0.25em] uppercase"
+                style={{ color: "var(--accent)" }}
+              >
+                Available Now
+              </p>
+              <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-5xl">
+                {site.name} Volume 2
+              </h2>
+              <p
+                className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
+                style={{ color: "var(--muted)" }}
+              >
+                {pages} pages of conversations and perspectives exploring
+                collaboration, cybersecurity, regulation, funding and the women
+                reshaping the industry from Ghana to Côte d&rsquo;Ivoire and
+                beyond.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href={site.orderUrl}
+                  className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+                >
+                  Order Your Copy <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href={site.readUrl}
+                  className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+                >
+                  <BookOpen size={16} /> Read the Digital Edition
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={120} className="flex justify-center lg:justify-end">
+              <Image
+                src={cover}
+                alt={`${site.name} ${volume} — ${coverStory.name} on the cover`}
+                width={1200}
+                height={1691}
+                sizes="(max-width: 1024px) 70vw, 400px"
+                className="w-full max-w-[400px] rounded-xl shadow-2xl"
+                style={{ border: "1px solid var(--line)" }}
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 
