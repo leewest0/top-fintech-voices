@@ -226,6 +226,10 @@ export const sponsors = [
   { name: "POD", image: "/sponsors/pod.png" },
   { name: "MoMo from MTN", image: "/sponsors/momo-mtn.png" },
   { name: "Fintech Management Solutions", image: "/sponsors/fms.png" },
+  // Placeholder name: the artwork carries no wordmark and we were not
+  // given one. `name` is this logo's alt text, so it says what it is
+  // rather than guessing at a company. Swap both once the name is known.
+  { name: "Partner logo", image: "/sponsors/partner-logo.png" },
 ];
 
 export const partners = [
