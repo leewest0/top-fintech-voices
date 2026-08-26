@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Weave } from "@/components/ui/weave";
 import { site } from "@/lib/site";
-import { currentEdition } from "@/lib/magazine";
+import { upcomingEdition } from "@/lib/magazine";
 
 export function Hero() {
   return (
@@ -14,7 +14,7 @@ export function Hero() {
             className="rise mb-7 font-mono text-[11px] tracking-[0.25em] uppercase"
             style={{ color: "var(--accent)" }}
           >
-            {currentEdition.volume} · {currentEdition.label} · {currentEdition.date}
+            Coming Soon · {upcomingEdition.volume} · {upcomingEdition.date}
           </p>
 
           <h1 className="font-display text-[2.4rem] leading-[0.98] font-bold tracking-[-0.03em] sm:text-[3.4rem] lg:text-[4.1rem]">
@@ -73,10 +73,10 @@ export function Hero() {
           <div className="card absolute bottom-0 -left-2 w-[210px] overflow-hidden rounded-xl sm:-left-8 sm:w-[240px]">
             <div className="frame">
               <Image
-                src={currentEdition.cover}
-                alt={`${site.name} ${currentEdition.volume}, cover story: ${currentEdition.coverStory.name}`}
+                src={upcomingEdition.cover}
+                alt={`${site.name} ${upcomingEdition.volume}, cover story: ${upcomingEdition.coverStory.name}`}
                 width={1200}
-                height={1691}
+                height={1682}
                 priority
                 sizes="(max-width: 640px) 210px, 240px"
                 className="float h-auto w-full object-cover"
