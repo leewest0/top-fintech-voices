@@ -10,9 +10,13 @@ export function SiteFooter() {
           <Link href="/" aria-label={`${site.name} — home`}>
             <Logo className="h-8 w-auto" />
           </Link>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-            Welcome to Top Fintech Voices Magazine — celebrating fintech excellence, and
-            spotlighting the industry trailblazers shaping the future of finance.
+          <p
+            className="mt-4 max-w-xs text-sm leading-relaxed"
+            style={{ color: "var(--muted)" }}
+          >
+            Welcome to Top Fintech Voices Magazine. Celebrating fintech
+            excellence, and spotlighting the industry trailblazers shaping the
+            future of finance.
           </p>
         </div>
 

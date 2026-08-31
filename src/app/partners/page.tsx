@@ -18,7 +18,12 @@ export const metadata: Metadata = {
     title: `Partners — ${site.name}`,
     description: `Put your brand alongside the people building African fintech.`,
     url: `${site.url}/partners`,
-    images: [{ url: currentEdition.cover, alt: `${site.name} ${currentEdition.volume}` }],
+    images: [
+      {
+        url: currentEdition.cover,
+        alt: `${site.name} ${currentEdition.volume}`,
+      },
+    ],
   },
 };
 
@@ -31,19 +36,22 @@ export const metadata: Metadata = {
 const facts = [
   { value: "2", label: "editions published" },
   { value: String(voices.length), label: "executives profiled" },
-  { value: String(currentEdition.pages), label: `pages in ${currentEdition.volume}` },
+  {
+    value: String(currentEdition.pages),
+    label: `pages in ${currentEdition.volume}`,
+  },
   { value: String(features.length), label: "features and reports" },
 ];
 
 const options = [
   {
     title: "Advertising",
-    copy: "Full-page and double-page placements in the print edition, which runs the same page-for-page in the online reader — so a page bought once is read in both.",
+    copy: "Full-page and double-page placements in the print edition, which runs the same page-for-page in the online reader.",
     thread: "var(--w1)",
   },
   {
     title: "Section sponsorship",
-    copy: `Attach your name to a strand of the edition — cybersecurity, regulation, cross-border payments, the women leading Ghana's fintech future — across the feature well.`,
+    copy: `Attach your name to a strand of the edition which spans across topics like cybersecurity, regulation, cross-border payments, the women leading Ghana's fintech future.`,
     thread: "var(--w2)",
   },
   {
@@ -53,7 +61,7 @@ const options = [
   },
   {
     title: "The next markets",
-    copy: "Two further editions are in preparation — a francophone African edition and a pan-African anglophone one. Early placements in those are open now.",
+    copy: "Two further editions are in preparation, a francophone African edition and a pan-African anglophone one. Early placements in those are open now.",
     thread: "var(--w4)",
   },
 ];
@@ -66,12 +74,13 @@ export default function PartnersPage() {
       intro={
         <>
           <p>
-            Top Fintech Voices works with organisations that share our belief in the power of
-            innovation, collaboration and inclusive financial growth. Our partners don&rsquo;t
-            simply support a publication.
+            Top Fintech Voices works with organisations that share our belief in
+            the power of innovation, collaboration and inclusive financial
+            growth. Our partners don&rsquo;t simply support a publication.
           </p>
           <p className="mt-4">
-            They help support the conversations shaping Africa&rsquo;s fintech future.
+            They help support the conversations shaping Africa&rsquo;s fintech
+            future.
           </p>
         </>
       }
@@ -95,7 +104,10 @@ export default function PartnersPage() {
         <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((fact, i) => (
             <Reveal key={fact.label} delay={i * 80}>
-              <dd className="font-display text-4xl font-bold md:text-5xl" style={{ color: "var(--accent)" }}>
+              <dd
+                className="font-display text-4xl font-bold md:text-5xl"
+                style={{ color: "var(--accent)" }}
+              >
                 {fact.value}
               </dd>
               <dt
@@ -109,11 +121,14 @@ export default function PartnersPage() {
         </dl>
 
         <Reveal delay={340}>
-          <p className="mt-10 max-w-2xl text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+          <p
+            className="mt-10 max-w-2xl text-base leading-relaxed"
+            style={{ color: "var(--muted)" }}
+          >
             {firstEdition.volume} launched in Accra in {firstEdition.date};{" "}
             {currentEdition.volume} followed in {currentEdition.date} with{" "}
-            {currentEdition.coverStory.name} on the cover. Both are free to read in full on this
-            site, and both circulate in print.
+            {currentEdition.coverStory.name} on the cover. Both are free to read
+            in full on this site, and both circulate in print.
           </p>
         </Reveal>
       </section>
@@ -142,19 +157,31 @@ export default function PartnersPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             {options.map((option, i) => (
-              <Reveal key={option.title} delay={i * 90} className="card h-full rounded-2xl p-7">
+              <Reveal
+                key={option.title}
+                delay={i * 90}
+                className="card h-full rounded-2xl p-7"
+              >
                 <div className="mb-6 flex gap-[3px]" aria-hidden="true">
                   {[0, 1, 2, 3, 4].map((k) => (
                     <span
                       key={k}
-                      style={{ width: 4, height: 22, background: option.thread, opacity: 1 - k * 0.17 }}
+                      style={{
+                        width: 4,
+                        height: 22,
+                        background: option.thread,
+                        opacity: 1 - k * 0.17,
+                      }}
                     />
                   ))}
                 </div>
                 <h3 className="font-display text-lg font-semibold tracking-[-0.02em] md:text-xl">
                   {option.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                <p
+                  className="mt-3 text-sm leading-relaxed"
+                  style={{ color: "var(--muted)" }}
+                >
                   {option.copy}
                 </p>
               </Reveal>
@@ -162,9 +189,12 @@ export default function PartnersPage() {
           </div>
 
           <Reveal delay={400}>
-            <p className="mt-10 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-              Rates depend on placement and edition, so they go out on request rather than sitting
-              on a page that goes stale.
+            <p
+              className="mt-10 text-sm leading-relaxed"
+              style={{ color: "var(--muted)" }}
+            >
+              Rates depend on placement and edition, so they go out on request
+              rather than sitting on a page that goes stale.
             </p>
           </Reveal>
         </div>
@@ -188,7 +218,13 @@ export default function PartnersPage() {
           {[...sponsors, ...partners].map((logo, i) => (
             <Reveal key={logo.name} delay={i * 50}>
               <div className="logo-tile relative h-[92px] w-[160px] overflow-hidden rounded-xl">
-                <Image src={logo.image} alt={logo.name} fill sizes="160px" className="object-contain p-4" />
+                <Image
+                  src={logo.image}
+                  alt={logo.name}
+                  fill
+                  sizes="160px"
+                  className="object-contain p-4"
+                />
               </div>
             </Reveal>
           ))}
@@ -199,16 +235,22 @@ export default function PartnersPage() {
       <section
         id="enquiry"
         className="py-16"
-        style={{ background: "var(--surface)", borderTop: "1px solid var(--line)" }}
+        style={{
+          background: "var(--surface)",
+          borderTop: "1px solid var(--line)",
+        }}
       >
         <div className="mx-auto max-w-[760px] px-5 md:px-10">
           <Reveal className="mb-9">
             <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
               Ask for the rate card.
             </h2>
-            <p className="mt-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-              A few details and the desk in Accra will come back to you with rates, formats and
-              what&rsquo;s still open.
+            <p
+              className="mt-4 text-base leading-relaxed"
+              style={{ color: "var(--muted)" }}
+            >
+              A few details and the desk in Accra will come back to you with
+              rates, formats and what&rsquo;s still open.
             </p>
           </Reveal>
 
@@ -228,7 +270,8 @@ export default function PartnersPage() {
             className="mx-auto mt-4 max-w-lg text-base leading-relaxed"
             style={{ color: "var(--muted)" }}
           >
-            {currentEdition.volume} is free to read in full, page by page, right here.
+            {currentEdition.volume} is free to read in full, page by page, right
+            here.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link

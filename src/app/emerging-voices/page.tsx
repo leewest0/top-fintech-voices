@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/emerging-voices" },
   openGraph: {
     title: `Emerging Voices — ${site.name}`,
-    description: "The next generation of African fintech, before they're the cover story.",
+    description:
+      "The next generation of African fintech, before they're the cover story.",
     url: `${site.url}/emerging-voices`,
   },
 };
@@ -26,13 +27,14 @@ export default function EmergingVoicesPage() {
       intro={
         <>
           <p>
-            The future of African fintech will not only be shaped by today&rsquo;s CEOs. It is
-            also being built by young founders, engineers, researchers, creators and
-            entrepreneurs who are challenging how financial services should work.
+            The future of African fintech will not only be shaped by
+            today&rsquo;s CEOs. It is also being built by young founders,
+            engineers, researchers, creators and entrepreneurs who are
+            challenging how financial services should work.
           </p>
           <p className="mt-4">
-            TFV Emerging Voices identifies and amplifies the next generation of people changing
-            the conversation.
+            TFV Emerging Voices identifies and amplifies the next generation of
+            people changing the conversation.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -52,7 +54,10 @@ export default function EmergingVoicesPage() {
       }
     >
       {/* ---------- discover: honest about where this stands ---------- */}
-      <section id="discover" className="mx-auto max-w-[1240px] px-5 py-16 md:px-10">
+      <section
+        id="discover"
+        className="mx-auto max-w-[1240px] px-5 py-16 md:px-10"
+      >
         <Reveal className="panel rounded-3xl p-8 text-center md:p-14">
           <span
             className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full"
@@ -68,9 +73,9 @@ export default function EmergingVoicesPage() {
             className="mx-auto mt-4 max-w-lg text-base leading-relaxed"
             style={{ color: "var(--muted)" }}
           >
-            Emerging Voices profiles are still in progress — nothing published yet means nothing
-            invented in the meantime. Nominate someone below, or meet the people already featured
-            in the magazine while the first cohort comes together.
+            Emerging Voices profiles are still in progress, nothing published
+            yet. Nominate someone below, or meet the people already featured in
+            the magazine while the first cohort comes together.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <a
@@ -93,7 +98,10 @@ export default function EmergingVoicesPage() {
       <section
         id="nominate"
         className="py-16"
-        style={{ background: "var(--surface)", borderTop: "1px solid var(--line)" }}
+        style={{
+          background: "var(--surface)",
+          borderTop: "1px solid var(--line)",
+        }}
       >
         <div className="mx-auto max-w-[760px] px-5 md:px-10">
           <Reveal className="mb-9">
@@ -106,9 +114,12 @@ export default function EmergingVoicesPage() {
             <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-4xl">
               Know someone who should be on this list?
             </h2>
-            <p className="mt-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-              Tell us who they are and what they&rsquo;re building. The editorial desk reads
-              every nomination.
+            <p
+              className="mt-4 text-base leading-relaxed"
+              style={{ color: "var(--muted)" }}
+            >
+              Tell us who they are and what they&rsquo;re building. The
+              editorial desk reads every nomination.
             </p>
           </Reveal>
 

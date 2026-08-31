@@ -27,8 +27,9 @@ export default function TeamPage() {
       title="The people behind Top Fintech Voices."
       intro={
         <p>
-          Behind every story, conversation and connection is a team committed to building a
-          credible, inclusive platform for Africa&rsquo;s fintech ecosystem.
+          Behind every story, conversation and connection is a team committed to
+          building a credible, inclusive platform for Africa&rsquo;s fintech
+          ecosystem.
         </p>
       }
     >
@@ -77,7 +78,10 @@ export default function TeamPage() {
                           )}
                         </div>
                         {member.bio && (
-                          <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                          <p
+                            className="mt-3 text-sm leading-relaxed"
+                            style={{ color: "var(--muted)" }}
+                          >
                             {member.bio}
                           </p>
                         )}
@@ -100,16 +104,16 @@ export default function TeamPage() {
             className="mx-auto mt-4 max-w-lg text-base leading-relaxed"
             style={{ color: "var(--muted)" }}
           >
-            Africa&rsquo;s fintech story is still being written. And we want to hear from the
-            people writing it.
+            Africa&rsquo;s fintech story is still being written. And we want to
+            hear from the people writing it.
           </p>
           <p
             className="mx-auto mt-3 max-w-lg text-base leading-relaxed"
             style={{ color: "var(--muted)" }}
           >
-            Whether you&rsquo;re building something transformative, challenging conventional
-            thinking, looking to collaborate, or know a voice that deserves to be heard — join
-            the conversation.
+            Whether you&rsquo;re building something transformative, challenging
+            conventional thinking, looking to collaborate, or know a voice that
+            deserves to be heard, reach out to us now.
           </p>
           {/* The five ways in, as a line — not buttons. None of these has a
               destination yet (a story-submission form, a conversations
@@ -119,8 +123,8 @@ export default function TeamPage() {
             className="mx-auto mt-7 max-w-2xl font-mono text-[11px] tracking-[0.15em] uppercase"
             style={{ color: "var(--accent)" }}
           >
-            Nominate a Voice · Submit a Story · Partner With Us · Join TFV Conversations ·
-            Subscribe
+            Nominate a Voice · Submit a Story · Partner With Us · Join TFV
+            Conversations · Subscribe
           </p>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">

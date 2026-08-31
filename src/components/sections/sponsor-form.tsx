@@ -13,7 +13,13 @@ type Status =
   | { kind: "failed"; message: string; fallbackEmail?: string };
 
 const FIELDS = [
-  { name: "name", label: "Name", type: "text", autoComplete: "name", required: true },
+  {
+    name: "name",
+    label: "Name",
+    type: "text",
+    autoComplete: "name",
+    required: true,
+  },
   {
     name: "organisation",
     label: "Organisation",
@@ -21,7 +27,13 @@ const FIELDS = [
     autoComplete: "organization",
     required: true,
   },
-  { name: "email", label: "Email", type: "email", autoComplete: "email", required: true },
+  {
+    name: "email",
+    label: "Email",
+    type: "email",
+    autoComplete: "email",
+    required: true,
+  },
   { name: "phone", label: "Phone", type: "tel", autoComplete: "tel" },
 ] as const;
 
@@ -57,7 +69,8 @@ export function SponsorForm() {
     } catch {
       setStatus({
         kind: "failed",
-        message: "We couldn't reach the server. Check your connection and try again.",
+        message:
+          "We couldn't reach the server. Check your connection and try again.",
         fallbackEmail: site.email,
       });
     }
@@ -85,8 +98,8 @@ export function SponsorForm() {
           className="mx-auto mt-3 max-w-sm text-sm leading-relaxed"
           style={{ color: "var(--muted)" }}
         >
-          We&rsquo;ll come back with the rate card and available placements. If you don&rsquo;t
-          hear back within two working days, write to{" "}
+          We&rsquo;ll come back with the rate card and available placements. If
+          you don&rsquo;t hear back within two working days, write to{" "}
           <a href={`mailto:${site.email}`} className="navlink">
             {site.email}
           </a>
@@ -118,7 +131,10 @@ export function SponsorForm() {
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? `${f.name}-error` : undefined}
                 className="w-full rounded-xl px-4 py-3 text-sm outline-none"
-                style={{ ...field, borderColor: error ? "var(--accent)" : "var(--line)" }}
+                style={{
+                  ...field,
+                  borderColor: error ? "var(--accent)" : "var(--line)",
+                }}
               />
               {error && (
                 <span
@@ -135,7 +151,9 @@ export function SponsorForm() {
       </div>
 
       <label className="block">
-        <span className="mb-2 block text-sm font-semibold">What are you interested in?</span>
+        <span className="mb-2 block text-sm font-semibold">
+          What are you interested in?
+        </span>
         <select
           name="interest"
           defaultValue={INTERESTS[0]}
@@ -152,7 +170,8 @@ export function SponsorForm() {
 
       <label className="block">
         <span className="mb-2 block text-sm font-semibold">
-          Anything else? <span style={{ color: "var(--muted)" }}>(optional)</span>
+          Anything else?{" "}
+          <span style={{ color: "var(--muted)" }}>(optional)</span>
         </span>
         <textarea
           name="message"
@@ -165,9 +184,18 @@ export function SponsorForm() {
 
       {/* Hidden from people, catnip for bots. Not display:none — some bots skip
           those — and never focusable or announced. */}
-      <div aria-hidden="true" className="absolute h-px w-px overflow-hidden opacity-0">
+      <div
+        aria-hidden="true"
+        className="absolute h-px w-px overflow-hidden opacity-0"
+      >
         <label htmlFor="sponsor-website">Leave this empty</label>
-        <input id="sponsor-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        <input
+          id="sponsor-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {status.kind === "failed" && (
@@ -197,7 +225,8 @@ export function SponsorForm() {
         >
           {sending ? (
             <>
-              <Loader2 size={16} className="animate-spin" aria-hidden="true" /> Sending…
+              <Loader2 size={16} className="animate-spin" aria-hidden="true" />{" "}
+              Sending…
             </>
           ) : (
             <>
@@ -206,7 +235,7 @@ export function SponsorForm() {
           )}
         </button>
         <p className="text-sm" style={{ color: "var(--muted)" }}>
-          No obligation — we&rsquo;ll send rates and what&rsquo;s still open.
+          No obligation, we&rsquo;ll only send you the available rates.
         </p>
       </div>
     </form>

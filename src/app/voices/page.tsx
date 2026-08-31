@@ -43,7 +43,9 @@ const jsonLd = {
         // for the redirect chain that used to matter here.
         url: `${site.url}/voices/${voice.slug}`,
         sameAs: voice.linkedin || undefined,
-        ...(voice.org && { worksFor: { "@type": "Organization", name: voice.org } }),
+        ...(voice.org && {
+          worksFor: { "@type": "Organization", name: voice.org },
+        }),
       },
     })),
   },
@@ -83,17 +85,18 @@ export default function SpotlightPage() {
             style={{ color: "var(--muted)", animationDelay: "220ms" }}
           >
             <p>
-              Africa&rsquo;s fintech story is being written by people solving some of the
-              continent&rsquo;s biggest challenges — from financial inclusion and payments to
-              artificial intelligence, digital identity, cybersecurity and cross-border commerce.
+              Africa&rsquo;s fintech story is being written by people solving
+              some of the continent&rsquo;s biggest challenges from financial
+              inclusion and payments to artificial intelligence, digital
+              identity, cybersecurity and cross-border commerce.
             </p>
             <p>
-              Top Fintech Voices exists to find those people, amplify their thinking and bring
-              the ecosystem together.
+              Top Fintech Voices exists to find those people, amplify their
+              thinking and bring the ecosystem together.
             </p>
             <p>
-              We connect leaders, builders, policymakers, investors and the next generation of
-              innovators through four core platforms:
+              We connect leaders, builders, policymakers, investors and the next
+              generation of innovators through four core platforms:
             </p>
           </div>
 
@@ -131,18 +134,30 @@ export default function SpotlightPage() {
             style={{ animationDelay: "420ms" }}
           >
             <span className="text-sm leading-relaxed">
-              Know a rising builder, researcher or founder we should know about too?{" "}
-              <span className="font-semibold" style={{ color: "var(--accent)" }}>
+              Know a rising builder, researcher or founder we should know about
+              too?{" "}
+              <span
+                className="font-semibold"
+                style={{ color: "var(--accent)" }}
+              >
                 Discover Emerging Voices
               </span>
             </span>
-            <ArrowRight size={16} className="shrink-0" style={{ color: "var(--accent)" }} aria-hidden="true" />
+            <ArrowRight
+              size={16}
+              className="shrink-0"
+              style={{ color: "var(--accent)" }}
+              aria-hidden="true"
+            />
           </Link>
         </section>
 
         <LoomRail />
 
-        <section id="roster" className="mx-auto max-w-[1240px] px-5 py-14 md:px-10">
+        <section
+          id="roster"
+          className="mx-auto max-w-[1240px] px-5 py-14 md:px-10"
+        >
           <VoiceDirectory voices={voices} />
         </section>
 
@@ -155,18 +170,20 @@ export default function SpotlightPage() {
               className="mx-auto mt-4 max-w-lg text-base leading-relaxed"
               style={{ color: "var(--muted)" }}
             >
-              Every profile here runs in full in the magazine, alongside the cover story, market
-              analysis and the portrait sessions from Accra.
+              Every profile here runs in full in the magazine, alongside the
+              cover story, market analysis and the portrait sessions from Accra.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href={site.orderUrl}
-                className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+                className="btn btn-solid inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+              >
                 Order the magazine <ArrowRight size={16} />
               </Link>
               <Link
                 href={site.readUrl}
-                className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+                className="btn btn-ghost inline-flex items-center gap-2 px-6 py-3.5 text-sm"
+              >
                 <BookOpen size={16} /> Read it online
               </Link>
             </div>
