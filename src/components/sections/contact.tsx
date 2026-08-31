@@ -11,8 +11,8 @@ export function Contact() {
             Got a story, a sponsorship, or a voice we&rsquo;ve missed?
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-            Pitches, partnerships and press — write to the editorial desk in Accra and we&rsquo;ll
-            come back to you.
+            For pitches, partnerships and press, write to the editorial desk in Accra and
+            we&rsquo;ll come back to you.
           </p>
           <a href={`mailto:${site.email}`} className="btn btn-solid mt-8 inline-flex items-center gap-2 px-6 py-3.5 text-sm">
             Start a conversation <ArrowUpRight size={15} />
